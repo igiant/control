@@ -1,0 +1,35 @@
+package control
+
+type TotpState string
+
+const (
+	TotpDone          TotpState = "TotpDone"
+	TotpConfigure     TotpState = "TotpConfigure"
+	TotpNotConfigured TotpState = "TotpNotConfigured"
+	TotpVerify        TotpState = "TotpVerify"
+)
+
+// TotpTotpVerify - -32001 Session expired. - "The user is not logged in." \n
+func (s *ServerConnection) TotpTotpVerify(code int, remember bool) error {
+	params := struct {
+		Code     int  `json:"code"`
+		Remember bool `json:"remember"`
+	}{code, remember}
+	_, err := s.CallRaw("Totp.totpVerify", params)
+	return err
+}
+
+// TotpTotpState - -32001 Session expired. - "The user is not logged in." \n
+func (s *ServerConnection) TotpTotpState() (*TotpState, error) {
+	data, err := s.CallRaw("Totp.totpState", nil)
+	if err != nil {
+		return nil, err
+	}
+	state := struct {
+		Result struct {
+			State TotpState `json:"state"`
+		} `json:"result"`
+	}{}
+	err = json.Unmarshal(data, &state)
+	return &state.Result.State, err
+}
