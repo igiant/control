@@ -29,7 +29,7 @@ type ConnectivityAssistantConfig struct {
 	Type ConnectivityType       `json:"type"` // only Persistent, Failover, LoadBalancing
 	Wans WanInterfaceConfigList `json:"wans"`
 	Lan  LanInterfaceConfig     `json:"lan"`
-	//Wifi WifiConfig             `json:"wifi"`
+	// Wifi WifiConfig             `json:"wifi"`
 }
 
 // ConnectivityAssistantSet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
