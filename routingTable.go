@@ -1,38 +1,37 @@
 package control
 
+import "encoding/json"
+
 type RouteType string
+
 const (
-	RouteSystem RouteType = "RouteSystem" 
-	RouteStatic RouteType = "RouteStatic" 
-	RouteVpn RouteType = "RouteVpn" 
+	RouteSystem RouteType = "RouteSystem"
+	RouteStatic RouteType = "RouteStatic"
+	RouteVpn    RouteType = "RouteVpn"
 )
 
 type Route struct {
-	Enabled bool `json:"enabled"` // valid only for RouteStatic
-	Name string `json:"name"` // valid only for RouteStatic
-	Type RouteType `json:"type"` // Type defines Descriptions: RouteSystem: 'System route'
+	Enabled bool      `json:"enabled"` // valid only for RouteStatic
+	Name    string    `json:"name"`    // valid only for RouteStatic
+	Type    RouteType `json:"type"`    // Type defines Descriptions: RouteSystem: 'System route'
 	//               RouteVpn:  'VPN route'
-	Network IpAddress `json:"network"` 
-	Mask IpAddress `json:"mask"` // used for IPv4
-	PrefixLen int `json:"prefixLen"` // used for IPv6
-	Gateway IpAddress `json:"gateway"` 
+	Network       IpAddress     `json:"network"`
+	Mask          IpAddress     `json:"mask"`      // used for IPv4
+	PrefixLen     int           `json:"prefixLen"` // used for IPv6
+	Gateway       IpAddress     `json:"gateway"`
 	InterfaceType InterfaceType `json:"interfaceType"` // @see InterfaceManager, used values: Ethernet, Ras, VpnTunnel, VpnServer
-	InterfaceId IdReference `json:"interfaceId"` // invalid - interface is no more in the configuration
+	InterfaceId   IdReference   `json:"interfaceId"`   // invalid - interface is no more in the configuration
 	// @note: not used for interfaceType == VpnServer (it means 'VPN Server' in gui)
-	Metric int `json:"metric"` 
+	Metric int `json:"metric"`
 }
 
 type RouteList []Route
 
-
 // RoutingTableGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
 // Return
 //	routes - a list of routes currently stroed and used by system.
-func (s *ServerConnection) RoutingTableGet(boolean [Opt]) (RouteList, error) {
-	params := struct {
-		Boolean [Opt] `json:"boolean"`
-	}{boolean}
-	data, err := s.CallRaw("RoutingTable.get", params)
+func (s *ServerConnection) RoutingTableGet() (RouteList, error) {
+	data, err := s.CallRaw("RoutingTable.get", nil)
 	if err != nil {
 		return nil, err
 	}
@@ -44,16 +43,12 @@ func (s *ServerConnection) RoutingTableGet(boolean [Opt]) (RouteList, error) {
 	err = json.Unmarshal(data, &routes)
 	return routes.Result.Routes, err
 }
-
 
 // RoutingTableGetStaticRoutes - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
 // Return
 //	routes - a list of routes currently stroed and used by Control.
-func (s *ServerConnection) RoutingTableGetStaticRoutes(boolean [Opt]) (RouteList, error) {
-	params := struct {
-		Boolean [Opt] `json:"boolean"`
-	}{boolean}
-	data, err := s.CallRaw("RoutingTable.getStaticRoutes", params)
+func (s *ServerConnection) RoutingTableGetStaticRoutes() (RouteList, error) {
+	data, err := s.CallRaw("RoutingTable.getStaticRoutes", nil)
 	if err != nil {
 		return nil, err
 	}
@@ -65,18 +60,16 @@ func (s *ServerConnection) RoutingTableGetStaticRoutes(boolean [Opt]) (RouteList
 	err = json.Unmarshal(data, &routes)
 	return routes.Result.Routes, err
 }
-
 
 // RoutingTableSetStaticRoutes - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
 // Parameters
 //	routes - A list of routes that should be stored in configuration.
 // Return
 //	errors - list of errors \n
-func (s *ServerConnection) RoutingTableSetStaticRoutes(routes RouteList, boolean [Opt]) (ErrorList, error) {
+func (s *ServerConnection) RoutingTableSetStaticRoutes(routes RouteList) (ErrorList, error) {
 	params := struct {
 		Routes RouteList `json:"routes"`
-		Boolean [Opt] `json:"boolean"`
-	}{routes, boolean}
+	}{routes}
 	data, err := s.CallRaw("RoutingTable.setStaticRoutes", params)
 	if err != nil {
 		return nil, err

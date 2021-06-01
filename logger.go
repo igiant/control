@@ -1,5 +1,7 @@
 package control
 
+import "encoding/json"
+
 type StatusFunction struct {
 	Id   KId    `json:"id"`
 	Name string `json:"name"`

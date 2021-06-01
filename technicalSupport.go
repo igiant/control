@@ -1,5 +1,7 @@
 package control
 
+import "encoding/json"
+
 // UserInfo - A contact to user
 type UserInfo struct {
 	Name  string `json:"name"`

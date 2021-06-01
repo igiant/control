@@ -1,5 +1,7 @@
 package control
 
+import "encoding/json"
+
 type ServerOs string
 
 const (

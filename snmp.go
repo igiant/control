@@ -1,5 +1,7 @@
 package control
 
+import "encoding/json"
+
 type SnmpVersion string
 
 const (

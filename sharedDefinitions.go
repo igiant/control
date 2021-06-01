@@ -1,5 +1,7 @@
 package control
 
+import "encoding/json"
+
 // SharedDefinitionType - @brief enumerate types of definitions shared between MyKerio and your appliance
 type SharedDefinitionType string
 

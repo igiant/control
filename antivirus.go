@@ -1,5 +1,7 @@
 package control
 
+import "encoding/json"
+
 // AntivirusOption - Common part, that can be shared between the products
 type AntivirusOption struct {
 	Name         string `json:"name"`

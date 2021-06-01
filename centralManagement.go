@@ -1,5 +1,7 @@
 package control
 
+import "encoding/json"
+
 type CentralManagementConfig struct {
 	Enabled bool   `json:"enabled"`
 	AppUrl  string `json:"appUrl"`

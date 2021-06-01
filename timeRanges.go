@@ -1,5 +1,21 @@
 package control
 
+import "encoding/json"
+
+type Day string
+
+const (
+	Monday    Day = "Monday"
+	Tuesday   Day = "Tuesday"
+	Wednesday Day = "Wednesday"
+	Thursday  Day = "Thursday"
+	Friday    Day = "Friday"
+	Saturday  Day = "Saturday"
+	Sunday    Day = "Sunday"
+)
+
+type DayList []Day
+
 // TimeRangesApply - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
 // Return
 //	errors - list of errors \n

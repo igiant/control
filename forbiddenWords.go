@@ -1,5 +1,7 @@
 package control
 
+import "encoding/json"
+
 // ForbiddenWord - Forbidden words
 type ForbiddenWord struct {
 	Status      StoreStatus `json:"status"`

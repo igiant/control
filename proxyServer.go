@@ -1,5 +1,7 @@
 package control
 
+import "encoding/json"
+
 type ParentProxyConfig struct {
 	Enabled     bool              `json:"enabled"`
 	Server      string            `json:"server"`

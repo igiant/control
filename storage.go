@@ -1,15 +1,17 @@
 package control
 
+import "encoding/json"
+
 type StorageDataType string
 
 const (
-	StorageDataStar StorageDataType = "StorageDataStar"
-	StorageDataType                 = ""
-	StorageDataType                 = ""
-	StorageDataType                 = ""
-	StorageDataType                 = ""
-	StorageDataType                 = ""
-	StorageDataType                 = ""
+	StorageDataStar       StorageDataType = "StorageDataStar"
+	StorageDataLogs       StorageDataType = "StorageDataLogs"
+	StorageDataCrash      StorageDataType = "StorageDataCrash"
+	StorageDataPktdump    StorageDataType = "StorageDataPktdump"
+	StorageDataUpdate     StorageDataType = "StorageDataUpdate"
+	StorageDataQuarantine StorageDataType = "StorageDataQuarantine"
+	StorageDataHttpCache  StorageDataType = "StorageDataHttpCache"
 )
 
 type StorageData struct {
@@ -27,13 +29,13 @@ func (s *ServerConnection) StorageGet() (StorageDataList, error) {
 	if err != nil {
 		return nil, err
 	}
-	data := struct {
+	dataList := struct {
 		Result struct {
 			Data StorageDataList `json:"data"`
 		} `json:"result"`
 	}{}
-	err = json.Unmarshal(data, &data)
-	return data.Result.Data, err
+	err = json.Unmarshal(data, &dataList)
+	return dataList.Result.Data, err
 }
 
 // StorageRemove - 1000 Operation failed. - "Some files cannot be deleted, they may be currently in use."

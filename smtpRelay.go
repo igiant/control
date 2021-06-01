@@ -1,5 +1,7 @@
 package control
 
+import "encoding/json"
+
 type SmtpRelayConfig struct {
 	UseKManager             bool              `json:"useKManager"`
 	Server                  string            `json:"server"`

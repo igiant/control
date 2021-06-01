@@ -1,5 +1,7 @@
 package control
 
+import "encoding/json"
+
 type OptionalStringList struct {
 	Enabled bool       `json:"enabled"`
 	Value   StringList `json:"value"`

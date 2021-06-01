@@ -1,5 +1,7 @@
 package control
 
+import "encoding/json"
+
 type ActiveTool string
 
 const (

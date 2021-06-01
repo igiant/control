@@ -1,5 +1,7 @@
 package control
 
+import "encoding/json"
+
 // P2pEliminatorConfig - must be included after BandwidthLimiter
 type P2pEliminatorConfig struct {
 	Ports                string  `json:"ports"`

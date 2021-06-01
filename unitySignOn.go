@@ -1,5 +1,7 @@
 package control
 
+import "encoding/json"
+
 type SignOn struct {
 	IsEnabled bool   `json:"isEnabled"`
 	HostName  string `json:"hostName"` // Hostname to the Kerio Unity Sign On server. Non default port can be added Eg: example.com:4444

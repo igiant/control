@@ -1,5 +1,7 @@
 package control
 
+import "encoding/json"
+
 // @brief ineger value used in KISS as "UNLIMITED" in license, see Registration::subscribers and RegistrationFullStatus::users below
 const unlimitedUsers int = -2
 
@@ -58,6 +60,7 @@ type LicenseDetail struct {
 // @brief The data related to a registration. Content of the structure is obtained
 //  from our registration server by method getRegistrationInfo, modified by client and sent back
 //  to the server by method finishRegistration
+
 // Registration - @see getRegistrationInfo, finishRegistration
 type Registration struct {
 	Details          LicenseDetail          `json:"details"`          // Information about user

@@ -1,5 +1,7 @@
 package control
 
+import "encoding/json"
+
 type UpdateCheckerConfig struct {
 	Enabled             bool                `json:"enabled"`
 	BetaVersion         bool                `json:"betaVersion"`
@@ -21,7 +23,7 @@ const (
 	UpdateStatusOk          UpdateStatus = "UpdateStatusOk"
 	UpdateStatusChecking    UpdateStatus = "UpdateStatusChecking"
 	UpdateStatusCheckFailed UpdateStatus = "UpdateStatusCheckFailed"
-	/** UpdateStatus = "/**" /** States only for Linux version */
+	/* States only for Linux version */
 	UpdateStatusDownloadOk     UpdateStatus = "UpdateStatusDownloadOk"
 	UpdateStatusDownloading    UpdateStatus = "UpdateStatusDownloading"
 	UpdateStatusDownloadFailed UpdateStatus = "UpdateStatusDownloadFailed"

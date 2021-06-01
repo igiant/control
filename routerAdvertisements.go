@@ -1,5 +1,7 @@
 package control
 
+import "encoding/json"
+
 type RouterAdvertisement struct {
 	Id          KId            `json:"id"`
 	Enabled     bool           `json:"enabled"`

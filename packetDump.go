@@ -1,5 +1,7 @@
 package control
 
+import "encoding/json"
+
 type PacketDumpStatus struct {
 	SizeKb  int  `json:"sizeKb"`
 	Running bool `json:"running"`

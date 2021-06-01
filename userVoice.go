@@ -1,5 +1,7 @@
 package control
 
+import "encoding/json"
+
 // UserVoiceSettings - Settings of UserVoice
 type UserVoiceSettings struct {
 	Name  string `json:"name"`

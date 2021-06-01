@@ -1,34 +1,35 @@
 package control
 
+import "encoding/json"
+
 type ExportOptions struct {
-	Certificates bool `json:"certificates"` 
-	DhcpLeases bool `json:"dhcpLeases"` 
-	Stats bool `json:"stats"` 
+	Certificates bool `json:"certificates"`
+	DhcpLeases   bool `json:"dhcpLeases"`
+	Stats        bool `json:"stats"`
 }
 
 type ImportedInterface struct {
-	ImportedId KId `json:"importedId"` 
-	Name string `json:"name"` 
-	Group InterfaceGroupType `json:"group"` 
-	Ip IpAddress `json:"ip"` 
-	Type InterfaceType `json:"type"` 
-	UseForFullImport bool `json:"useForFullImport"` 
-	CurrentInterface IdReference `json:"currentInterface"` // id and system name of the corresponding interface in the currently running machine
-	PortId KId `json:"portId"` // only for engine purposes
+	ImportedId       KId                `json:"importedId"`
+	Name             string             `json:"name"`
+	Group            InterfaceGroupType `json:"group"`
+	Ip               IpAddress          `json:"ip"`
+	Type             InterfaceType      `json:"type"`
+	UseForFullImport bool               `json:"useForFullImport"`
+	CurrentInterface IdReference        `json:"currentInterface"` // id and system name of the corresponding interface in the currently running machine
+	PortId           KId                `json:"portId"`           // only for engine purposes
 }
 
 type ImportedInterfaceList []ImportedInterface
 
 type CurrentInterface struct {
-	Id IdReference `json:"id"` // id and system name of the interface in the currently running machine
-	Ip IpAddress `json:"ip"` 
-	MAC string `json:"MAC"` 
-	Type InterfaceType `json:"type"` 
-	UseForFullImport bool `json:"useForFullImport"` 
+	Id               IdReference   `json:"id"` // id and system name of the interface in the currently running machine
+	Ip               IpAddress     `json:"ip"`
+	MAC              string        `json:"MAC"`
+	Type             InterfaceType `json:"type"`
+	UseForFullImport bool          `json:"useForFullImport"`
 }
 
 type CurrentInterfaceList []CurrentInterface
-
 
 // ConfigurationExportConfig - 1000 Operation failed.  - "Error during tar archive creation."
 // Parameters
@@ -52,7 +53,6 @@ func (s *ServerConnection) ConfigurationExportConfig(options ExportOptions) (*Do
 	return &fileDownload.Result.FileDownload, err
 }
 
-
 // ConfigurationGetImportInfo - 8000 Internal error.  - "Internal error."
 // Parameters
 //	fileId - id of uploaded configuration file. (see spec. for uploader)
@@ -72,17 +72,16 @@ func (s *ServerConnection) ConfigurationGetImportInfo(fileId string) (ErrorList,
 	}
 	errors := struct {
 		Result struct {
-			Errors ErrorList `json:"errors"`
-			FullImportPossible bool `json:"fullImportPossible"`
-			NeedIfaceMapping bool `json:"needIfaceMapping"`
+			Errors             ErrorList             `json:"errors"`
+			FullImportPossible bool                  `json:"fullImportPossible"`
+			NeedIfaceMapping   bool                  `json:"needIfaceMapping"`
 			ImportedInterfaces ImportedInterfaceList `json:"importedInterfaces"`
-			CurrentInterfaces CurrentInterfaceList `json:"currentInterfaces"`
+			CurrentInterfaces  CurrentInterfaceList  `json:"currentInterfaces"`
 		} `json:"result"`
 	}{}
 	err = json.Unmarshal(data, &errors)
 	return errors.Result.Errors, errors.Result.FullImportPossible, errors.Result.NeedIfaceMapping, errors.Result.ImportedInterfaces, errors.Result.CurrentInterfaces, err
 }
-
 
 // ConfigurationApply - 1000 Operation failed. - "Upload wasn't finished."
 // Parameters
@@ -91,13 +90,12 @@ func (s *ServerConnection) ConfigurationGetImportInfo(fileId string) (ErrorList,
 //	fullImport - whether to do a full import (overvrite IP & domain setting with imported values)
 // Return
 //	errors - list of errors \n
-func (s *ServerConnection) ConfigurationApply(interfaces ImportedInterfaceList, id string, fullImport bool, boolean [Opt]) (ErrorList, error) {
+func (s *ServerConnection) ConfigurationApply(interfaces ImportedInterfaceList, id string, fullImport bool) (ErrorList, error) {
 	params := struct {
 		Interfaces ImportedInterfaceList `json:"interfaces"`
-		Id string `json:"id"`
-		FullImport bool `json:"fullImport"`
-		Boolean [Opt] `json:"boolean"`
-	}{interfaces, id, fullImport, boolean}
+		Id         string                `json:"id"`
+		FullImport bool                  `json:"fullImport"`
+	}{interfaces, id, fullImport}
 	data, err := s.CallRaw("Configuration.apply", params)
 	if err != nil {
 		return nil, err

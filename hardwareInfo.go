@@ -1,5 +1,7 @@
 package control
 
+import "encoding/json"
+
 // return information about serialnumber of hardware box
 
 // HardwareInfoGetBoxSerialNumber -

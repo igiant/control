@@ -1,5 +1,7 @@
 package control
 
+import "encoding/json"
+
 // SourceNatMode - Mode of source address NAT
 type SourceNatMode string
 

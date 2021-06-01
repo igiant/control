@@ -1,5 +1,7 @@
 package control
 
+import "encoding/json"
+
 type UserConditionType string
 
 const (
@@ -11,6 +13,7 @@ const (
 )
 
 // Roles in webadmin correspond with user rights. If user doesn't have even
+
 // UserRoleType - read right, he can't create session, so there is no "none" in the enum
 type UserRoleType string
 

@@ -1,5 +1,7 @@
 package control
 
+import "encoding/json"
+
 // IpServiceReference - service reference used in various policies
 type IpServiceReference struct {
 	Id      KId    `json:"id"`
@@ -9,6 +11,7 @@ type IpServiceReference struct {
 }
 
 // Different types of service's port definition
+
 // PortComparator - names based on WAM's CompareOperator
 type PortComparator string
 

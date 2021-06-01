@@ -1,5 +1,7 @@
 package control
 
+import "encoding/json"
+
 type HistogramType string
 
 const (
@@ -38,13 +40,13 @@ func (s *ServerConnection) SystemHealthGet(histogramType HistogramType) (*System
 	if err != nil {
 		return nil, err
 	}
-	data := struct {
+	systemHealthData := struct {
 		Result struct {
 			Data SystemHealthData `json:"data"`
 		} `json:"result"`
 	}{}
-	err = json.Unmarshal(data, &data)
-	return &data.Result.Data, err
+	err = json.Unmarshal(data, &systemHealthData)
+	return &systemHealthData.Result.Data, err
 }
 
 // SystemHealthGetInc -
@@ -57,12 +59,12 @@ func (s *ServerConnection) SystemHealthGetInc(histogramIntervalType HistogramInt
 	if err != nil {
 		return nil, nil, err
 	}
-	data := struct {
+	systemHealthData := struct {
 		Result struct {
 			Data       SystemHealthData `json:"data"`
 			SampleTime DateTimeStamp    `json:"sampleTime"`
 		} `json:"result"`
 	}{}
-	err = json.Unmarshal(data, &data)
-	return &data.Result.Data, &data.Result.SampleTime, err
+	err = json.Unmarshal(data, &systemHealthData)
+	return &systemHealthData.Result.Data, &systemHealthData.Result.SampleTime, err
 }

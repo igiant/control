@@ -1,5 +1,7 @@
 package control
 
+import "encoding/json"
+
 const UpdateTimeNever int = 0
 
 type IntrusionPreventionAction string

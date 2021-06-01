@@ -1,5 +1,7 @@
 package control
 
+import "encoding/json"
+
 type AntiHammeringConfig struct {
 	Enabled          bool        `json:"enabled"`
 	WhitelistEnabled bool        `json:"whitelistEnabled"`

@@ -1,11 +1,6 @@
 package control
 
-// ApiApplication - Describes client (third-party) application or script which uses the Administration API.
-type ApiApplication struct {
-	Name    string `json:"name"`    // E.g. "Simple server monitor"
-	Vendor  string `json:"vendor"`  // E.g. "MyScript Ltd."
-	Version string `json:"version"` // E.g. "1.0.0 beta 1"
-}
+import "encoding/json"
 
 type LoginType string
 
@@ -54,22 +49,24 @@ func (s *ServerConnection) SessionGetUserName() (string, error) {
 	return name.Result.Name, err
 }
 
-// SessionLogin - [KLoginMethod]
+// Login - [KLoginMethod]
 // Parameters
 //	userName - login name + domain name (can be omitted if primary/local) of the user to be logged in, e.g. "jdoe" or "jdoe@company.com"
 //	password - password of the user to be logged in
 //	application - client application description
-// Return
-//	token - CSRF attack prevention token, use it as X-Token HTTP header
-func (s *ServerConnection) SessionLogin(userName string, password string, application ApiApplication) (string, error) {
+func (s *ServerConnection) Login(userName string, password string, application *ApiApplication) error {
+	if application == nil {
+		application = NewApplication("", "", "")
+	}
+
 	params := struct {
 		UserName    string         `json:"userName"`
 		Password    string         `json:"password"`
 		Application ApiApplication `json:"application"`
-	}{userName, password, application}
+	}{userName, password, *application}
 	data, err := s.CallRaw("Session.login", params)
 	if err != nil {
-		return "", err
+		return err
 	}
 	token := struct {
 		Result struct {
@@ -77,11 +74,15 @@ func (s *ServerConnection) SessionLogin(userName string, password string, applic
 		} `json:"result"`
 	}{}
 	err = json.Unmarshal(data, &token)
-	return token.Result.Token, err
+	if err != nil {
+		return err
+	}
+	s.Token = &token.Result.Token
+	return nil
 }
 
-// SessionLogout - [KLogoutMethod]
-func (s *ServerConnection) SessionLogout() error {
+// Logout - [KLogoutMethod]
+func (s *ServerConnection) Logout() error {
 	_, err := s.CallRaw("Session.logout", nil)
 	return err
 }

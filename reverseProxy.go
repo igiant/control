@@ -1,5 +1,7 @@
 package control
 
+import "encoding/json"
+
 type HttpsServerMode string
 
 const (
@@ -10,13 +12,13 @@ const (
 
 type ReverseProxyRule struct {
 	/*@{ server match */
-	ServerHostname    string `json:"serverHostname"`
-	ServerHttp        bool   `json:"serverHttp"` // server on standard HTTP port 80
-	HttpsMode                // HttpsServerMode `json:"httpsMode;//"` // server on standard HTTPS port 443
-	CustomCertificate        // IdReference `json:"customCertificate;//"` // HTTPS server certificate ID
+	ServerHostname    string          `json:"serverHostname"`
+	ServerHttp        bool            `json:"serverHttp"`           // server on standard HTTP port 80
+	HttpsMode         HttpsServerMode `json:"httpsMode;//"`         // server on standard HTTPS port 443
+	CustomCertificate IdReference     `json:"customCertificate;//"` // HTTPS server certificate ID
 	/*@{ target connection */
-	TargetServer      // string `json:"targetServer;//"` // hostname/IPv4/IPv6 + optionally ":<port>"
-	TargetHttps  bool `json:"targetHttps"`
+	TargetServer string `json:"targetServer;//"` // hostname/IPv4/IPv6 + optionally ":<port>"
+	TargetHttps  bool   `json:"targetHttps"`
 	/*@{ actions */
 	Antivirus bool `json:"antivirus"`
 	/*@{ misc */

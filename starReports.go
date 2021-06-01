@@ -1,5 +1,7 @@
 package control
 
+import "encoding/json"
+
 type ReportConfig struct {
 	DailyEnabled   bool `json:"dailyEnabled"`
 	WeeklyEnabled  bool `json:"weeklyEnabled"`

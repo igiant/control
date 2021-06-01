@@ -1,5 +1,7 @@
 package control
 
+import "encoding/json"
+
 // Global limits:
 // 1. maximum of returned lines at once is 50000
 // 2. maximal line length is 1024 (it does not include date, time, ID in the beginning of log line)

@@ -1,5 +1,7 @@
 package control
 
+import "encoding/json"
+
 // Certificates (Secured Web Interface and SSL-VPN) will be handled by CertificateManager
 // SslVpnConfig - not applicable on Linux
 type SslVpnConfig struct {

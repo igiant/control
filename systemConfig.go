@@ -1,5 +1,7 @@
 package control
 
+import "encoding/json"
+
 type TimeZoneConfig struct {
 	Id            KId    `json:"id"`
 	Name          string `json:"name"`

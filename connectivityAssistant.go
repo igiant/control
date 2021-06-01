@@ -1,5 +1,7 @@
 package control
 
+import "encoding/json"
+
 type WanInterfaceConfig struct {
 	Id                  KId                `json:"id"` // not used on Box
 	Encap               InterfaceEncapType `json:"encap"`
@@ -27,7 +29,7 @@ type ConnectivityAssistantConfig struct {
 	Type ConnectivityType       `json:"type"` // only Persistent, Failover, LoadBalancing
 	Wans WanInterfaceConfigList `json:"wans"`
 	Lan  LanInterfaceConfig     `json:"lan"`
-	Wifi WifiConfig             `json:"wifi"`
+	//Wifi WifiConfig             `json:"wifi"`
 }
 
 // ConnectivityAssistantSet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
@@ -41,7 +43,7 @@ func (s *ServerConnection) ConnectivityAssistantSet(config ConnectivityAssistant
 		Config        ConnectivityAssistantConfig `json:"config"`
 		RevertTimeout int                         `json:"revertTimeout"`
 	}{config, revertTimeout}
-	data, err := c.CallRaw("ConnectivityAssistant.set", params)
+	data, err := s.CallRaw("ConnectivityAssistant.set", params)
 	if err != nil {
 		return nil, err
 	}

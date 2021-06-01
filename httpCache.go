@@ -1,5 +1,7 @@
 package control
 
+import "encoding/json"
+
 type HttpCacheStatus struct {
 	Used  float64 `json:"used"` // in B
 	Files int     `json:"files"`
