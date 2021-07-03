@@ -1,9 +1,9 @@
 # Kerio Control API
 [![Go Reference](https://pkg.go.dev/badge/github.com/igiant/control.svg)](https://pkg.go.dev/github.com/igiant/control)
 ## Overview
-Client for [Kerio API Connect (JSON-RPC 2.0)](https://manuals.gfi.com/en/kerio/api/control/reference/index.html)
+Client for [Kerio API Control (JSON-RPC 2.0)](https://manuals.gfi.com/en/kerio/api/control/reference/index.html)
 
-Implemented all Administration API for Kerio Connect methods
+Implemented all Administration API for Kerio Control methods
 
 ## Installation
 ```go
