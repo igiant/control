@@ -16,7 +16,7 @@ const (
 	HttpLogSquid  HttpLogType = "HttpLogSquid"
 )
 
-// LoggerLogWrite - 8000 Internal error. - "Internal error."
+// LoggerLogWrite - Write a message to given log
 // Parameters
 //	message - text to be written into log file
 func (s *ServerConnection) LoggerLogWrite(logType LogType, message string) error {
@@ -28,7 +28,9 @@ func (s *ServerConnection) LoggerLogWrite(logType LogType, message string) error
 	return err
 }
 
-// LoggerGetStatusFunctionList - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// LoggerGetStatusFunctionList - Returns list of Functions displayed in debug log context menu 'Show status'
+// Return
+//  functions - list of Functions displayed in debug log context menu 'Show status'
 func (s *ServerConnection) LoggerGetStatusFunctionList() (StatusFunctionList, error) {
 	data, err := s.CallRaw("Logger.getStatusFunctionList", nil)
 	if err != nil {
@@ -43,7 +45,9 @@ func (s *ServerConnection) LoggerGetStatusFunctionList() (StatusFunctionList, er
 	return functions.Result.Functions, err
 }
 
-// LoggerCallStatusFunction - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// LoggerCallStatusFunction - Calls function from StatusFunctionList referenced by id
+// Parameters
+//	id - ID function
 func (s *ServerConnection) LoggerCallStatusFunction(id KId) error {
 	params := struct {
 		Id KId `json:"id"`
@@ -52,7 +56,9 @@ func (s *ServerConnection) LoggerCallStatusFunction(id KId) error {
 	return err
 }
 
-// LoggerGetHttpLogType - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// LoggerGetHttpLogType - Returns actual Http log type
+// Return
+//  logType - actual Http log type
 func (s *ServerConnection) LoggerGetHttpLogType() (*HttpLogType, error) {
 	data, err := s.CallRaw("Logger.getHttpLogType", nil)
 	if err != nil {
@@ -67,7 +73,9 @@ func (s *ServerConnection) LoggerGetHttpLogType() (*HttpLogType, error) {
 	return &logType.Result.LogType, err
 }
 
-// LoggerSetHttpLogType - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// LoggerSetHttpLogType - Stores Http log type
+// Parameters
+//  ogType - Http log type
 func (s *ServerConnection) LoggerSetHttpLogType(logType HttpLogType) error {
 	params := struct {
 		LogType HttpLogType `json:"logType"`
@@ -76,7 +84,9 @@ func (s *ServerConnection) LoggerSetHttpLogType(logType HttpLogType) error {
 	return err
 }
 
-// LoggerGetLogExpression - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// LoggerGetLogExpression - Returns expression for dialog from debug log context menu 'IP Traffic...'
+// Return
+//  expression - expression for dialog from debug log context menu 'IP Traffic...'
 func (s *ServerConnection) LoggerGetLogExpression() (string, error) {
 	data, err := s.CallRaw("Logger.getLogExpression", nil)
 	if err != nil {
@@ -91,7 +101,9 @@ func (s *ServerConnection) LoggerGetLogExpression() (string, error) {
 	return expression.Result.Expression, err
 }
 
-// LoggerSetLogExpression - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// LoggerSetLogExpression - Stores expression from debug log context menu dialog 'IP Traffic...'
+// Parameters
+//  expression - expression for dialog from debug log context menu 'IP Traffic...'
 func (s *ServerConnection) LoggerSetLogExpression(expression string) error {
 	params := struct {
 		Expression string `json:"expression"`
@@ -100,7 +112,9 @@ func (s *ServerConnection) LoggerSetLogExpression(expression string) error {
 	return err
 }
 
-// LoggerGetPacketLogFormat - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// LoggerGetPacketLogFormat - Returns format for dialog from debug log context menu 'Packet Log format...'
+// Return
+//  format - format for dialog from debug log context menu 'Packet Log format...'
 func (s *ServerConnection) LoggerGetPacketLogFormat() (string, error) {
 	data, err := s.CallRaw("Logger.getPacketLogFormat", nil)
 	if err != nil {
@@ -115,7 +129,9 @@ func (s *ServerConnection) LoggerGetPacketLogFormat() (string, error) {
 	return format.Result.Format, err
 }
 
-// LoggerSetPacketLogFormat - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// LoggerSetPacketLogFormat - Stores format from debug log context menu dialog 'Packet Log format...'
+// Parameters
+//  format - format for dialog from debug log context menu 'Packet Log format...'
 func (s *ServerConnection) LoggerSetPacketLogFormat(format string) error {
 	params := struct {
 		Format string `json:"format"`

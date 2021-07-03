@@ -10,7 +10,7 @@ type Inspector struct {
 
 type InspectorList []Inspector
 
-// InspectorsGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// InspectorsGet - Returns available Protocol Inspectors
 // Return
 //	list - list of inspectors and it's details
 func (s *ServerConnection) InspectorsGet() (InspectorList, error) {

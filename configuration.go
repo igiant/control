@@ -31,7 +31,7 @@ type CurrentInterface struct {
 
 type CurrentInterfaceList []CurrentInterface
 
-// ConfigurationExportConfig - 1000 Operation failed.  - "Error during tar archive creation."
+// ConfigurationExportConfig - Creates backup file and returns id.
 // Parameters
 //	options - A set of options which configuration variables/list to store in exported file.
 // Return
@@ -53,7 +53,7 @@ func (s *ServerConnection) ConfigurationExportConfig(options ExportOptions) (*Do
 	return &fileDownload.Result.FileDownload, err
 }
 
-// ConfigurationGetImportInfo - 8000 Internal error.  - "Internal error."
+// ConfigurationGetImportInfo - Returns additiaonal information about imported configuration needed during it's import.
 // Parameters
 //	fileId - id of uploaded configuration file. (see spec. for uploader)
 // Return
@@ -83,7 +83,7 @@ func (s *ServerConnection) ConfigurationGetImportInfo(fileId string) (ErrorList,
 	return errors.Result.Errors, errors.Result.FullImportPossible, errors.Result.NeedIfaceMapping, errors.Result.ImportedInterfaces, errors.Result.CurrentInterfaces, err
 }
 
-// ConfigurationApply - 1000 Operation failed. - "Upload wasn't finished."
+// ConfigurationApply - Applies changes obtained from imported configuration file and users interaction.
 // Parameters
 //	interfaces - a list of interfaces from imported configuration with mappings to the currently present interfeces. This mapping should be ignored in fullimport.
 //	id - id of uploaded configuration file. (see spec. for uploader)

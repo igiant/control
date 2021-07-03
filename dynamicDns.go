@@ -27,7 +27,7 @@ type DynamicDnsConfig struct {
 	CustomIface IdReference           `json:"customIface"`
 }
 
-// DynamicDnsGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// DynamicDnsGet - Returns DynDNS configuration
 // Return
 //	config - configuration values
 func (s *ServerConnection) DynamicDnsGet() (*DynamicDnsConfig, error) {
@@ -44,7 +44,7 @@ func (s *ServerConnection) DynamicDnsGet() (*DynamicDnsConfig, error) {
 	return &config.Result.Config, err
 }
 
-// DynamicDnsSet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// DynamicDnsSet - Stores DynDNS configuration
 // Parameters
 //	config - configuration values
 func (s *ServerConnection) DynamicDnsSet(config DynamicDnsConfig) error {
@@ -55,13 +55,13 @@ func (s *ServerConnection) DynamicDnsSet(config DynamicDnsConfig) error {
 	return err
 }
 
-// DynamicDnsUpdate - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// DynamicDnsUpdate - Performs synchronous DynDNS update
 func (s *ServerConnection) DynamicDnsUpdate() error {
 	_, err := s.CallRaw("DynamicDns.update", nil)
 	return err
 }
 
-// DynamicDnsGetStatus - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// DynamicDnsGetStatus - Returns status of DynDNS update
 // Return
 //	message - list of errors \n
 //	status - actual status of DynDNS update
@@ -80,7 +80,7 @@ func (s *ServerConnection) DynamicDnsGetStatus() (*LocalizableMessage, *DynamicD
 	return &message.Result.Message, &message.Result.Status, err
 }
 
-// DynamicDnsGetProviders - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// DynamicDnsGetProviders - Returns list of supported providers
 // Return
 //	providers - return values
 func (s *ServerConnection) DynamicDnsGetProviders() (StringList, error) {

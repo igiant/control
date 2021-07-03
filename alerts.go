@@ -54,7 +54,7 @@ type AlertSetting struct {
 
 type AlertSettingList []AlertSetting
 
-// AlertsGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// AlertsGet - Returns Alert Messages data
 // Parameters
 //	query - paging query (sorting is not possible and it is ignored)
 // Return
@@ -78,7 +78,7 @@ func (s *ServerConnection) AlertsGet(query SearchQuery) (AlertRowList, int, erro
 	return list.Result.List, list.Result.TotalItems, err
 }
 
-// AlertsGetContent - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// AlertsGetContent - Returns content of given Alert Message as formatted HTML
 // Parameters
 //	id - ID of given alert
 // Return
@@ -100,7 +100,9 @@ func (s *ServerConnection) AlertsGetContent(id KId) (string, error) {
 	return content.Result.Content, err
 }
 
-// AlertsGetAlertTypes - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// AlertsGetAlertTypes - Returns list of possible Alerts types
+// Return
+//  types - list of possible Alerts types
 func (s *ServerConnection) AlertsGetAlertTypes() (AlertTypeList, error) {
 	data, err := s.CallRaw("Alerts.getAlertTypes", nil)
 	if err != nil {
@@ -115,7 +117,9 @@ func (s *ServerConnection) AlertsGetAlertTypes() (AlertTypeList, error) {
 	return types.Result.Types, err
 }
 
-// AlertsGetSettings - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// AlertsGetSettings - Returns list of user defined alert handling
+// Return
+//  config - list of user defined alert handling
 func (s *ServerConnection) AlertsGetSettings() (AlertSettingList, error) {
 	data, err := s.CallRaw("Alerts.getSettings", nil)
 	if err != nil {
@@ -130,7 +134,7 @@ func (s *ServerConnection) AlertsGetSettings() (AlertSettingList, error) {
 	return config.Result.Config, err
 }
 
-// AlertsSetSettings - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// AlertsSetSettings - Stores list of user defined alert handling
 // Parameters
 //	config - structure with complete alerts settings
 // Return
@@ -152,7 +156,9 @@ func (s *ServerConnection) AlertsSetSettings(config AlertSettingList) (ErrorList
 	return errors.Result.Errors, err
 }
 
-// AlertsGetDefaultLanguage - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// AlertsGetDefaultLanguage - Returns default language for Alert emails
+// Return
+//  lang - default language for Alert emails
 func (s *ServerConnection) AlertsGetDefaultLanguage() (string, error) {
 	data, err := s.CallRaw("Alerts.getDefaultLanguage", nil)
 	if err != nil {
@@ -167,7 +173,9 @@ func (s *ServerConnection) AlertsGetDefaultLanguage() (string, error) {
 	return lang.Result.Lang, err
 }
 
-// AlertsSetDefaultLanguage - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// AlertsSetDefaultLanguage - Stores default language for Alert emails
+// Parameters
+//  lang - default language for Alert emails
 func (s *ServerConnection) AlertsSetDefaultLanguage(lang string) error {
 	params := struct {
 		Lang string `json:"lang"`

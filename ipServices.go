@@ -76,7 +76,7 @@ type IpService struct {
 
 type IpServiceList []IpService
 
-// IpServicesGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// IpServicesGet - Get the list of services
 // Parameters
 //	query - conditions and limits. Included from weblib. Kerio Control engine implementation notes: \n
 // Return
@@ -100,11 +100,11 @@ func (s *ServerConnection) IpServicesGet(query SearchQuery) (IpServiceList, int,
 	return list.Result.List, list.Result.TotalItems, err
 }
 
-// IpServicesCreate - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// IpServicesCreate - Add new services
 // Parameters
 //	services - details for new services. field id is assigned by the manager to temporary value until apply() or reset().
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 //	result - list of IDs assigned to each item
 func (s *ServerConnection) IpServicesCreate(services IpServiceList) (ErrorList, CreateResultList, error) {
 	params := struct {
@@ -124,7 +124,7 @@ func (s *ServerConnection) IpServicesCreate(services IpServiceList) (ErrorList, 
 	return errors.Result.Errors, errors.Result.Result, err
 }
 
-// IpServicesSet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// IpServicesSet - Update existing services
 // Parameters
 //	serviceIds - ids of services to be updated.
 //	details - details for update. Field "kerio::web::KId" is ignored. All other fields must be filled and they are written to all services specified by serviceIds.
@@ -148,7 +148,7 @@ func (s *ServerConnection) IpServicesSet(serviceIds StringList, details IpServic
 	return errors.Result.Errors, err
 }
 
-// IpServicesRemove - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// IpServicesRemove - Remove services
 // Parameters
 //	serviceIds - ids of services that should be removed
 // Return
@@ -170,9 +170,9 @@ func (s *ServerConnection) IpServicesRemove(serviceIds StringList) (ErrorList, e
 	return errors.Result.Errors, err
 }
 
-// IpServicesApply - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// IpServicesApply - Write changes cached in manager to configuration
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) IpServicesApply() (ErrorList, error) {
 	data, err := s.CallRaw("IpServices.apply", nil)
 	if err != nil {
@@ -187,7 +187,7 @@ func (s *ServerConnection) IpServicesApply() (ErrorList, error) {
 	return errors.Result.Errors, err
 }
 
-// IpServicesReset - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// IpServicesReset - Discard changes cached in manager
 func (s *ServerConnection) IpServicesReset() error {
 	_, err := s.CallRaw("IpServices.reset", nil)
 	return err

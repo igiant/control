@@ -33,7 +33,7 @@ type ConfigurationBackupStatus struct {
 	ErrorMessage string                   `json:"errorMessage"`
 }
 
-// ConfigurationBackupGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ConfigurationBackupGet - Returns configuration
 // Return
 //	config - Contains Structure with Configuration backup settings.
 func (s *ServerConnection) ConfigurationBackupGet() (*ConfigurationBackupConfig, error) {
@@ -50,7 +50,7 @@ func (s *ServerConnection) ConfigurationBackupGet() (*ConfigurationBackupConfig,
 	return &config.Result.Config, err
 }
 
-// ConfigurationBackupSet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ConfigurationBackupSet - Stores configuration
 // Parameters
 //	config - Contains Structure with Configuration backup settings.
 func (s *ServerConnection) ConfigurationBackupSet(config ConfigurationBackupConfig) error {
@@ -61,13 +61,13 @@ func (s *ServerConnection) ConfigurationBackupSet(config ConfigurationBackupConf
 	return err
 }
 
-// ConfigurationBackupBackupNow - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ConfigurationBackupBackupNow - Runs backup
 func (s *ServerConnection) ConfigurationBackupBackupNow() error {
 	_, err := s.CallRaw("ConfigurationBackup.backupNow", nil)
 	return err
 }
 
-// ConfigurationBackupGetStatus - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ConfigurationBackupGetStatus - Returns actual state of Configuration backup status
 // Return
 //	status - a phase of update process.
 func (s *ServerConnection) ConfigurationBackupGetStatus() (*ConfigurationBackupStatus, error) {

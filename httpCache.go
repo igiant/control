@@ -26,7 +26,7 @@ type UrlSpecificTtl struct {
 
 type UrlSpecificTtlList []UrlSpecificTtl
 
-// HttpCacheGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// HttpCacheGet - Gets Http Cache configuration and status
 // Return
 //	config - current configuration
 func (s *ServerConnection) HttpCacheGet() (*HttpCacheConfig, error) {
@@ -43,7 +43,7 @@ func (s *ServerConnection) HttpCacheGet() (*HttpCacheConfig, error) {
 	return &config.Result.Config, err
 }
 
-// HttpCacheSet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// HttpCacheSet - Sets Http Cache configuration
 // Parameters
 //	config - new configuration
 func (s *ServerConnection) HttpCacheSet(config HttpCacheConfig) error {
@@ -54,7 +54,7 @@ func (s *ServerConnection) HttpCacheSet(config HttpCacheConfig) error {
 	return err
 }
 
-// HttpCacheGetUrlSpecificTtl - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// HttpCacheGetUrlSpecificTtl - Gets list of URL specific TTL
 // Return
 //	list - URL specific TTL list
 func (s *ServerConnection) HttpCacheGetUrlSpecificTtl() (UrlSpecificTtlList, error) {
@@ -71,7 +71,7 @@ func (s *ServerConnection) HttpCacheGetUrlSpecificTtl() (UrlSpecificTtlList, err
 	return list.Result.List, err
 }
 
-// HttpCacheSetUrlSpecificTtl - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// HttpCacheSetUrlSpecificTtl - Gets list of URL specific TTL
 // Parameters
 //	list - URL specific TTL list
 // Return
@@ -93,7 +93,7 @@ func (s *ServerConnection) HttpCacheSetUrlSpecificTtl(list UrlSpecificTtlList) (
 	return errors.Result.Errors, err
 }
 
-// HttpCacheClearCache - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// HttpCacheClearCache - Removes cache content
 func (s *ServerConnection) HttpCacheClearCache() error {
 	_, err := s.CallRaw("HttpCache.clearCache", nil)
 	return err

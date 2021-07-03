@@ -33,7 +33,7 @@ const (
 	ServerCertificate   CertificateType = "ServerCertificate"
 )
 
-// CertificatesGenerateEx - Invalid params. - "Unable to generate certificate, properties are invalid."
+// CertificatesGenerateEx - Generate certificate.
 // Parameters
 //	subject - properties specified by user
 //	name - name of the new certificate
@@ -92,7 +92,7 @@ type Certificate struct {
 
 type CertificateList []Certificate
 
-// CertificatesDetect - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// CertificatesDetect - Detect certificate of given VPN host.
 // Parameters
 //	host - the host certificate of which will be detected
 // Return
@@ -114,7 +114,7 @@ func (s *ServerConnection) CertificatesDetect(host string) (*Certificate, error)
 	return &certificate.Result.Certificate, err
 }
 
-// CertificatesApply - 8002 Database error. - "Unable to delete certificate."
+// CertificatesApply - write changes cached in manager to configuration
 // Return
 //	errors - list of errors \n
 func (s *ServerConnection) CertificatesApply() (ErrorList, error) {
@@ -131,13 +131,13 @@ func (s *ServerConnection) CertificatesApply() (ErrorList, error) {
 	return errors.Result.Errors, err
 }
 
-// CertificatesReset - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// CertificatesReset - discard changes cached in manager
 func (s *ServerConnection) CertificatesReset() error {
 	_, err := s.CallRaw("Certificates.reset", nil)
 	return err
 }
 
-// CertificatesImportCertificateP12 - Invalid params. - "Unable to import certificate, the content is invalid!"
+// CertificatesImportCertificateP12 - Import certificate in PKCS #12 format
 // Parameters
 //	fileId - id of uploaded file
 //	name - name of the new certificate
@@ -164,7 +164,7 @@ func (s *ServerConnection) CertificatesImportCertificateP12(fileId string, name 
 	return &id.Result.Id, err
 }
 
-// CertificatesExportCertificateP12 - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// CertificatesExportCertificateP12 - Export certificate in PKCS #12 format
 // Parameters
 //	id - ID of the certificate or certificate request
 //	password - password, which will be used to encrypt output certificate
@@ -190,7 +190,7 @@ func (s *ServerConnection) CertificatesExportCertificateP12(id KId, password str
 	return &fileDownload.Result.FileDownload, err
 }
 
-// CertificatesImportCertificateUrl - Invalid params. - "Unable to import certificate, the content is invalid!"
+// CertificatesImportCertificateUrl - Import certificate from url
 // Parameters
 //	url - url, where will be certificate downloaded from
 func (s *ServerConnection) CertificatesImportCertificateUrl(url string) error {
@@ -201,7 +201,7 @@ func (s *ServerConnection) CertificatesImportCertificateUrl(url string) error {
 	return err
 }
 
-// CertificatesSetDistrusted - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// CertificatesSetDistrusted - Distrust list of certificate records
 // Parameters
 //	ids - list of identifiers of deleted user templates
 // Return

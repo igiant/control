@@ -318,7 +318,8 @@ const (
 
 type IpCollisionList []KIdList
 
-// InterfacesGet - When sortByGroup is true and sorting is 'name', sorting order is 'group', 'type', 'name'
+// InterfacesGet - Obtain list of interfaces.
+// When sortByGroup is true and sorting is 'name', sorting order is 'group', 'type', 'name'
 func (s *ServerConnection) InterfacesGet(query SearchQuery, sortByGroup bool) (InterfaceList, int, error) {
 	params := struct {
 		Query       SearchQuery `json:"query"`
@@ -338,7 +339,7 @@ func (s *ServerConnection) InterfacesGet(query SearchQuery, sortByGroup bool) (I
 	return list.Result.List, list.Result.TotalItems, err
 }
 
-// InterfacesCreate - 8000 Internal error. - "Internal error."
+// InterfacesCreate - Creates new interface (Only one interface can be created at a time) - VPN Tunnel or RAS on Ape/Box
 // Parameters
 //	list - list of interfaces desired to be created (must contain exactly one item)
 // Return
@@ -362,12 +363,12 @@ func (s *ServerConnection) InterfacesCreate(list InterfaceList) (ErrorList, Crea
 	return errors.Result.Errors, errors.Result.Result, err
 }
 
-// InterfacesSet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// InterfacesSet - Update interface's details.
 // Parameters
 //	ids - list of IDs of interfaces to modify
 //	details - details to set to every interface lister in ids parameter
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) InterfacesSet(ids KIdList, details Interface) (ErrorList, error) {
 	params := struct {
 		Ids     KIdList   `json:"ids"`
@@ -386,7 +387,11 @@ func (s *ServerConnection) InterfacesSet(ids KIdList, details Interface) (ErrorL
 	return errors.Result.Errors, err
 }
 
-// InterfacesRemove - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// InterfacesRemove - Delete Interface configuration - VPN Tunnel or RAS on Ape/Box
+// Parameters
+//	ids - list of IDs of interfaces to modify
+// Return
+//	errors - list of errors
 func (s *ServerConnection) InterfacesRemove(ids KIdList) (ErrorList, error) {
 	params := struct {
 		Ids KIdList `json:"ids"`
@@ -404,7 +409,9 @@ func (s *ServerConnection) InterfacesRemove(ids KIdList) (ErrorList, error) {
 	return errors.Result.Errors, err
 }
 
-// InterfacesCheckIpCollision - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// InterfacesCheckIpCollision - Checks collision of all interfaces IP + VPN Server network
+// Return
+//  collisions - list of ip collision
 func (s *ServerConnection) InterfacesCheckIpCollision() (IpCollisionList, error) {
 	data, err := s.CallRaw("Interfaces.checkIpCollision", nil)
 	if err != nil {
@@ -419,7 +426,9 @@ func (s *ServerConnection) InterfacesCheckIpCollision() (IpCollisionList, error)
 	return collisions.Result.Collisions, err
 }
 
-// InterfacesGetWarnings - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// InterfacesGetWarnings - Checks Link Load Balancing warnings
+// Return
+//  warnings - list of notification type
 func (s *ServerConnection) InterfacesGetWarnings() (NotificationTypeList, error) {
 	data, err := s.CallRaw("Interfaces.getWarnings", nil)
 	if err != nil {
@@ -434,7 +443,7 @@ func (s *ServerConnection) InterfacesGetWarnings() (NotificationTypeList, error)
 	return warnings.Result.Warnings, err
 }
 
-// InterfacesGetConnectivityConfig - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// InterfacesGetConnectivityConfig - Returns Connectivity config values
 // Return
 //	config - Connectivity config values
 func (s *ServerConnection) InterfacesGetConnectivityConfig() (*ConnectivityConfig, error) {
@@ -451,7 +460,7 @@ func (s *ServerConnection) InterfacesGetConnectivityConfig() (*ConnectivityConfi
 	return &config.Result.Config, err
 }
 
-// InterfacesSetConnectivityConfig - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// InterfacesSetConnectivityConfig - Stores Connectivity config values
 // Parameters
 //	config - Connectivity config values
 func (s *ServerConnection) InterfacesSetConnectivityConfig(config ConnectivityConfig) error {
@@ -462,13 +471,13 @@ func (s *ServerConnection) InterfacesSetConnectivityConfig(config ConnectivityCo
 	return err
 }
 
-// InterfacesStartConnectivityTest - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// InterfacesStartConnectivityTest - Initiates testing of connectivity
 func (s *ServerConnection) InterfacesStartConnectivityTest() error {
 	_, err := s.CallRaw("Interfaces.startConnectivityTest", nil)
 	return err
 }
 
-// InterfacesConnectivityTestStatus - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// InterfacesConnectivityTestStatus - Returns progress of connectivity test
 // Return
 //	status - actual status
 func (s *ServerConnection) InterfacesConnectivityTestStatus() (*ConnectivityStatus, error) {
@@ -485,13 +494,13 @@ func (s *ServerConnection) InterfacesConnectivityTestStatus() (*ConnectivityStat
 	return &status.Result.Status, err
 }
 
-// InterfacesCancelConnectivityTest - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// InterfacesCancelConnectivityTest - Cancels testing of connectivity nad sets status to ConnectivityError
 func (s *ServerConnection) InterfacesCancelConnectivityTest() error {
 	_, err := s.CallRaw("Interfaces.cancelConnectivityTest", nil)
 	return err
 }
 
-// InterfacesDial - 1004 Access denied.   - "You have no rights to dial this line."
+// InterfacesDial - Dial interface. Works only for disconnected RAS. Action is taken immediatelly, without apply.
 func (s *ServerConnection) InterfacesDial(id KId) error {
 	params := struct {
 		Id KId `json:"id"`
@@ -500,7 +509,9 @@ func (s *ServerConnection) InterfacesDial(id KId) error {
 	return err
 }
 
-// InterfacesHangup - 1004 Access denied.   - "You have no rights to hang-up this line."
+// InterfacesHangup - Hangup interface. Works only for connected RAS. Action is taken immediatelly, without apply.
+// Parameters
+//	id - interface id
 func (s *ServerConnection) InterfacesHangup(id KId) error {
 	params := struct {
 		Id KId `json:"id"`
@@ -509,7 +520,9 @@ func (s *ServerConnection) InterfacesHangup(id KId) error {
 	return err
 }
 
-// InterfacesGetIpsecPeerIdConfig - 1004 Access denied.   - "You have no rights to hang-up this line."
+// InterfacesGetIpsecPeerIdConfig - Returns (defaults/read-only) values to be displayed on VPN Tunnel IPsec dialog as peer ID config
+// Return
+//	config - values to be displayed on VPN Tunnel IPsec dialog as peer ID config
 func (s *ServerConnection) InterfacesGetIpsecPeerIdConfig() (*IpsecPeerIdConfig, error) {
 	data, err := s.CallRaw("Interfaces.getIpsecPeerIdConfig", nil)
 	if err != nil {
@@ -524,11 +537,11 @@ func (s *ServerConnection) InterfacesGetIpsecPeerIdConfig() (*IpsecPeerIdConfig,
 	return &config.Result.Config, err
 }
 
-// InterfacesApply - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// InterfacesApply - write changes cached in manager to configuration
 // Parameters
 //	revertTimeout how many seconds to wait for confirmation until revert is performed
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) InterfacesApply(revertTimeout int) (ErrorList, error) {
 	params := struct {
 		RevertTimeout int `json:"revertTimeout"`
@@ -546,7 +559,7 @@ func (s *ServerConnection) InterfacesApply(revertTimeout int) (ErrorList, error)
 	return errors.Result.Errors, err
 }
 
-// InterfacesReset - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// InterfacesReset - discard changes cached in manager
 func (s *ServerConnection) InterfacesReset() error {
 	_, err := s.CallRaw("Interfaces.reset", nil)
 	return err

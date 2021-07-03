@@ -12,7 +12,9 @@ type ConnLimitSettings struct {
 	ExclSrcRateLimit OptionalLong        `json:"exclSrcRateLimit"`
 }
 
-// ConnLimitGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ConnLimitGet - Returns Connection Limit configuration
+// Return
+//  config - Connection Limit configuration
 func (s *ServerConnection) ConnLimitGet() (*ConnLimitSettings, error) {
 	data, err := s.CallRaw("ConnLimit.get", nil)
 	if err != nil {
@@ -27,7 +29,9 @@ func (s *ServerConnection) ConnLimitGet() (*ConnLimitSettings, error) {
 	return &config.Result.Config, err
 }
 
-// ConnLimitSet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ConnLimitSet - Stores Connection Limit configuration
+// Parameters
+//  config - Connection Limit configuration
 func (s *ServerConnection) ConnLimitSet(config ConnLimitSettings) error {
 	params := struct {
 		Config ConnLimitSettings `json:"config"`

@@ -128,7 +128,7 @@ type FilenameGroup struct {
 
 type FilenameGroupList []FilenameGroup
 
-// FilenameGroupsGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// FilenameGroupsGet - Returns the list of filename groups
 // Return
 //	groups - list of filename groups
 func (s *ServerConnection) FilenameGroupsGet() (FilenameGroupList, error) {

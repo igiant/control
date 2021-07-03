@@ -60,7 +60,7 @@ type TestResult struct {
 	ErrorMessage string `json:"errorMessage"`
 }
 
-// DomainsGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// DomainsGet - Obtain list of domains
 // Parameters
 //	query - conditions and limits
 // Return
@@ -84,7 +84,7 @@ func (s *ServerConnection) DomainsGet(query SearchQuery) (DomainList, int, error
 	return list.Result.List, list.Result.TotalItems, err
 }
 
-// DomainsCreate - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// DomainsCreate - Add new domain
 // Parameters
 //	domains - details for new domains. field id is assigned by the manager to temporary value until apply() or reset().
 // Return
@@ -108,7 +108,7 @@ func (s *ServerConnection) DomainsCreate(domains DomainList) (ErrorList, CreateR
 	return errors.Result.Errors, errors.Result.Result, err
 }
 
-// DomainsSet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// DomainsSet - Update domains details
 // Parameters
 //	domainIds - ids of domains to be updated.
 //	pattern - details for update. Field "kerio::web::KId" is ignored. All other fields except password must be filled and they are written to all domains specified by domainIds.
@@ -132,7 +132,7 @@ func (s *ServerConnection) DomainsSet(domainIds KIdList, pattern Domain) (ErrorL
 	return errors.Result.Errors, err
 }
 
-// DomainsRemove - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// DomainsRemove - Delete domains
 // Parameters
 //	domainIds - ids of domains that should be removed
 // Return
@@ -154,7 +154,7 @@ func (s *ServerConnection) DomainsRemove(domainIds KIdList) (ErrorList, error) {
 	return errors.Result.Errors, err
 }
 
-// DomainsTestDomainController - @note: Members useSpecificServers, primaryServer and secondaryServer from DirectoryService are not used in this method
+// DomainsTestDomainController - Test of domain accessibility
 // Parameters
 //	hostnames - List of servers, that will be used instead of servers in DirectoryService. Empty string means, that server should be autodetected
 //	directory - domain parameters for connection test
@@ -178,7 +178,7 @@ func (s *ServerConnection) DomainsTestDomainController(hostnames StringList, dir
 	return errors.Result.Errors, err
 }
 
-// DomainsApply - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// DomainsApply - Write changes cached in manager to configuration
 // Return
 //	errors - list of errors \n
 func (s *ServerConnection) DomainsApply() (ErrorList, error) {
@@ -195,7 +195,7 @@ func (s *ServerConnection) DomainsApply() (ErrorList, error) {
 	return errors.Result.Errors, err
 }
 
-// DomainsReset - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// DomainsReset - discard changes cached in manager
 func (s *ServerConnection) DomainsReset() error {
 	_, err := s.CallRaw("Domains.reset", nil)
 	return err

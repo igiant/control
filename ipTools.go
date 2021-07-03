@@ -43,7 +43,7 @@ const (
 	IpVersionAny IpVersion = "IpVersionAny"
 )
 
-// IpToolsGetStatus - 1004 Access denied  - "Insufficient rights to perform the requested operation."
+// IpToolsGetStatus - Get status currently running tool
 func (s *ServerConnection) IpToolsGetStatus() (*ActiveTool, StringList, error) {
 	data, err := s.CallRaw("IpTools.getStatus", nil)
 	if err != nil {
@@ -59,13 +59,13 @@ func (s *ServerConnection) IpToolsGetStatus() (*ActiveTool, StringList, error) {
 	return &activeTool.Result.ActiveTool, activeTool.Result.Lines, err
 }
 
-// IpToolsStop - 1004 Access denied  - "Insufficient rights to perform the requested operation."
+// IpToolsStop - Interrupt currently running tool
 func (s *ServerConnection) IpToolsStop() error {
 	_, err := s.CallRaw("IpTools.stop", nil)
 	return err
 }
 
-// IpToolsPing - 1004 Access denied  - "Insufficient rights to perform the requested operation."
+// IpToolsPing - Ping
 func (s *ServerConnection) IpToolsPing(target string, ipv IpVersion, infinite bool, packetSize int, allowFragmentation bool) error {
 	params := struct {
 		Target             string    `json:"target"`
@@ -78,7 +78,7 @@ func (s *ServerConnection) IpToolsPing(target string, ipv IpVersion, infinite bo
 	return err
 }
 
-// IpToolsTraceRoute - 1004 Access denied  - "Insufficient rights to perform the requested operation."
+// IpToolsTraceRoute - TraceRoute
 func (s *ServerConnection) IpToolsTraceRoute(target string, ipv IpVersion, resolveHostnames bool) error {
 	params := struct {
 		Target           string    `json:"target"`
@@ -89,7 +89,7 @@ func (s *ServerConnection) IpToolsTraceRoute(target string, ipv IpVersion, resol
 	return err
 }
 
-// IpToolsWhois - 1004 Access denied  - "Insufficient rights to perform the requested operation."
+// IpToolsWhois - Whois
 func (s *ServerConnection) IpToolsWhois(target string) error {
 	params := struct {
 		Target string `json:"target"`

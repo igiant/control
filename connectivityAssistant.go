@@ -32,12 +32,12 @@ type ConnectivityAssistantConfig struct {
 	// Wifi WifiConfig             `json:"wifi"`
 }
 
-// ConnectivityAssistantSet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ConnectivityAssistantSet - Sets connectivity configuration from connectivity assistant
 // Parameters
 //	config - input configuration
 //	revertTimeout - If client doesn't confirm config to this timeout, configuration is reverted (0 - revert disabled)
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) ConnectivityAssistantSet(config ConnectivityAssistantConfig, revertTimeout int) (ErrorList, error) {
 	params := struct {
 		Config        ConnectivityAssistantConfig `json:"config"`

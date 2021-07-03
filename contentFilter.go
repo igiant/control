@@ -28,10 +28,10 @@ type UrlWhiteList []UrlWhiteListEntry
 type UrlFilterStatus string
 
 const (
-	UrlFilterNotLicensed  UrlFilterStatus = "UrlFilterNotLicensed"  /* Whole tab disabled (there is feature section in OUR license file (or Control run in trial)) */
-	UrlFilterNotActivated UrlFilterStatus = "UrlFilterNotActivated" /* licensed, but ticket not accepted (activated) by filter */
-	UrlFilterActivating   UrlFilterStatus = "UrlFilterActivating"   /* licensed, but ticket activation in progress */
-	UrlFilterActivated    UrlFilterStatus = "UrlFilterActivated"    /* licensed and ticket accepted (activated) by filter */
+	UrlFilterNotLicensed  UrlFilterStatus = "UrlFilterNotLicensed"  // Whole tab disabled (there is feature section in OUR license file (or Control run in trial))
+	UrlFilterNotActivated UrlFilterStatus = "UrlFilterNotActivated" // licensed, but ticket not accepted (activated) by filter
+	UrlFilterActivating   UrlFilterStatus = "UrlFilterActivating"   // licensed, but ticket activation in progress
+	UrlFilterActivated    UrlFilterStatus = "UrlFilterActivated"    // licensed and ticket accepted (activated) by filter
 )
 
 type UrlFilterConfig struct {
@@ -164,7 +164,7 @@ type ContentRule struct {
 
 type ContentRuleList []ContentRule
 
-// ContentFilterGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ContentFilterGet - Return the list of Content rules
 // Return
 //	list - list of rule and it's details
 func (s *ServerConnection) ContentFilterGet() (ContentRuleList, error) {
@@ -181,7 +181,7 @@ func (s *ServerConnection) ContentFilterGet() (ContentRuleList, error) {
 	return list.Result.List, err
 }
 
-// ContentFilterSet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ContentFilterSet - Stores the list of Content rules
 // Parameters
 //	rules - list of rules and it's details
 // Return
@@ -203,7 +203,9 @@ func (s *ServerConnection) ContentFilterSet(rules ContentRuleList) (ErrorList, e
 	return errors.Result.Errors, err
 }
 
-// ContentFilterGetCollisions - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ContentFilterGetCollisions - Return list of overlapped rules
+// Return
+//  list - list of overlapped rules
 func (s *ServerConnection) ContentFilterGetCollisions() (CollisionList, error) {
 	data, err := s.CallRaw("ContentFilter.getCollisions", nil)
 	if err != nil {
@@ -218,7 +220,7 @@ func (s *ServerConnection) ContentFilterGetCollisions() (CollisionList, error) {
 	return list.Result.List, err
 }
 
-// ContentFilterGetContentApplicationList - 8000 Internal error.  - "Internal error." - unable to get page list of webfilter/application categories and applications
+// ContentFilterGetContentApplicationList - Returns the list of webfilter/application categories and applications
 // Return
 //	categories - list of webfilter/application categories and applications
 func (s *ServerConnection) ContentFilterGetContentApplicationList() (ContentApplicationList, error) {
@@ -235,7 +237,7 @@ func (s *ServerConnection) ContentFilterGetContentApplicationList() (ContentAppl
 	return categories.Result.Categories, err
 }
 
-// ContentFilterGetFilenameGroups - @deprecated use FilenameGroups::get() instead
+// ContentFilterGetFilenameGroups - Returns the list of filename groups
 // Return
 //	groups - list of filename groups
 func (s *ServerConnection) ContentFilterGetFilenameGroups() (FilenameGroupList, error) {
@@ -252,7 +254,7 @@ func (s *ServerConnection) ContentFilterGetFilenameGroups() (FilenameGroupList, 
 	return groups.Result.Groups, err
 }
 
-// ContentFilterGetUrlFilterConfig - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ContentFilterGetUrlFilterConfig - Returns configuration of WebFilter
 // Return
 //	config - configuration values
 func (s *ServerConnection) ContentFilterGetUrlFilterConfig() (*UrlFilterConfig, error) {
@@ -269,7 +271,7 @@ func (s *ServerConnection) ContentFilterGetUrlFilterConfig() (*UrlFilterConfig, 
 	return &config.Result.Config, err
 }
 
-// ContentFilterSetUrlFilterConfig - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ContentFilterSetUrlFilterConfig - Stores configuration of WebFilter
 // Parameters
 //	config - configuration values
 func (s *ServerConnection) ContentFilterSetUrlFilterConfig(config UrlFilterConfig) error {
@@ -280,7 +282,7 @@ func (s *ServerConnection) ContentFilterSetUrlFilterConfig(config UrlFilterConfi
 	return err
 }
 
-// ContentFilterReportMiscategorizedUrl - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ContentFilterReportMiscategorizedUrl - Reports miscategorized url
 // Parameters
 //	url - URL, that is miscategorized
 //	categoryIds - up to 3 suggested categories. Can be empty, if new category is not known
@@ -293,7 +295,7 @@ func (s *ServerConnection) ContentFilterReportMiscategorizedUrl(url string, cate
 	return err
 }
 
-// ContentFilterGetUrlCategories - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ContentFilterGetUrlCategories - Returns current categorization of given url
 // Parameters
 //	url - checked URL
 // Return
@@ -315,7 +317,7 @@ func (s *ServerConnection) ContentFilterGetUrlCategories(url string) (IntegerLis
 	return categoryIds.Result.CategoryIds, err
 }
 
-// ContentFilterGetHttpsConfig - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ContentFilterGetHttpsConfig - Returns configuration of HTTPS Filtering
 // Return
 //	config - configuration values
 func (s *ServerConnection) ContentFilterGetHttpsConfig() (*HttpsConfig, error) {
@@ -332,7 +334,7 @@ func (s *ServerConnection) ContentFilterGetHttpsConfig() (*HttpsConfig, error) {
 	return &config.Result.Config, err
 }
 
-// ContentFilterSetHttpsConfig - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ContentFilterSetHttpsConfig - Stores configuration of HTTPS Filtering
 // Parameters
 //	config - configuration values
 func (s *ServerConnection) ContentFilterSetHttpsConfig(config HttpsConfig) error {
@@ -343,7 +345,7 @@ func (s *ServerConnection) ContentFilterSetHttpsConfig(config HttpsConfig) error
 	return err
 }
 
-// ContentFilterGetSafeSearchConfig - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ContentFilterGetSafeSearchConfig - Returns configuration of SafeSearch
 // Return
 //	config - configuration values
 func (s *ServerConnection) ContentFilterGetSafeSearchConfig() (*SafeSearchConfig, error) {
@@ -360,7 +362,7 @@ func (s *ServerConnection) ContentFilterGetSafeSearchConfig() (*SafeSearchConfig
 	return &config.Result.Config, err
 }
 
-// ContentFilterSetSafeSearchConfig - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ContentFilterSetSafeSearchConfig - Stores configuration of SafeSearch
 // Parameters
 //	config - configuration values
 func (s *ServerConnection) ContentFilterSetSafeSearchConfig(config SafeSearchConfig) error {
@@ -371,7 +373,7 @@ func (s *ServerConnection) ContentFilterSetSafeSearchConfig(config SafeSearchCon
 	return err
 }
 
-// ContentFilterClearHttpsCertCache - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ContentFilterClearHttpsCertCache - Clears cache of generated certificates for HTTPS inspection.
 func (s *ServerConnection) ContentFilterClearHttpsCertCache() error {
 	_, err := s.CallRaw("ContentFilter.clearHttpsCertCache", nil)
 	return err

@@ -2,9 +2,9 @@ package control
 
 import "encoding/json"
 
-// return information about serialnumber of hardware box
-
-// HardwareInfoGetBoxSerialNumber -
+// HardwareInfoGetBoxSerialNumber - Return information about serialnumber of hardware box
+// Return
+//  serialNumber - serialnumber of hardware box
 func (s *ServerConnection) HardwareInfoGetBoxSerialNumber() (string, error) {
 	data, err := s.CallRaw("HardwareInfo.getBoxSerialNumber", nil)
 	if err != nil {

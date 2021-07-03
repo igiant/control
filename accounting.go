@@ -28,7 +28,9 @@ type AccountingConfig struct {
 	UrlGroup           OptionalIdReference `json:"urlGroup"`
 }
 
-// AccountingGet - 1004 Access denied  - "Insufficient rights to perform the requested operation."
+// AccountingGet - Returns Accounting configuration
+// Return
+//  config - Accounting configuration
 func (s *ServerConnection) AccountingGet() (*AccountingConfig, error) {
 	data, err := s.CallRaw("Accounting.get", nil)
 	if err != nil {
@@ -43,7 +45,9 @@ func (s *ServerConnection) AccountingGet() (*AccountingConfig, error) {
 	return &config.Result.Config, err
 }
 
-// AccountingSet - 1004 Access denied  - "Insufficient rights to perform the requested operation."
+// AccountingSet - Stores Accounting configuration
+// Parameters
+//  config - Accounting configuration
 func (s *ServerConnection) AccountingSet(config AccountingConfig) (ErrorList, error) {
 	params := struct {
 		Config AccountingConfig `json:"config"`

@@ -28,7 +28,7 @@ type ForbiddenWordsConfig struct {
 	Enabled bool `json:"enabled"`
 }
 
-// ForbiddenWordsGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ForbiddenWordsGet - Get the list of forbidden words
 // Parameters
 //	query - conditions and limits. Included from weblib.
 // Return
@@ -52,7 +52,7 @@ func (s *ServerConnection) ForbiddenWordsGet(query SearchQuery) (ForbiddenWordLi
 	return list.Result.List, list.Result.TotalItems, err
 }
 
-// ForbiddenWordsCreate - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ForbiddenWordsCreate - Add new forbidden word
 // Parameters
 //	items - details for new words. field id is assigned by the manager to temporary value until apply() or reset().
 // Return
@@ -76,7 +76,7 @@ func (s *ServerConnection) ForbiddenWordsCreate(items ForbiddenWordList) (ErrorL
 	return errors.Result.Errors, errors.Result.Result, err
 }
 
-// ForbiddenWordsSet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ForbiddenWordsSet - Update existing forbidden word
 // Parameters
 //	ids - ids of words to be updated.
 //	details - details for update. Field "kerio::web::KId" is ignored. All other fields must be filled and they are written to all words specified by ids.
@@ -100,7 +100,7 @@ func (s *ServerConnection) ForbiddenWordsSet(ids StringList, details ForbiddenWo
 	return errors.Result.Errors, err
 }
 
-// ForbiddenWordsRemove - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ForbiddenWordsRemove - Remove forbidden word
 // Parameters
 //	ids - ids of words that should be removed
 // Return
@@ -122,7 +122,7 @@ func (s *ServerConnection) ForbiddenWordsRemove(ids StringList) (ErrorList, erro
 	return errors.Result.Errors, err
 }
 
-// ForbiddenWordsApply - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ForbiddenWordsApply - Write changes cached in manager to configuration
 // Return
 //	errors - list of errors \n
 func (s *ServerConnection) ForbiddenWordsApply() (ErrorList, error) {
@@ -139,13 +139,13 @@ func (s *ServerConnection) ForbiddenWordsApply() (ErrorList, error) {
 	return errors.Result.Errors, err
 }
 
-// ForbiddenWordsReset - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ForbiddenWordsReset - Discard changes cached in manager
 func (s *ServerConnection) ForbiddenWordsReset() error {
 	_, err := s.CallRaw("ForbiddenWords.reset", nil)
 	return err
 }
 
-// ForbiddenWordsGetConfig - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ForbiddenWordsGetConfig - Returns the Weight Limit/Enabled
 // Return
 //	config - Complete configuration of Forbidden words module
 func (s *ServerConnection) ForbiddenWordsGetConfig() (*ForbiddenWordsConfig, error) {
@@ -162,7 +162,7 @@ func (s *ServerConnection) ForbiddenWordsGetConfig() (*ForbiddenWordsConfig, err
 	return &config.Result.Config, err
 }
 
-// ForbiddenWordsSetConfig - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ForbiddenWordsSetConfig - Stores the Weight Limit/Enabled
 // Parameters
 //	config - Complete configuration of Forbidden words module
 func (s *ServerConnection) ForbiddenWordsSetConfig(config ForbiddenWordsConfig) error {

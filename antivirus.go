@@ -122,7 +122,9 @@ type AntivirusConfig struct {
 	SslVpnScanning  SslVpnScanningConfig  `json:"sslVpnScanning"` // not available on Linux
 }
 
-// AntivirusGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// AntivirusGet - Get Antivirus Settings
+// Return
+//  config - Antivirus Settings
 func (s *ServerConnection) AntivirusGet() (*AntivirusConfig, error) {
 	data, err := s.CallRaw("Antivirus.get", nil)
 	if err != nil {
@@ -137,7 +139,7 @@ func (s *ServerConnection) AntivirusGet() (*AntivirusConfig, error) {
 	return &config.Result.Config, err
 }
 
-// AntivirusSet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// AntivirusSet - Set Antivirus
 // Parameters
 //	config - structure with complete antivirus settings
 // Return
@@ -159,13 +161,15 @@ func (s *ServerConnection) AntivirusSet(config AntivirusConfig) (ErrorList, erro
 	return errors.Result.Errors, err
 }
 
-// AntivirusUpdate - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// AntivirusUpdate - Force update of integrated antivirus
 func (s *ServerConnection) AntivirusUpdate() error {
 	_, err := s.CallRaw("Antivirus.update", nil)
 	return err
 }
 
-// AntivirusGetUpdateStatus - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// AntivirusGetUpdateStatus - Get progress of antivirus updating
+// Return
+//  status - progress of antivirus updating
 func (s *ServerConnection) AntivirusGetUpdateStatus() (*InternalUpdateStatus, error) {
 	data, err := s.CallRaw("Antivirus.getUpdateStatus", nil)
 	if err != nil {

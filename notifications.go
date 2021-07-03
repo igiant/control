@@ -50,7 +50,8 @@ type Notification struct {
 
 type NotificationList []Notification
 
-// NotificationsGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// NotificationsGet - Returns list of notifications without filtered (cleared) messages
+// When lastNotifications are the same as current notifications, method waits until timeout occurs and than returns
 // Parameters
 //	lastNotifications - notifications returned by last call or empty list
 //	timeout - how long should engine wait for notifications change (in seconds)
@@ -74,7 +75,7 @@ func (s *ServerConnection) NotificationsGet(lastNotifications NotificationList, 
 	return notifications.Result.Notifications, err
 }
 
-// NotificationsClear - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// NotificationsClear - Clears defined notification for current user
 // Parameters
 //	notification - one of the notifications returned by get
 func (s *ServerConnection) NotificationsClear(notification Notification) error {

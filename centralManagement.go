@@ -13,7 +13,7 @@ type CentralManagementStatus struct {
 	Url       OptionalString `json:"url"`
 }
 
-// CentralManagementGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// CentralManagementGet - Returns configuration
 // Return
 //	config - Contains Structure with Central management settings.
 func (s *ServerConnection) CentralManagementGet() (*CentralManagementConfig, error) {
@@ -30,7 +30,7 @@ func (s *ServerConnection) CentralManagementGet() (*CentralManagementConfig, err
 	return &config.Result.Config, err
 }
 
-// CentralManagementSet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// CentralManagementSet - Stores configuration
 // Parameters
 //	config - Contains Structure with Central management settings.
 func (s *ServerConnection) CentralManagementSet(config CentralManagementConfig) error {
@@ -41,7 +41,7 @@ func (s *ServerConnection) CentralManagementSet(config CentralManagementConfig) 
 	return err
 }
 
-// CentralManagementGetStatus - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// CentralManagementGetStatus - Returns actual state of Central management
 // Return
 //	status - actual state of Central management.
 func (s *ServerConnection) CentralManagementGetStatus() (*CentralManagementStatus, error) {
@@ -58,7 +58,7 @@ func (s *ServerConnection) CentralManagementGetStatus() (*CentralManagementStatu
 	return &status.Result.Status, err
 }
 
-// CentralManagementReset - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// CentralManagementReset - Runs reset
 func (s *ServerConnection) CentralManagementReset() error {
 	_, err := s.CallRaw("CentralManagement.reset", nil)
 	return err

@@ -38,7 +38,7 @@ type ActiveConnection struct {
 
 type ActiveConnectionList []ActiveConnection
 
-// ActiveConnectionsGet - 1004 Access denied  - "Insufficient rights to perform the requested operation."
+// ActiveConnectionsGet - Returns Active Connections data
 // Parameters
 //	query - filter/sort query \n
 //	refresh - true in case, that data snapshot have to be refreshed
@@ -66,7 +66,9 @@ func (s *ServerConnection) ActiveConnectionsGet(query SearchQuery, refresh bool,
 	return list.Result.List, list.Result.TotalItems, err
 }
 
-// ActiveConnectionsKill - 1004 Access denied  - "Insufficient rights to perform the requested operation."
+// ActiveConnectionsKill - Kills connections specified in ids list
+// Parameters
+//  ids - list of connections id
 func (s *ServerConnection) ActiveConnectionsKill(ids KIdList) error {
 	params := struct {
 		Ids KIdList `json:"ids"`

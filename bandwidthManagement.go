@@ -102,7 +102,7 @@ type BandwidthManagementConfig struct {
 	Rules             BMRuleList `json:"rules"`
 }
 
-// BandwidthManagementGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// BandwidthManagementGet - Get the list of Bandwidth Management rules
 // Return
 //	config - Bandwidth Management rules
 func (s *ServerConnection) BandwidthManagementGet() (*BandwidthManagementConfig, error) {
@@ -119,7 +119,7 @@ func (s *ServerConnection) BandwidthManagementGet() (*BandwidthManagementConfig,
 	return &config.Result.Config, err
 }
 
-// BandwidthManagementSet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// BandwidthManagementSet - Stores the list of Bandwidth Management rules
 // Parameters
 //	config - Bandwidth Management rules
 // Return
@@ -141,7 +141,7 @@ func (s *ServerConnection) BandwidthManagementSet(config BandwidthManagementConf
 	return errors.Result.Errors, err
 }
 
-// BandwidthManagementGetBandwidth - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// BandwidthManagementGetBandwidth - Returns list of Internet interfaces and their current usage
 // Return
 //	list - list of interfaces (sorted by name); empty if there are no Internet interfaces
 func (s *ServerConnection) BandwidthManagementGetBandwidth() (InternetBandwidthList, error) {
@@ -158,7 +158,7 @@ func (s *ServerConnection) BandwidthManagementGetBandwidth() (InternetBandwidthL
 	return list.Result.List, err
 }
 
-// BandwidthManagementSetBandwidth - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// BandwidthManagementSetBandwidth - Stores the list of Bandwidth Management rules
 // Parameters
 //	list - list of Bandwidth Management rules
 // Return

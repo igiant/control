@@ -117,7 +117,7 @@ type DhcpMode struct {
 	Type DhcpModeType `json:"type"`
 }
 
-// DhcpGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// DhcpGet - get the list of scopes
 // Parameters
 //	query - conditions and limits
 // Return
@@ -141,7 +141,7 @@ func (s *ServerConnection) DhcpGet(query SearchQuery) (DhcpScopeList, int, error
 	return list.Result.List, list.Result.TotalItems, err
 }
 
-// DhcpCreate - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// DhcpCreate - add new scope
 // Parameters
 //	scopes - details for new scopes. field id is assigned by the manager to temporary value until apply() or reset().
 // Return
@@ -165,7 +165,7 @@ func (s *ServerConnection) DhcpCreate(scopes DhcpScopeList) (ErrorList, CreateRe
 	return errors.Result.Errors, errors.Result.Result, err
 }
 
-// DhcpSet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// DhcpSet - update existing scope
 // Parameters
 //	scopeIds - ids of scopes to be updated.
 //	details - details for update. Field "kerio::web::KId" is ignored. All other fields must be filled and they are written to all scopes specified by scopeIds.
@@ -189,7 +189,7 @@ func (s *ServerConnection) DhcpSet(scopeIds StringList, details DhcpScope) (Erro
 	return errors.Result.Errors, err
 }
 
-// DhcpRemove - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// DhcpRemove - remove scope
 // Parameters
 //	scopeIds - ids of scopes that should be removed
 // Return
@@ -211,7 +211,7 @@ func (s *ServerConnection) DhcpRemove(scopeIds StringList) (ErrorList, error) {
 	return errors.Result.Errors, err
 }
 
-// DhcpGetInterfaceTemplate - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// DhcpGetInterfaceTemplate - get generated scope information for interface
 // Parameters
 //	ifaceId - id of interface, for which the template will be created
 // Return
@@ -233,7 +233,7 @@ func (s *ServerConnection) DhcpGetInterfaceTemplate(ifaceId KId) (*DhcpScope, er
 	return &details.Result.Details, err
 }
 
-// DhcpGetLeases - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// DhcpGetLeases - get the list of leases
 // Parameters
 //	query - conditions and limits
 //	scopeIds - list of scope Ids, where leases should be included (empty for all scopes)
@@ -259,7 +259,7 @@ func (s *ServerConnection) DhcpGetLeases(query SearchQuery, scopeIds KIdList) (D
 	return list.Result.List, list.Result.TotalItems, err
 }
 
-// DhcpCreateLeases - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// DhcpCreateLeases - add new reservation
 // Parameters
 //	leases - details for new reservations. field id is assigned by the manager to temporary value until apply() or reset().
 // Return
@@ -283,7 +283,7 @@ func (s *ServerConnection) DhcpCreateLeases(leases DhcpLeaseList) (ErrorList, Cr
 	return errors.Result.Errors, errors.Result.Result, err
 }
 
-// DhcpSetLeases - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// DhcpSetLeases - update existing leases
 // Parameters
 //	leaseIds - ids of reservations to be updated.
 //	details - details for update. Field "kerio::web::KId" is ignored. All other fields must be filled and they are written to all scopes specified by scopeIds.
@@ -307,7 +307,7 @@ func (s *ServerConnection) DhcpSetLeases(leaseIds StringList, details DhcpLease)
 	return errors.Result.Errors, err
 }
 
-// DhcpRemoveLeases - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// DhcpRemoveLeases - remove leases
 // Parameters
 //	leaseIds - ids of leases/reservations that should be removed
 // Return
@@ -329,7 +329,7 @@ func (s *ServerConnection) DhcpRemoveLeases(leaseIds StringList) (ErrorList, err
 	return errors.Result.Errors, err
 }
 
-// DhcpGetMode - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// DhcpGetMode - read Dhcp mode (not part of persistent manager, returns actual state)
 // Return
 //	mode - result
 func (s *ServerConnection) DhcpGetMode() (*DhcpMode, error) {
@@ -346,7 +346,7 @@ func (s *ServerConnection) DhcpGetMode() (*DhcpMode, error) {
 	return &mode.Result.Mode, err
 }
 
-// DhcpSetMode - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// DhcpSetMode - stores Dhcp mode (not part of persistent manager, changes mode immediately)
 // Parameters
 //	mode - new value
 func (s *ServerConnection) DhcpSetMode(mode DhcpMode) error {
@@ -357,7 +357,7 @@ func (s *ServerConnection) DhcpSetMode(mode DhcpMode) error {
 	return err
 }
 
-// DhcpGetConfig - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// DhcpGetConfig - read Dhcp configuration (not part of persistent manager, returns actual state)
 // Return
 //	config - configuration values
 func (s *ServerConnection) DhcpGetConfig() (*DhcpConfig, error) {
@@ -374,7 +374,7 @@ func (s *ServerConnection) DhcpGetConfig() (*DhcpConfig, error) {
 	return &config.Result.Config, err
 }
 
-// DhcpSetConfig - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// DhcpSetConfig - stores Dhcp configuration (not part of persistent manager, changes settings immediately)
 // Parameters
 //	config - configuration values
 func (s *ServerConnection) DhcpSetConfig(config DhcpConfig) error {
@@ -385,7 +385,7 @@ func (s *ServerConnection) DhcpSetConfig(config DhcpConfig) error {
 	return err
 }
 
-// DhcpGetOptionList - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// DhcpGetOptionList - get list of all options
 // Return
 //	options - list of all options
 func (s *ServerConnection) DhcpGetOptionList() (DhcpOptionList, error) {
@@ -402,7 +402,7 @@ func (s *ServerConnection) DhcpGetOptionList() (DhcpOptionList, error) {
 	return options.Result.Options, err
 }
 
-// DhcpGetDeclinedLeases - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// DhcpGetDeclinedLeases - Returns count of declined leases in all scopes, defined by scopeIDs param
 // Parameters
 //	scopeIds - list of scope IDs or empty for all scopes
 // Return
@@ -424,7 +424,7 @@ func (s *ServerConnection) DhcpGetDeclinedLeases(scopeIds KIdList) (int, error) 
 	return count.Result.Count, err
 }
 
-// DhcpRemoveDeclinedLeases - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// DhcpRemoveDeclinedLeases - Removes declined leases defined by scopeIDs param from engine
 // Parameters
 //	scopeIds - list of scope IDs or empty for all scopes
 func (s *ServerConnection) DhcpRemoveDeclinedLeases(scopeIds KIdList) error {
@@ -435,9 +435,9 @@ func (s *ServerConnection) DhcpRemoveDeclinedLeases(scopeIds KIdList) error {
 	return err
 }
 
-// DhcpApply - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// DhcpApply - Write changes cached in manager to configuration
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) DhcpApply() (ErrorList, error) {
 	data, err := s.CallRaw("Dhcp.apply", nil)
 	if err != nil {
@@ -452,7 +452,7 @@ func (s *ServerConnection) DhcpApply() (ErrorList, error) {
 	return errors.Result.Errors, err
 }
 
-// DhcpReset - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// DhcpReset - discard changes cached in manager
 func (s *ServerConnection) DhcpReset() error {
 	_, err := s.CallRaw("Dhcp.reset", nil)
 	return err

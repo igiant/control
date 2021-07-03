@@ -32,7 +32,7 @@ type DnsHost struct {
 
 type DnsHostList []DnsHost
 
-// DnsGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// DnsGet - Returns DNS configuration
 func (s *ServerConnection) DnsGet() (*DnsConfig, error) {
 	data, err := s.CallRaw("Dns.get", nil)
 	if err != nil {
@@ -47,7 +47,7 @@ func (s *ServerConnection) DnsGet() (*DnsConfig, error) {
 	return &config.Result.Config, err
 }
 
-// DnsGetHosts - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// DnsGetHosts - Returns DNS ip/hosts mapping
 func (s *ServerConnection) DnsGetHosts() (DnsHostList, error) {
 	data, err := s.CallRaw("Dns.getHosts", nil)
 	if err != nil {
@@ -62,7 +62,7 @@ func (s *ServerConnection) DnsGetHosts() (DnsHostList, error) {
 	return hosts.Result.Hosts, err
 }
 
-// DnsSet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// DnsSet - Stores DNS configuration
 // Parameters
 //	config - A structure containing all the settings of DND that sould be stored.
 // Return
@@ -84,7 +84,7 @@ func (s *ServerConnection) DnsSet(config DnsConfig) (ErrorList, error) {
 	return errors.Result.Errors, err
 }
 
-// DnsSetHosts - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// DnsSetHosts - Stores DNS ip/hosts mapping
 // Parameters
 //	hosts - list of hosts file entries to be stored
 // Return
@@ -106,7 +106,7 @@ func (s *ServerConnection) DnsSetHosts(hosts DnsHostList) (ErrorList, error) {
 	return errors.Result.Errors, err
 }
 
-// DnsImportHosts - 8000 Internal error. - "Internal error."
+// DnsImportHosts - Imports DNS hosts records from file (hosts format)
 // Parameters
 //	fileId - id of uploaded file
 //	clean - true, if current hosts records should be removed, false, if new records should be appended to current config
@@ -119,7 +119,7 @@ func (s *ServerConnection) DnsImportHosts(fileId string, clean bool) error {
 	return err
 }
 
-// DnsClearCache - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// DnsClearCache - Flushes DNS cache
 func (s *ServerConnection) DnsClearCache() error {
 	_, err := s.CallRaw("Dns.clearCache", nil)
 	return err

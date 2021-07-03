@@ -82,7 +82,7 @@ type Activity struct {
 
 type ActivityList []Activity
 
-// ActiveHostsGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ActiveHostsGet - Returns Active Hosts data
 // Parameters
 //	query - filter/sort query
 //	refresh - true in case, that data snapshot have to be refreshed
@@ -108,7 +108,7 @@ func (s *ServerConnection) ActiveHostsGet(query SearchQuery, refresh bool) (Acti
 	return list.Result.List, list.Result.TotalItems, err
 }
 
-// ActiveHostsGetActivityList - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ActiveHostsGetActivityList - Returns Activities for specified host
 // Parameters
 //	id - Active Host id returned by get
 // Return
@@ -130,7 +130,7 @@ func (s *ServerConnection) ActiveHostsGetActivityList(id KId) (ActivityList, err
 	return list.Result.List, err
 }
 
-// ActiveHostsGetHistogram - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ActiveHostsGetHistogram - Returns throughput Histogram for specified host
 // Parameters
 //	id - Active Host id returned by get
 // Return
@@ -153,7 +153,7 @@ func (s *ServerConnection) ActiveHostsGetHistogram(histogramType HistogramType, 
 	return &hist.Result.Hist, err
 }
 
-// ActiveHostsGetHistogramInc - 1004  Access denied.  - "Insufficient rights to perform the requested operation."
+// ActiveHostsGetHistogramInc - Returns throughput Histogram for specified host
 // Parameters
 //	startSampleTime - Specifies starting time for returned data
 //	id - rule or interface id returned in item.id member by get
@@ -180,7 +180,7 @@ func (s *ServerConnection) ActiveHostsGetHistogramInc(histogramIntervalType Hist
 	return &hist.Result.Hist, &hist.Result.SampleTime, err
 }
 
-// ActiveHostsLogout - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ActiveHostsLogout - Logout users from specified hosts / empty for all hosts
 // Parameters
 //	ids - Active Host ids returned by get or empty for logout all hosts
 func (s *ServerConnection) ActiveHostsLogout(ids KIdList) error {
@@ -191,7 +191,7 @@ func (s *ServerConnection) ActiveHostsLogout(ids KIdList) error {
 	return err
 }
 
-// ActiveHostsLogin - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ActiveHostsLogin - Logs in user for specified host
 // Parameters
 //	hostId - internal identifier of a host computer in network
 //	userName - Name of a user to be loged from given host specified by hostId (including domain if needed)

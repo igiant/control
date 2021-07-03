@@ -2,7 +2,7 @@ package control
 
 import "encoding/json"
 
-// IpAddressGroupsApply - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// IpAddressGroupsApply - Write changes cached in manager to configuration
 // Return
 //	errors - list of errors
 func (s *ServerConnection) IpAddressGroupsApply() (ErrorList, error) {
@@ -19,7 +19,7 @@ func (s *ServerConnection) IpAddressGroupsApply() (ErrorList, error) {
 	return errors.Result.Errors, err
 }
 
-// IpAddressGroupsReset - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// IpAddressGroupsReset - Discard changes cached in manager
 func (s *ServerConnection) IpAddressGroupsReset() error {
 	_, err := s.CallRaw("IpAddressGroups.reset", nil)
 	return err

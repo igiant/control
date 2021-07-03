@@ -53,7 +53,9 @@ type IntrusionPreventionConfig struct {
 	Ports               NamedValueList            `json:"ports"`
 }
 
-// IntrusionPreventionGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// IntrusionPreventionGet - Returns configuration
+// Return
+//	config - complete configuration of Intrusion Prevention system
 func (s *ServerConnection) IntrusionPreventionGet() (*IntrusionPreventionConfig, error) {
 	data, err := s.CallRaw("IntrusionPrevention.get", nil)
 	if err != nil {
@@ -68,7 +70,7 @@ func (s *ServerConnection) IntrusionPreventionGet() (*IntrusionPreventionConfig,
 	return &config.Result.Config, err
 }
 
-// IntrusionPreventionSet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// IntrusionPreventionSet - Stores configuration
 // Parameters
 //	config - complete configuration of Intrusion Prevention system
 // Return
@@ -90,7 +92,7 @@ func (s *ServerConnection) IntrusionPreventionSet(config IntrusionPreventionConf
 	return errors.Result.Errors, err
 }
 
-// IntrusionPreventionGetSignatureDescription - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// IntrusionPreventionGetSignatureDescription - Returns signature description
 func (s *ServerConnection) IntrusionPreventionGetSignatureDescription(id string) (string, error) {
 	params := struct {
 		Id string `json:"id"`
@@ -108,7 +110,9 @@ func (s *ServerConnection) IntrusionPreventionGetSignatureDescription(id string)
 	return description.Result.Description, err
 }
 
-// IntrusionPreventionGetIgnoredRules - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// IntrusionPreventionGetIgnoredRules - Returns list of ignored signatures
+// Return
+//	ignored - List of rules that are excluded from usage in IPS
 func (s *ServerConnection) IntrusionPreventionGetIgnoredRules() (RuleReferenceList, error) {
 	data, err := s.CallRaw("IntrusionPrevention.getIgnoredRules", nil)
 	if err != nil {
@@ -123,11 +127,11 @@ func (s *ServerConnection) IntrusionPreventionGetIgnoredRules() (RuleReferenceLi
 	return ignored.Result.Ignored, err
 }
 
-// IntrusionPreventionSetIgnoredRules - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// IntrusionPreventionSetIgnoredRules - Sets list of ignored signatures
 // Parameters
 //	ignored - List of rules that are excluded from usage in IPS
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) IntrusionPreventionSetIgnoredRules(ignored RuleReferenceList) (ErrorList, error) {
 	params := struct {
 		Ignored RuleReferenceList `json:"ignored"`
@@ -145,7 +149,9 @@ func (s *ServerConnection) IntrusionPreventionSetIgnoredRules(ignored RuleRefere
 	return errors.Result.Errors, err
 }
 
-// IntrusionPreventionUpdate - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// IntrusionPreventionUpdate - Checks new version of database and updates it
+// Parameters
+//  force - checks new version force if true
 func (s *ServerConnection) IntrusionPreventionUpdate(force bool) error {
 	params := struct {
 		Force bool `json:"force"`
@@ -154,7 +160,9 @@ func (s *ServerConnection) IntrusionPreventionUpdate(force bool) error {
 	return err
 }
 
-// IntrusionPreventionGetUpdateStatus - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// IntrusionPreventionGetUpdateStatus - Returns actual state of Update
+// Return
+//  status - actual state of Update
 func (s *ServerConnection) IntrusionPreventionGetUpdateStatus() (*IntrusionPreventionInfo, error) {
 	data, err := s.CallRaw("IntrusionPrevention.getUpdateStatus", nil)
 	if err != nil {

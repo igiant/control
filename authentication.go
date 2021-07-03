@@ -40,7 +40,7 @@ const (
 	JoinStatusError        JoinStatus = "JoinStatusError"
 )
 
-// AuthenticationGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// AuthenticationGet - Returns Authentication option settings
 // Return
 //	config - configuration values
 func (s *ServerConnection) AuthenticationGet() (*AuthenticationConfig, error) {
@@ -57,7 +57,7 @@ func (s *ServerConnection) AuthenticationGet() (*AuthenticationConfig, error) {
 	return &config.Result.Config, err
 }
 
-// AuthenticationSet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// AuthenticationSet - Stores Authentication option settings
 // Parameters
 //	config - configuration values
 func (s *ServerConnection) AuthenticationSet(config AuthenticationConfig) error {
@@ -68,7 +68,7 @@ func (s *ServerConnection) AuthenticationSet(config AuthenticationConfig) error 
 	return err
 }
 
-// AuthenticationJoin - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// AuthenticationJoin - joins computer to domain
 // Parameters
 //	hostName - name of the computer that will be set to computer and in domain controller
 //	domainName - domain name (e.g. example.com)
@@ -98,7 +98,7 @@ func (s *ServerConnection) AuthenticationJoin(hostName string, domainName string
 	return &message.Result.Message, &message.Result.Status, err
 }
 
-// AuthenticationIsJoinServerNeeded - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// AuthenticationIsJoinServerNeeded - tests, if join's param server need to be filled
 // Parameters
 //	domainName - domain name (e.g. example.com)
 // Return
@@ -120,7 +120,7 @@ func (s *ServerConnection) AuthenticationIsJoinServerNeeded(domainName string) (
 	return needServer.Result.NeedServer, err
 }
 
-// AuthenticationLeave - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// AuthenticationLeave - disconnects computer from domain
 // Parameters
 //	credentials - domain account with rights to leave from domain
 // Return
@@ -144,7 +144,7 @@ func (s *ServerConnection) AuthenticationLeave(credentials CredentialsConfig) (*
 	return &message.Result.Message, &message.Result.Status, err
 }
 
-// AuthenticationGetJoinStatus - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// AuthenticationGetJoinStatus - tests if computer is joined to domain
 // Return
 //	status - current status
 //	domainName - a string representation of joined domain.
@@ -163,7 +163,7 @@ func (s *ServerConnection) AuthenticationGetJoinStatus() (*JoinStatus, string, e
 	return &status.Result.Status, status.Result.DomainName, err
 }
 
-// AuthenticationGetTotpConfig - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// AuthenticationGetTotpConfig - Returns TotpConfig
 // Return
 //	config - configuration values
 func (s *ServerConnection) AuthenticationGetTotpConfig() (*TotpConfig, error) {
@@ -180,7 +180,7 @@ func (s *ServerConnection) AuthenticationGetTotpConfig() (*TotpConfig, error) {
 	return &config.Result.Config, err
 }
 
-// AuthenticationSetTotpConfig - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// AuthenticationSetTotpConfig - Stores TotpConfig
 // Parameters
 //	config - configuration values
 func (s *ServerConnection) AuthenticationSetTotpConfig(config TotpConfig) error {
