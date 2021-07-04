@@ -142,7 +142,6 @@ type RegistrationFullStatus struct {
 // The registration can be finished by method finish().
 
 // ProductRegistrationFinish - The Method finishes registration and installs the valid licenseKey.
-// Parameters
 //	token - ID of wizard's session
 //	baseId - Base ID of registration
 //	registrationInfo - Registration data retrieved from server by getRegistrationInfo() and modified by user.
@@ -159,7 +158,6 @@ func (s *ServerConnection) ProductRegistrationFinish(token string, baseId string
 }
 
 // ProductRegistrationGet - Retrieves existing registration data from the server.
-// Parameters
 //	token - ID of wizard's session
 //	securityCode - a code number from the security immage
 //	baseId - license ID
@@ -223,7 +221,6 @@ func (s *ServerConnection) ProductRegistrationGetStatus() (*RegistrationStatus, 
 }
 
 // ProductRegistrationStart - Starts registration process. Methods connect to a server and obtain an identification token and a security image.
-// Parameters
 //	langId - language id
 // Return
 //	token - ID of wizard's session
@@ -249,7 +246,6 @@ func (s *ServerConnection) ProductRegistrationStart(langId string) (string, stri
 }
 
 // ProductRegistrationVerifyNumber - an uncomplete registration.
-// Parameters
 //	token - ID of wizard's session
 //	baseId - Registration's baseId
 //	regNumbersToVerify - a list of numbers to be verified

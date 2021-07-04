@@ -9,7 +9,6 @@ type UserVoiceSettings struct {
 }
 
 // UserVoiceGetUrl - Generate token for logging into user voice web.
-// Parameters name and email can be empty strings.
 // Return
 //	url - URL to userVoice with single sign on token
 func (s *ServerConnection) UserVoiceGetUrl() (string, error) {
@@ -27,7 +26,6 @@ func (s *ServerConnection) UserVoiceGetUrl() (string, error) {
 }
 
 // UserVoiceSet - Set settings of User Voice.
-// Parameters
 //	settings - structure with settings
 func (s *ServerConnection) UserVoiceSet(settings UserVoiceSettings) error {
 	params := struct {

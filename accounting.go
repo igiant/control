@@ -46,7 +46,6 @@ func (s *ServerConnection) AccountingGet() (*AccountingConfig, error) {
 }
 
 // AccountingSet - Stores Accounting configuration
-// Parameters
 //  config - Accounting configuration
 func (s *ServerConnection) AccountingSet(config AccountingConfig) (ErrorList, error) {
 	params := struct {

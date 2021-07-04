@@ -147,7 +147,6 @@ type User struct {
 type UserList []User
 
 // UsersGet - Obtain list of users in given domain
-// Parameters
 //	query - conditions and limits
 //	domainId - id of domain - only users from this domain will be listed
 // Return
@@ -176,7 +175,6 @@ func (s *ServerConnection) UsersGet(query SearchQuery, domainId KId) (ErrorList,
 }
 
 // UsersCreate - Add new user
-// Parameters
 //	users - details for new users. field id is assigned by the manager to temporary value until apply() or reset().
 //	domainId - id of domain - specifies domain, where user will be created (only local is supported)
 // Return
@@ -202,7 +200,6 @@ func (s *ServerConnection) UsersCreate(users UserList, domainId KId) (ErrorList,
 }
 
 // UsersSet - Update users' details
-// Parameters
 //	userIds - ids of users to be updated.
 //	details - details for update. Field "kerio::web::KId" is ignored. Only filled details will be stored in users config defined by userIds
 //	domainId - id of domain - users from this domain will be updated
@@ -228,7 +225,6 @@ func (s *ServerConnection) UsersSet(userIds KIdList, details User, domainId KId)
 }
 
 // UsersRemove - Delete users
-// Parameters
 //	userIds - ids of users that should be removed
 //	domainId - id of domain - specifies domain, where user will be removed (only local is supported)
 // Return
@@ -252,7 +248,6 @@ func (s *ServerConnection) UsersRemove(userIds KIdList, domainId KId) (ErrorList
 }
 
 // UsersConvertLocalUsers - Replace all conflicting local users with domain users in policies
-// Parameters
 //	domainId - id of domain - specifies domain, from which users will be loaded
 func (s *ServerConnection) UsersConvertLocalUsers(domainId KId) error {
 	params := struct {
@@ -263,7 +258,6 @@ func (s *ServerConnection) UsersConvertLocalUsers(domainId KId) error {
 }
 
 // UsersGetAdUsers - Returns list of users suitable for import
-// Parameters
 //	domainName - name of AD domain
 //	server - AD server
 //	credentials - username and password for user with read privilegies
@@ -291,7 +285,6 @@ func (s *ServerConnection) UsersGetAdUsers(domainName string, server string, cre
 }
 
 // UsersGetNtUsers - Returns list of users suitable for import
-// Parameters
 //	domainName - name of NT domain
 // Return
 //	users - list of users and details
@@ -347,7 +340,6 @@ func (s *ServerConnection) UsersGetMySettings() (*UserSettings, error) {
 }
 
 // UsersSetMySettings - Stores list of user's settings
-// Parameters
 //	settings - list of all settings
 func (s *ServerConnection) UsersSetMySettings(settings UserSettings) error {
 	params := struct {
@@ -358,7 +350,6 @@ func (s *ServerConnection) UsersSetMySettings(settings UserSettings) error {
 }
 
 // UsersCheckWarnings - Checks, if autoLogin and vpnAddress params are unique and returns appropriate warnings if so
-// Parameters
 //	user - user data
 // Return
 //	errors - list of all warnings

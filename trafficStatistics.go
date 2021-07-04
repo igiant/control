@@ -22,7 +22,6 @@ type TrafficStatistic struct {
 type TrafficStatisticList []TrafficStatistic
 
 // TrafficStatisticsGet - Returns Rule Statistics data
-// Parameters
 //	query - filter/sort query
 //	refresh - true in case, that data snapshot have to be refreshed
 // Return
@@ -49,7 +48,6 @@ func (s *ServerConnection) TrafficStatisticsGet(query SearchQuery, refresh bool)
 }
 
 // TrafficStatisticsRemove - Deletes rule traffic counters
-// Parameters
 //	ids - Ids of statistics items to be removed.
 func (s *ServerConnection) TrafficStatisticsRemove(ids KIdList) error {
 	params := struct {
@@ -60,7 +58,6 @@ func (s *ServerConnection) TrafficStatisticsRemove(ids KIdList) error {
 }
 
 // TrafficStatisticsGetHistogram - Returns throughput Histogram for specified rule or interface
-// Parameters
 //	id - rule or interface id returned in item.id member by get
 // Return
 //	hist - output data
@@ -83,7 +80,6 @@ func (s *ServerConnection) TrafficStatisticsGetHistogram(histogramType Histogram
 }
 
 // TrafficStatisticsGetHistogramInc - Returns throughput Histogram for specified rule or interface
-// Parameters
 //	startSampleTime - Specifies starting time for returned d
 //	id - rule or interface id returned in item.id member by get
 // Return

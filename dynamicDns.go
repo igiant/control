@@ -45,7 +45,6 @@ func (s *ServerConnection) DynamicDnsGet() (*DynamicDnsConfig, error) {
 }
 
 // DynamicDnsSet - Stores DynDNS configuration
-// Parameters
 //	config - configuration values
 func (s *ServerConnection) DynamicDnsSet(config DynamicDnsConfig) error {
 	params := struct {

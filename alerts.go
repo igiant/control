@@ -55,7 +55,6 @@ type AlertSetting struct {
 type AlertSettingList []AlertSetting
 
 // AlertsGet - Returns Alert Messages data
-// Parameters
 //	query - paging query (sorting is not possible and it is ignored)
 // Return
 //	list - output data
@@ -80,7 +79,6 @@ func (s *ServerConnection) AlertsGet(query SearchQuery) (AlertRowList, int, erro
 }
 
 // AlertsGetContent - Returns content of given Alert Message as formatted HTML
-// Parameters
 //	id - ID of given alert
 // Return
 //	content - output data
@@ -136,7 +134,6 @@ func (s *ServerConnection) AlertsGetSettings() (AlertSettingList, error) {
 }
 
 // AlertsSetSettings - Stores list of user defined alert handling
-// Parameters
 //	config - structure with complete alerts settings
 // Return
 //	errors - list of items that cannot be changed.
@@ -175,7 +172,6 @@ func (s *ServerConnection) AlertsGetDefaultLanguage() (string, error) {
 }
 
 // AlertsSetDefaultLanguage - Stores default language for Alert emails
-// Parameters
 //  lang - default language for Alert emails
 func (s *ServerConnection) AlertsSetDefaultLanguage(lang string) error {
 	params := struct {

@@ -77,7 +77,6 @@ type IpService struct {
 type IpServiceList []IpService
 
 // IpServicesGet - Get the list of services
-// Parameters
 //	query - conditions and limits. Included from weblib. Kerio Control engine implementation notes:
 // Return
 //	list - list of services and it's details
@@ -102,7 +101,6 @@ func (s *ServerConnection) IpServicesGet(query SearchQuery) (IpServiceList, int,
 }
 
 // IpServicesCreate - Add new services
-// Parameters
 //	services - details for new services. field id is assigned by the manager to temporary value until apply() or reset().
 // Return
 //	errors - list of errors
@@ -126,7 +124,6 @@ func (s *ServerConnection) IpServicesCreate(services IpServiceList) (ErrorList, 
 }
 
 // IpServicesSet - Update existing services
-// Parameters
 //	serviceIds - ids of services to be updated.
 //	details - details for update. Field "kerio::web::KId" is ignored. All other fields must be filled and they are written to all services specified by serviceIds.
 // Return
@@ -150,7 +147,6 @@ func (s *ServerConnection) IpServicesSet(serviceIds StringList, details IpServic
 }
 
 // IpServicesRemove - Remove services
-// Parameters
 //	serviceIds - ids of services that should be removed
 // Return
 //	errors - list of errors TODO write particular values

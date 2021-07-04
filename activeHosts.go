@@ -83,7 +83,6 @@ type Activity struct {
 type ActivityList []Activity
 
 // ActiveHostsGet - Returns Active Hosts data
-// Parameters
 //	query - filter/sort query
 //	refresh - true in case, that data snapshot have to be refreshed
 // Return
@@ -110,7 +109,6 @@ func (s *ServerConnection) ActiveHostsGet(query SearchQuery, refresh bool) (Acti
 }
 
 // ActiveHostsGetActivityList - Returns Activities for specified host
-// Parameters
 //	id - Active Host id returned by get
 // Return
 //	list - output data
@@ -132,7 +130,6 @@ func (s *ServerConnection) ActiveHostsGetActivityList(id KId) (ActivityList, err
 }
 
 // ActiveHostsGetHistogram - Returns throughput Histogram for specified host
-// Parameters
 //	id - Active Host id returned by get
 // Return
 //	hist - samples of traffic rate for given host
@@ -155,7 +152,6 @@ func (s *ServerConnection) ActiveHostsGetHistogram(histogramType HistogramType, 
 }
 
 // ActiveHostsGetHistogramInc - Returns throughput Histogram for specified host
-// Parameters
 //	startSampleTime - Specifies starting time for returned data
 //	id - rule or interface id returned in item.id member by get
 // Return
@@ -182,7 +178,6 @@ func (s *ServerConnection) ActiveHostsGetHistogramInc(histogramIntervalType Hist
 }
 
 // ActiveHostsLogout - Logout users from specified hosts / empty for all hosts
-// Parameters
 //	ids - Active Host ids returned by get or empty for logout all hosts
 func (s *ServerConnection) ActiveHostsLogout(ids KIdList) error {
 	params := struct {
@@ -193,7 +188,6 @@ func (s *ServerConnection) ActiveHostsLogout(ids KIdList) error {
 }
 
 // ActiveHostsLogin - Logs in user for specified host
-// Parameters
 //	hostId - internal identifier of a host computer in network
 //	userName - Name of a user to be loged from given host specified by hostId (including domain if needed)
 func (s *ServerConnection) ActiveHostsLogin(hostId KId, userName string) error {

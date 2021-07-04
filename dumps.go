@@ -58,7 +58,6 @@ func (s *ServerConnection) DumpsRemove() error {
 }
 
 // DumpsSend - Upload last available crash dump to Kerio.
-// Parameters
 //	description - plain text information to be sent with crash dump
 //	email - contact information to be sent with crash dump
 func (s *ServerConnection) DumpsSend(description string, email string) error {

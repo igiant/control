@@ -116,7 +116,6 @@ func (s *ServerConnection) SecuritySettingsGet() (*SecuritySettingsConfig, error
 }
 
 // SecuritySettingsSet - Stores Security Settings configuration
-// Parameters
 //	config - structure containing security settings to be stored such as mac-filter action, name, mac list and belonging interfaces.
 // Return
 //	errors - list of errors

@@ -210,7 +210,6 @@ func (s *ServerConnection) TrafficPolicyGet() (TrafficRuleList, int, error) {
 }
 
 // TrafficPolicySet - Stores the list of Traffic Policy rules
-// Parameters
 //	rules - list of Traffic Policy rules
 //	defaultRule - properties of default rule
 // Return
@@ -266,7 +265,6 @@ func (s *ServerConnection) TrafficPolicyGetDefaultRule() (*TrafficRule, error) {
 }
 
 // TrafficPolicyFilterRules - Return all rules, that matches given criteria in time, when this method was called.
-// Parameters
 //	condition - Filter parameters. Empty parameter (0 for numbers) in condition means 'any'.
 func (s *ServerConnection) TrafficPolicyFilterRules(condition TrafficPolicyFilter) (KIdList, error) {
 	params := struct {
@@ -286,7 +284,6 @@ func (s *ServerConnection) TrafficPolicyFilterRules(condition TrafficPolicyFilte
 }
 
 // TrafficPolicyNormalizeTrafficEntity - Normalize TrafficEntity
-// Parameters
 //	input - TrafficEntity
 func (s *ServerConnection) TrafficPolicyNormalizeTrafficEntity(input TrafficEntity) (ErrorList, *TrafficEntity, error) {
 	params := struct {

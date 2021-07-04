@@ -43,7 +43,6 @@ func (s *ServerConnection) WebInterfaceGet() (*WebInterfaceConfig, error) {
 }
 
 // WebInterfaceSet - Stores configuration
-// Parameters
 //	config - structure with settings for webinterface module
 //	revertTimeout - If client doesn't confirm config to this timeout, configuration is reverted (0 - revert disabled)
 func (s *ServerConnection) WebInterfaceSet(config WebInterfaceConfig, revertTimeout int) error {
@@ -56,7 +55,6 @@ func (s *ServerConnection) WebInterfaceSet(config WebInterfaceConfig, revertTime
 }
 
 // WebInterfaceUploadImage - Uploaded image which will need to be apply/reset
-// Parameters
 //	fileId - according to spec 390.
 //	isFavicon - true = the image is favicon, false = the image is product logo
 func (s *ServerConnection) WebInterfaceUploadImage(fileId string, isFavicon bool) error {

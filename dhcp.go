@@ -118,7 +118,6 @@ type DhcpMode struct {
 }
 
 // DhcpGet - get the list of scopes
-// Parameters
 //	query - conditions and limits
 // Return
 //	list - list of scopes and it's details
@@ -143,7 +142,6 @@ func (s *ServerConnection) DhcpGet(query SearchQuery) (DhcpScopeList, int, error
 }
 
 // DhcpCreate - add new scope
-// Parameters
 //	scopes - details for new scopes. field id is assigned by the manager to temporary value until apply() or reset().
 // Return
 //	errors - list of errors
@@ -167,7 +165,6 @@ func (s *ServerConnection) DhcpCreate(scopes DhcpScopeList) (ErrorList, CreateRe
 }
 
 // DhcpSet - update existing scope
-// Parameters
 //	scopeIds - ids of scopes to be updated.
 //	details - details for update. Field "kerio::web::KId" is ignored. All other fields must be filled and they are written to all scopes specified by scopeIds.
 // Return
@@ -191,7 +188,6 @@ func (s *ServerConnection) DhcpSet(scopeIds StringList, details DhcpScope) (Erro
 }
 
 // DhcpRemove - remove scope
-// Parameters
 //	scopeIds - ids of scopes that should be removed
 // Return
 //	errors - list of errors
@@ -213,7 +209,6 @@ func (s *ServerConnection) DhcpRemove(scopeIds StringList) (ErrorList, error) {
 }
 
 // DhcpGetInterfaceTemplate - get generated scope information for interface
-// Parameters
 //	ifaceId - id of interface, for which the template will be created
 // Return
 //	details - configuration for given ifaceId - can be passed to create method
@@ -235,7 +230,6 @@ func (s *ServerConnection) DhcpGetInterfaceTemplate(ifaceId KId) (*DhcpScope, er
 }
 
 // DhcpGetLeases - get the list of leases
-// Parameters
 //	query - conditions and limits
 //	scopeIds - list of scope Ids, where leases should be included (empty for all scopes)
 // Return
@@ -262,7 +256,6 @@ func (s *ServerConnection) DhcpGetLeases(query SearchQuery, scopeIds KIdList) (D
 }
 
 // DhcpCreateLeases - add new reservation
-// Parameters
 //	leases - details for new reservations. field id is assigned by the manager to temporary value until apply() or reset().
 // Return
 //	errors - list of errors
@@ -286,7 +279,6 @@ func (s *ServerConnection) DhcpCreateLeases(leases DhcpLeaseList) (ErrorList, Cr
 }
 
 // DhcpSetLeases - update existing leases
-// Parameters
 //	leaseIds - ids of reservations to be updated.
 //	details - details for update. Field "kerio::web::KId" is ignored. All other fields must be filled and they are written to all scopes specified by scopeIds.
 // Return
@@ -310,7 +302,6 @@ func (s *ServerConnection) DhcpSetLeases(leaseIds StringList, details DhcpLease)
 }
 
 // DhcpRemoveLeases - remove leases
-// Parameters
 //	leaseIds - ids of leases/reservations that should be removed
 // Return
 //	errors - list of errors
@@ -349,7 +340,6 @@ func (s *ServerConnection) DhcpGetMode() (*DhcpMode, error) {
 }
 
 // DhcpSetMode - stores Dhcp mode (not part of persistent manager, changes mode immediately)
-// Parameters
 //	mode - new value
 func (s *ServerConnection) DhcpSetMode(mode DhcpMode) error {
 	params := struct {
@@ -377,7 +367,6 @@ func (s *ServerConnection) DhcpGetConfig() (*DhcpConfig, error) {
 }
 
 // DhcpSetConfig - stores Dhcp configuration (not part of persistent manager, changes settings immediately)
-// Parameters
 //	config - configuration values
 func (s *ServerConnection) DhcpSetConfig(config DhcpConfig) error {
 	params := struct {
@@ -405,7 +394,6 @@ func (s *ServerConnection) DhcpGetOptionList() (DhcpOptionList, error) {
 }
 
 // DhcpGetDeclinedLeases - Returns count of declined leases in all scopes, defined by scopeIDs param
-// Parameters
 //	scopeIds - list of scope IDs or empty for all scopes
 // Return
 //	count - count of declined leases
@@ -427,7 +415,6 @@ func (s *ServerConnection) DhcpGetDeclinedLeases(scopeIds KIdList) (int, error) 
 }
 
 // DhcpRemoveDeclinedLeases - Removes declined leases defined by scopeIDs param from engine
-// Parameters
 //	scopeIds - list of scope IDs or empty for all scopes
 func (s *ServerConnection) DhcpRemoveDeclinedLeases(scopeIds KIdList) error {
 	params := struct {

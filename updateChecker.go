@@ -63,7 +63,6 @@ func (s *ServerConnection) UpdateCheckerGet() (*UpdateCheckerConfig, error) {
 }
 
 // UpdateCheckerSet - Stores configuration
-// Parameters
 //	config - Contains Structure with update checker's settings to be stored &a pplied.
 func (s *ServerConnection) UpdateCheckerSet(config UpdateCheckerConfig) error {
 	params := struct {
@@ -119,7 +118,6 @@ func (s *ServerConnection) UpdateCheckerGetProgressStatus() (int, error) {
 
 // UpdateCheckerDownload - Starts Downloading
 // METHODS ONLY FOR LINUX VERSION
-// Parameters
 //  checkVersionType -
 func (s *ServerConnection) UpdateCheckerDownload(checkVersionType CheckVersionType) error {
 	params := struct {
@@ -131,7 +129,6 @@ func (s *ServerConnection) UpdateCheckerDownload(checkVersionType CheckVersionTy
 
 // UpdateCheckerUploadImage - Converts fileId to id, that will be passed into performCustomUpgrade.
 // METHODS ONLY FOR LINUX VERSION
-// Parameters
 //	fileId - according to spec 390.
 // Return
 //	id - an id obtained from fileId (same values);

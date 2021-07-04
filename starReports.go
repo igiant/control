@@ -40,7 +40,6 @@ func (s *ServerConnection) StarReportsGet() (StarReportList, *ReportConfig, erro
 }
 
 // StarReportsSet - Stores StaR reports entries
-// Parameters
 //	reports - list of report configurations to be send regularly.
 //	allUsers - Structure telling whether to send individual reports to each person reularly and wheter to allow them to see their reposrt online.
 // Return
@@ -64,7 +63,6 @@ func (s *ServerConnection) StarReportsSet(reports StarReportList, allUsers Repor
 }
 
 // StarReportsSend - Immediately enqueues StaR report for send
-// Parameters
 //	reports - list of addressees and types of the report
 //	language - language of the report
 // Return

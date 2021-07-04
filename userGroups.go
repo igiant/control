@@ -13,7 +13,6 @@ type UserGroup struct {
 type UserGroupList []UserGroup
 
 // UserGroupsGet - Obtain list of groups in given domain
-// Parameters
 //	query - conditions and limits
 //	domainId - id of domain - only groups from this domain will be listed
 // Return
@@ -40,7 +39,6 @@ func (s *ServerConnection) UserGroupsGet(query SearchQuery, domainId KId) (UserG
 }
 
 // UserGroupsCreate - Add new group
-// Parameters
 //	groups - details for new groups. field id is assigned by the manager to temporary value until apply() or reset().
 //	domainId - id of domain - specifies domain, where groups will be created (only local is supported)
 // Return
@@ -66,7 +64,6 @@ func (s *ServerConnection) UserGroupsCreate(groups UserGroupList, domainId KId) 
 }
 
 // UserGroupsSet - Update groups' details
-// Parameters
 //	groupIds - ids of groups to be updated.
 //	details - details for update. Field "kerio::web::KId" is ignored. All other values have to be present
 //	domainId - id of domain - groups from this domain will be updated
@@ -92,7 +89,6 @@ func (s *ServerConnection) UserGroupsSet(groupIds StringList, details UserGroup,
 }
 
 // UserGroupsRemove - Delete groups
-// Parameters
 //	groupIds - ids of groups that should be removed
 //	domainId - id of domain - specifies domain, where groups will be removed (only local is supported)
 // Return

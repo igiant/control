@@ -50,7 +50,6 @@ func (s *ServerConnection) SystemConfigGet() (*SystemConfiguration, error) {
 }
 
 // SystemConfigSet - Stores System configuration
-// Parameters
 //	config - contains system setting to be stored.
 func (s *ServerConnection) SystemConfigSet(config SystemConfiguration) error {
 	params := struct {
@@ -61,7 +60,6 @@ func (s *ServerConnection) SystemConfigSet(config SystemConfiguration) error {
 }
 
 // SystemConfigGetTimeZones - Returns the list of known timezones.
-// Parameters
 //	currentDate - Client actual time to serve as an input for timezone and DST detection.
 // Return
 //	timeZones - list of known timezones.
@@ -100,7 +98,6 @@ func (s *ServerConnection) SystemConfigGetDateTime() (*DateTimeConfig, error) {
 }
 
 // SystemConfigSetDateTime - Stores Date and Time for System configuration.
-// Parameters
 //	config - structure of system date and time settings
 func (s *ServerConnection) SystemConfigSetDateTime(config DateTimeConfig) error {
 	params := struct {

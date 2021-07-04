@@ -39,7 +39,6 @@ func (s *ServerConnection) SharedDefinitionsGetVersions() (SharedDefinitionInfoL
 }
 
 // SharedDefinitionsSetVersions - Sets appliance report to MyKerio what shared definitions it supports and what versions of shared definitions are stored in appliance
-// Parameters
 //	list - list of appliance report
 func (s *ServerConnection) SharedDefinitionsSetVersions(list SharedDefinitionInfoList) error {
 	params := struct {

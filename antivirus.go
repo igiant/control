@@ -140,7 +140,6 @@ func (s *ServerConnection) AntivirusGet() (*AntivirusConfig, error) {
 }
 
 // AntivirusSet - Set Antivirus
-// Parameters
 //	config - structure with complete antivirus settings
 // Return
 //	errors - list of errors

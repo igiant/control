@@ -31,7 +31,6 @@ func (s *ServerConnection) CentralManagementGet() (*CentralManagementConfig, err
 }
 
 // CentralManagementSet - Stores configuration
-// Parameters
 //	config - Contains Structure with Central management settings.
 func (s *ServerConnection) CentralManagementSet(config CentralManagementConfig) error {
 	params := struct {

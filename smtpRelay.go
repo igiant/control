@@ -29,7 +29,6 @@ func (s *ServerConnection) SmtpRelayGet() (*SmtpRelayConfig, error) {
 }
 
 // SmtpRelaySet - Stores SMTP Relay configuration
-// Parameters
 //  config - SMTP Relay configuration
 func (s *ServerConnection) SmtpRelaySet(config SmtpRelayConfig) error {
 	params := struct {
@@ -40,7 +39,6 @@ func (s *ServerConnection) SmtpRelaySet(config SmtpRelayConfig) error {
 }
 
 // SmtpRelayTest - Sends email and returns errors, empty errors' means OK
-// Parameters
 //	config - configuration structure of smtp relay module
 //	address - email address where to send testing message. Recipient.
 // Return

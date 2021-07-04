@@ -29,7 +29,6 @@ type ForbiddenWordsConfig struct {
 }
 
 // ForbiddenWordsGet - Get the list of forbidden words
-// Parameters
 //	query - conditions and limits. Included from weblib.
 // Return
 //	list - list of words and it's details
@@ -54,7 +53,6 @@ func (s *ServerConnection) ForbiddenWordsGet(query SearchQuery) (ForbiddenWordLi
 }
 
 // ForbiddenWordsCreate - Add new forbidden word
-// Parameters
 //	items - details for new words. field id is assigned by the manager to temporary value until apply() or reset().
 // Return
 //	errors - list of errors
@@ -78,7 +76,6 @@ func (s *ServerConnection) ForbiddenWordsCreate(items ForbiddenWordList) (ErrorL
 }
 
 // ForbiddenWordsSet - Update existing forbidden word
-// Parameters
 //	ids - ids of words to be updated.
 //	details - details for update. Field "kerio::web::KId" is ignored. All other fields must be filled and they are written to all words specified by ids.
 // Return
@@ -102,7 +99,6 @@ func (s *ServerConnection) ForbiddenWordsSet(ids StringList, details ForbiddenWo
 }
 
 // ForbiddenWordsRemove - Remove forbidden word
-// Parameters
 //	ids - ids of words that should be removed
 // Return
 //	errors - list of errors
@@ -164,7 +160,6 @@ func (s *ServerConnection) ForbiddenWordsGetConfig() (*ForbiddenWordsConfig, err
 }
 
 // ForbiddenWordsSetConfig - Stores the Weight Limit/Enabled
-// Parameters
 //	config - Complete configuration of Forbidden words module
 func (s *ServerConnection) ForbiddenWordsSetConfig(config ForbiddenWordsConfig) error {
 	params := struct {

@@ -23,7 +23,6 @@ type UserStatistic struct {
 type UserStatisticList []UserStatistic
 
 // UserStatisticsGet - Returns User Statistics data
-// Parameters
 //	query - filter/sort query
 //	refresh - true in case, that data snapshot have to be refreshed
 // Return
@@ -50,7 +49,6 @@ func (s *ServerConnection) UserStatisticsGet(query SearchQuery, refresh bool) (U
 }
 
 // UserStatisticsRemove - Deletes user traffic counters
-// Parameters
 //	ids - list of user ids returned in user member by get
 func (s *ServerConnection) UserStatisticsRemove(ids KIdList) error {
 	params := struct {

@@ -182,7 +182,6 @@ func (s *ServerConnection) ContentFilterGet() (ContentRuleList, error) {
 }
 
 // ContentFilterSet - Stores the list of Content rules
-// Parameters
 //	rules - list of rules and it's details
 // Return
 //	errors - list of errors occured during method call
@@ -272,7 +271,6 @@ func (s *ServerConnection) ContentFilterGetUrlFilterConfig() (*UrlFilterConfig, 
 }
 
 // ContentFilterSetUrlFilterConfig - Stores configuration of WebFilter
-// Parameters
 //	config - configuration values
 func (s *ServerConnection) ContentFilterSetUrlFilterConfig(config UrlFilterConfig) error {
 	params := struct {
@@ -283,7 +281,6 @@ func (s *ServerConnection) ContentFilterSetUrlFilterConfig(config UrlFilterConfi
 }
 
 // ContentFilterReportMiscategorizedUrl - Reports miscategorized url
-// Parameters
 //	url - URL, that is miscategorized
 //	categoryIds - up to 3 suggested categories. Can be empty, if new category is not known
 func (s *ServerConnection) ContentFilterReportMiscategorizedUrl(url string, categoryIds IntegerList) error {
@@ -296,7 +293,6 @@ func (s *ServerConnection) ContentFilterReportMiscategorizedUrl(url string, cate
 }
 
 // ContentFilterGetUrlCategories - Returns current categorization of given url
-// Parameters
 //	url - checked URL
 // Return
 //	categoryIds - list of categories, to which given URL belongs
@@ -335,7 +331,6 @@ func (s *ServerConnection) ContentFilterGetHttpsConfig() (*HttpsConfig, error) {
 }
 
 // ContentFilterSetHttpsConfig - Stores configuration of HTTPS Filtering
-// Parameters
 //	config - configuration values
 func (s *ServerConnection) ContentFilterSetHttpsConfig(config HttpsConfig) error {
 	params := struct {
@@ -363,7 +358,6 @@ func (s *ServerConnection) ContentFilterGetSafeSearchConfig() (*SafeSearchConfig
 }
 
 // ContentFilterSetSafeSearchConfig - Stores configuration of SafeSearch
-// Parameters
 //	config - configuration values
 func (s *ServerConnection) ContentFilterSetSafeSearchConfig(config SafeSearchConfig) error {
 	params := struct {

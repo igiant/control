@@ -120,7 +120,6 @@ func (s *ServerConnection) BandwidthManagementGet() (*BandwidthManagementConfig,
 }
 
 // BandwidthManagementSet - Stores the list of Bandwidth Management rules
-// Parameters
 //	config - Bandwidth Management rules
 // Return
 //	errors - list of errors
@@ -159,7 +158,6 @@ func (s *ServerConnection) BandwidthManagementGetBandwidth() (InternetBandwidthL
 }
 
 // BandwidthManagementSetBandwidth - Stores the list of Bandwidth Management rules
-// Parameters
 //	list - list of Bandwidth Management rules
 // Return
 //	errors - list of errors

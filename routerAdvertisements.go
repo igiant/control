@@ -42,7 +42,6 @@ func (s *ServerConnection) RouterAdvertisementsGet() (RouterAdvertisementList, e
 // RouterAdvertisementsSet - Stores Router Advertisement entries
 // Only 37 prefixes is allowed for one Interface, others will be ignored and error will be returned.
 // Prefixes has to be unique for all interfaces.
-// Parameters
 //	advertisements - list of advertisment configurations (prefixes) to be stored and advertised
 // Return
 //	errors - list of errors
@@ -81,7 +80,6 @@ func (s *ServerConnection) RouterAdvertisementsGetConfig() (*RouterAdvertisement
 }
 
 // RouterAdvertisementsSetConfig - Stores Router Advertisements configuration
-// Parameters
 //	config - configuration values
 func (s *ServerConnection) RouterAdvertisementsSetConfig(config RouterAdvertisementsConfig) error {
 	params := struct {
@@ -109,7 +107,6 @@ func (s *ServerConnection) RouterAdvertisementsGetMode() (*RouterAdvertisementsM
 }
 
 // RouterAdvertisementsSetMode - Stores Router Advertisements mode
-// Parameters
 //	mode - new value
 func (s *ServerConnection) RouterAdvertisementsSetMode(mode RouterAdvertisementsModeType) error {
 	params := struct {

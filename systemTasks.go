@@ -20,7 +20,6 @@ func (s *ServerConnection) SystemTasksGetSsh() (bool, error) {
 }
 
 // SystemTasksSetSsh - Sets SSH setting
-// Parameters
 //	enable - true - enable SSH, false - disable SSH
 func (s *ServerConnection) SystemTasksSetSsh(enable bool) error {
 	params := struct {

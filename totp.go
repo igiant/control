@@ -12,7 +12,6 @@ const (
 )
 
 // TotpTotpVerify - Performs 2 step verification
-// Parameters
 //  code -
 //  remember -
 func (s *ServerConnection) TotpTotpVerify(code int, remember bool) error {

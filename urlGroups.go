@@ -38,7 +38,6 @@ type UrlEntryList []UrlEntry
 type UrlGroupList []UrlGroup
 
 // UrlGroupsGet - Get the list of Url groups
-// Parameters
 //	query - conditions and limits. Included from weblib. Kerio Control engine implementation notes:
 // Return
 //	list - list of groups and it's details
@@ -63,7 +62,6 @@ func (s *ServerConnection) UrlGroupsGet(query SearchQuery) (UrlEntryList, int, e
 }
 
 // UrlGroupsCreate - Add new groups
-// Parameters
 //	groups - details for new groups. field id is assigned by the manager to temporary value until apply() or reset().
 // Return
 //	errors - list of errors
@@ -87,7 +85,6 @@ func (s *ServerConnection) UrlGroupsCreate(groups UrlEntryList) (ErrorList, Crea
 }
 
 // UrlGroupsSet - Update existing groups
-// Parameters
 //	groupIds - ids of groups to be updated.
 //	details - details for update. Field "kerio::web::KId" is ignored. All other fields must be filled and they are written to all groups specified by groupIds.
 // Return
@@ -111,7 +108,6 @@ func (s *ServerConnection) UrlGroupsSet(groupIds StringList, details UrlEntry) (
 }
 
 // UrlGroupsRemove - Remove groups
-// Parameters
 //	groupIds - ids of groups that should be removed
 // Return
 //	errors - list of errors TODO write particular errors

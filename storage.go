@@ -39,7 +39,6 @@ func (s *ServerConnection) StorageGet() (StorageDataList, error) {
 }
 
 // StorageRemove - Delete data specified by type from storage.
-// Parameters
 //  storageDataType - data specified by type from storage.
 func (s *ServerConnection) StorageRemove(storageDataType StorageDataType) error {
 	params := struct {

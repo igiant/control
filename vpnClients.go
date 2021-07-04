@@ -38,7 +38,6 @@ type VpnClientInfo struct {
 type VpnClientList []VpnClientInfo
 
 // VpnClientsGet - Returns VPN Clients data
-// Parameters
 //	query - filter/sort query
 //	refresh - true in case, that data snapshot have to be refreshed
 // Return
@@ -65,7 +64,6 @@ func (s *ServerConnection) VpnClientsGet(query SearchQuery, refresh bool) (VpnCl
 }
 
 // VpnClientsKill - Disconnects clients specified in ids list
-// Parameters
 //  ids - IDs list
 func (s *ServerConnection) VpnClientsKill(ids KIdList) error {
 	params := struct {

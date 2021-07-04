@@ -32,7 +32,6 @@ type CurrentInterface struct {
 type CurrentInterfaceList []CurrentInterface
 
 // ConfigurationExportConfig - Creates backup file and returns id.
-// Parameters
 //	options - A set of options which configuration variables/list to store in exported file.
 // Return
 //	fileDownload - description of the output file
@@ -54,7 +53,6 @@ func (s *ServerConnection) ConfigurationExportConfig(options ExportOptions) (*Do
 }
 
 // ConfigurationGetImportInfo - Returns additiaonal information about imported configuration needed during it's import.
-// Parameters
 //	fileId - id of uploaded configuration file. (see spec. for uploader)
 // Return
 //	errors - list of errors
@@ -84,7 +82,6 @@ func (s *ServerConnection) ConfigurationGetImportInfo(fileId string) (ErrorList,
 }
 
 // ConfigurationApply - Applies changes obtained from imported configuration file and users interaction.
-// Parameters
 //	interfaces - a list of interfaces from imported configuration with mappings to the currently present interfeces. This mapping should be ignored in fullimport.
 //	id - id of uploaded configuration file. (see spec. for uploader)
 //	fullImport - whether to do a full import (overvrite IP & domain setting with imported values)

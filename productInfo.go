@@ -117,7 +117,6 @@ func (s *ServerConnection) ProductInfoGetWarnings() (WarningInfoList, error) {
 }
 
 // ProductInfoDisableWarning - Disables given warning
-// Parameters
 //  warningType - type of warning to disable
 func (s *ServerConnection) ProductInfoDisableWarning(warningType WarningType) error {
 	params := struct {
@@ -200,7 +199,6 @@ func (s *ServerConnection) ProductInfoGetClientStatistics() (bool, error) {
 }
 
 // ProductInfoSetClientStatistics - Stores settings of Client statistics (Enabled/Disabled)
-// Parameters
 //  setting - Client statistics enabled/disabled
 func (s *ServerConnection) ProductInfoSetClientStatistics(setting bool) error {
 	params := struct {
@@ -256,7 +254,6 @@ func (s *ServerConnection) ProductInfoGetUsedDevicesCount() (int, int, error) {
 }
 
 // ProductInfoAccountUsage - Accounts usage of ApiEntity for voluntary statistics
-// Parameters
 //	apiEntity - which entity was used
 func (s *ServerConnection) ProductInfoAccountUsage(apiEntity ApiEntity) error {
 	params := struct {

@@ -63,7 +63,6 @@ func (s *ServerConnection) DnsGetHosts() (DnsHostList, error) {
 }
 
 // DnsSet - Stores DNS configuration
-// Parameters
 //	config - A structure containing all the settings of DND that sould be stored.
 // Return
 //	errors - list of errors
@@ -85,7 +84,6 @@ func (s *ServerConnection) DnsSet(config DnsConfig) (ErrorList, error) {
 }
 
 // DnsSetHosts - Stores DNS ip/hosts mapping
-// Parameters
 //	hosts - list of hosts file entries to be stored
 // Return
 //	errors - list of errors
@@ -107,7 +105,6 @@ func (s *ServerConnection) DnsSetHosts(hosts DnsHostList) (ErrorList, error) {
 }
 
 // DnsImportHosts - Imports DNS hosts records from file (hosts format)
-// Parameters
 //	fileId - id of uploaded file
 //	clean - true, if current hosts records should be removed, false, if new records should be appended to current config
 func (s *ServerConnection) DnsImportHosts(fileId string, clean bool) error {

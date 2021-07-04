@@ -44,7 +44,6 @@ func (s *ServerConnection) HttpCacheGet() (*HttpCacheConfig, error) {
 }
 
 // HttpCacheSet - Sets Http Cache configuration
-// Parameters
 //	config - new configuration
 func (s *ServerConnection) HttpCacheSet(config HttpCacheConfig) error {
 	params := struct {
@@ -72,7 +71,6 @@ func (s *ServerConnection) HttpCacheGetUrlSpecificTtl() (UrlSpecificTtlList, err
 }
 
 // HttpCacheSetUrlSpecificTtl - Gets list of URL specific TTL
-// Parameters
 //	list - URL specific TTL list
 // Return
 //	errors - list of errors

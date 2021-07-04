@@ -26,7 +26,6 @@ func (s *ServerConnection) PacketDumpGetExpression() (string, error) {
 }
 
 // PacketDumpSetExpression - Stores expression from debug log context menu dialog 'Dump Expression...'
-// Parameters
 //  expression - expression for dialog from debug log context menu 'Dump Expression...'
 func (s *ServerConnection) PacketDumpSetExpression(expression string) error {
 	params := struct {

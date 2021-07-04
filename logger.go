@@ -17,7 +17,6 @@ const (
 )
 
 // LoggerLogWrite - Write a message to given log
-// Parameters
 //	message - text to be written into log file
 func (s *ServerConnection) LoggerLogWrite(logType LogType, message string) error {
 	params := struct {
@@ -46,7 +45,6 @@ func (s *ServerConnection) LoggerGetStatusFunctionList() (StatusFunctionList, er
 }
 
 // LoggerCallStatusFunction - Calls function from StatusFunctionList referenced by id
-// Parameters
 //	id - ID function
 func (s *ServerConnection) LoggerCallStatusFunction(id KId) error {
 	params := struct {
@@ -74,7 +72,6 @@ func (s *ServerConnection) LoggerGetHttpLogType() (*HttpLogType, error) {
 }
 
 // LoggerSetHttpLogType - Stores Http log type
-// Parameters
 //  ogType - Http log type
 func (s *ServerConnection) LoggerSetHttpLogType(logType HttpLogType) error {
 	params := struct {
@@ -102,7 +99,6 @@ func (s *ServerConnection) LoggerGetLogExpression() (string, error) {
 }
 
 // LoggerSetLogExpression - Stores expression from debug log context menu dialog 'IP Traffic...'
-// Parameters
 //  expression - expression for dialog from debug log context menu 'IP Traffic...'
 func (s *ServerConnection) LoggerSetLogExpression(expression string) error {
 	params := struct {
@@ -130,7 +126,6 @@ func (s *ServerConnection) LoggerGetPacketLogFormat() (string, error) {
 }
 
 // LoggerSetPacketLogFormat - Stores format from debug log context menu dialog 'Packet Log format...'
-// Parameters
 //  format - format for dialog from debug log context menu 'Packet Log format...'
 func (s *ServerConnection) LoggerSetPacketLogFormat(format string) error {
 	params := struct {

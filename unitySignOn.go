@@ -27,7 +27,6 @@ func (s *ServerConnection) UnitySignOnGet() (*SignOn, error) {
 }
 
 // UnitySignOnSet - Set Kerio Unity Sign On settings
-// Parameters
 //	settings - Sign On settings
 func (s *ServerConnection) UnitySignOnSet(settings SignOn) error {
 	params := struct {
@@ -38,7 +37,6 @@ func (s *ServerConnection) UnitySignOnSet(settings SignOn) error {
 }
 
 // UnitySignOnTestConnection - Test connection to Kerio Unity Sign On server
-// Parameters
 //	hostNames - directory server (primary and secondary if any)
 //	credentials - authentication information
 // Return

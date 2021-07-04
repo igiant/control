@@ -33,7 +33,6 @@ type ConnectivityAssistantConfig struct {
 }
 
 // ConnectivityAssistantSet - Sets connectivity configuration from connectivity assistant
-// Parameters
 //	config - input configuration
 //	revertTimeout - If client doesn't confirm config to this timeout, configuration is reverted (0 - revert disabled)
 // Return

@@ -52,7 +52,6 @@ type NotificationList []Notification
 
 // NotificationsGet - Returns list of notifications without filtered (cleared) messages
 // When lastNotifications are the same as current notifications, method waits until timeout occurs and than returns
-// Parameters
 //	lastNotifications - notifications returned by last call or empty list
 //	timeout - how long should engine wait for notifications change (in seconds)
 // Return
@@ -76,7 +75,6 @@ func (s *ServerConnection) NotificationsGet(lastNotifications NotificationList, 
 }
 
 // NotificationsClear - Clears defined notification for current user
-// Parameters
 //	notification - one of the notifications returned by get
 func (s *ServerConnection) NotificationsClear(notification Notification) error {
 	params := struct {

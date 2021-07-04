@@ -64,7 +64,6 @@ func (s *ServerConnection) PortsGet() (PortConfigList, error) {
 // If some of given items has id, that doesn't exist in current configuration, Error is returned
 // Unknown items are not added, no item is deleted
 // note: System version has to support port and switch configuration
-// Parameters
 //	ports - list of ports (order is not significant)
 //	revertTimeout - If client doesn't confirm config to this timeout, configuration is reverted (0 - revert disabled)
 // Return

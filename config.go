@@ -11,8 +11,7 @@ const (
 )
 
 // NewConfig returns a pointer to structure with the configuration for connecting to the API server
-// Parameters:
-//      server - address without schema and port
+//  server - address without schema and port
 func NewConfig(server string) *Config {
 	if !strings.Contains(server, ":") {
 		server += port

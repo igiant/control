@@ -34,7 +34,6 @@ const (
 )
 
 // CertificatesGenerateEx - Generate certificate.
-// Parameters
 //	subject - properties specified by user
 //	name - name of the new certificate
 //	period - time properties specified by user, not relevant for CertificateRequest
@@ -93,7 +92,6 @@ type Certificate struct {
 type CertificateList []Certificate
 
 // CertificatesDetect - Detect certificate of given VPN host.
-// Parameters
 //	host - the host certificate of which will be detected
 // Return
 //	certificate - detected properties
@@ -138,7 +136,6 @@ func (s *ServerConnection) CertificatesReset() error {
 }
 
 // CertificatesImportCertificateP12 - Import certificate in PKCS #12 format
-// Parameters
 //	fileId - id of uploaded file
 //	name - name of the new certificate
 //	password - password needed to decode certificate
@@ -165,7 +162,6 @@ func (s *ServerConnection) CertificatesImportCertificateP12(fileId string, name 
 }
 
 // CertificatesExportCertificateP12 - Export certificate in PKCS #12 format
-// Parameters
 //	id - ID of the certificate or certificate request
 //	password - password, which will be used to encrypt output certificate
 //	includeCa - if true, engine will include whole certificate chain up to highest CA (only if all parents are present)
@@ -191,7 +187,6 @@ func (s *ServerConnection) CertificatesExportCertificateP12(id KId, password str
 }
 
 // CertificatesImportCertificateUrl - Import certificate from url
-// Parameters
 //	url - url, where will be certificate downloaded from
 func (s *ServerConnection) CertificatesImportCertificateUrl(url string) error {
 	params := struct {
@@ -202,7 +197,6 @@ func (s *ServerConnection) CertificatesImportCertificateUrl(url string) error {
 }
 
 // CertificatesSetDistrusted - Distrust list of certificate records
-// Parameters
 //	ids - list of identifiers of deleted user templates
 // Return
 //	errors - error message list

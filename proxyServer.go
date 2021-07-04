@@ -37,7 +37,6 @@ func (s *ServerConnection) ProxyServerGet() (*ProxyServerConfig, error) {
 }
 
 // ProxyServerSet - Sets Proxy server configuration
-// Parameters
 //	config - new configuration
 func (s *ServerConnection) ProxyServerSet(config ProxyServerConfig) error {
 	params := struct {

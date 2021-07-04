@@ -61,7 +61,6 @@ type TestResult struct {
 }
 
 // DomainsGet - Obtain list of domains
-// Parameters
 //	query - conditions and limits
 // Return
 //	list - list of domains and it's details
@@ -86,7 +85,6 @@ func (s *ServerConnection) DomainsGet(query SearchQuery) (DomainList, int, error
 }
 
 // DomainsCreate - Add new domain
-// Parameters
 //	domains - details for new domains. field id is assigned by the manager to temporary value until apply() or reset().
 // Return
 //	errors - list of errors
@@ -110,7 +108,6 @@ func (s *ServerConnection) DomainsCreate(domains DomainList) (ErrorList, CreateR
 }
 
 // DomainsSet - Update domains details
-// Parameters
 //	domainIds - ids of domains to be updated.
 //	pattern - details for update. Field "kerio::web::KId" is ignored. All other fields except password must be filled and they are written to all domains specified by domainIds.
 // Return
@@ -134,7 +131,6 @@ func (s *ServerConnection) DomainsSet(domainIds KIdList, pattern Domain) (ErrorL
 }
 
 // DomainsRemove - Delete domains
-// Parameters
 //	domainIds - ids of domains that should be removed
 // Return
 //	errors - list of errors
@@ -156,7 +152,6 @@ func (s *ServerConnection) DomainsRemove(domainIds KIdList) (ErrorList, error) {
 }
 
 // DomainsTestDomainController - Test of domain accessibility
-// Parameters
 //	hostnames - List of servers, that will be used instead of servers in DirectoryService. Empty string means, that server should be autodetected
 //	directory - domain parameters for connection test
 // Return

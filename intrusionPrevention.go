@@ -71,7 +71,6 @@ func (s *ServerConnection) IntrusionPreventionGet() (*IntrusionPreventionConfig,
 }
 
 // IntrusionPreventionSet - Stores configuration
-// Parameters
 //	config - complete configuration of Intrusion Prevention system
 // Return
 //	errors - list of errors
@@ -128,7 +127,6 @@ func (s *ServerConnection) IntrusionPreventionGetIgnoredRules() (RuleReferenceLi
 }
 
 // IntrusionPreventionSetIgnoredRules - Sets list of ignored signatures
-// Parameters
 //	ignored - List of rules that are excluded from usage in IPS
 // Return
 //	errors - list of errors
@@ -150,7 +148,6 @@ func (s *ServerConnection) IntrusionPreventionSetIgnoredRules(ignored RuleRefere
 }
 
 // IntrusionPreventionUpdate - Checks new version of database and updates it
-// Parameters
 //  force - checks new version force if true
 func (s *ServerConnection) IntrusionPreventionUpdate(force bool) error {
 	params := struct {

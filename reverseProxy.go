@@ -53,7 +53,6 @@ func (s *ServerConnection) ReverseProxyGet() (*ReverseProxyConfig, error) {
 }
 
 // ReverseProxySet - Set ReverseProxy config
-// Parameters
 //	config - reverse proxy config (enabled, default cert.)
 // Return
 //	errors - list of errors TODO Write particular values

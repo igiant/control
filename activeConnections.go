@@ -39,7 +39,6 @@ type ActiveConnection struct {
 type ActiveConnectionList []ActiveConnection
 
 // ActiveConnectionsGet - Returns Active Connections data
-// Parameters
 //	query - filter/sort query
 //	refresh - true in case, that data snapshot have to be refreshed
 //	hostId - return data only for this host id
@@ -68,7 +67,6 @@ func (s *ServerConnection) ActiveConnectionsGet(query SearchQuery, refresh bool,
 }
 
 // ActiveConnectionsKill - Kills connections specified in ids list
-// Parameters
 //  ids - list of connections id
 func (s *ServerConnection) ActiveConnectionsKill(ids KIdList) error {
 	params := struct {

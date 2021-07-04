@@ -37,7 +37,6 @@ func (s *ServerConnection) SnmpGet() (*SnmpSettings, error) {
 }
 
 // SnmpSet - Stores SNMP configuration
-// Parameters
 //	settings - A structure containing all the settings of SNMP that sould be stored.
 func (s *ServerConnection) SnmpSet(settings SnmpSettings) error {
 	params := struct {

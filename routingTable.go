@@ -62,7 +62,6 @@ func (s *ServerConnection) RoutingTableGetStaticRoutes() (RouteList, error) {
 }
 
 // RoutingTableSetStaticRoutes - Set static routes
-// Parameters
 //	routes - A list of routes that should be stored in configuration.
 // Return
 //	errors - list of errors

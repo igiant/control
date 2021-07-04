@@ -160,7 +160,6 @@ const (
 // Log object
 
 // LogsCancelSearch - Cancel search on server (useful for large logs).
-// Parameters
 //	searchId - identifier from search()
 func (s *ServerConnection) LogsCancelSearch(searchId string) error {
 	params := struct {
@@ -171,7 +170,6 @@ func (s *ServerConnection) LogsCancelSearch(searchId string) error {
 }
 
 // LogsClear - Delete all log lines.
-// Parameters
 //	logName - unique name of the log
 func (s *ServerConnection) LogsClear(logName LogType) error {
 	params := struct {
@@ -182,7 +180,6 @@ func (s *ServerConnection) LogsClear(logName LogType) error {
 }
 
 // LogsExportLog - Exporting a given log.
-// Parameters
 //	logName - unique name of the log
 //	fromLine - number of the line to start the search from;
 //	countLines - number of lines to transfer; Unlimited - symbolic name for end of log
@@ -209,7 +206,6 @@ func (s *ServerConnection) LogsExportLog(logName LogType, fromLine int, countLin
 }
 
 // LogsExportLogRelative - Exporting a given log with relative download path.
-// Parameters
 //	logName - unique name of the log
 //	fromLine - number of the line to start the search from;
 //	countLines - number of lines to transfer; Unlimited - symbolic name for end of log
@@ -236,7 +232,6 @@ func (s *ServerConnection) LogsExportLogRelative(logName LogType, fromLine int, 
 }
 
 // LogsGet - Obtain log data without linebreaks.
-// Parameters
 //	logName - unique name of the log
 //	fromLine - number of the line to start from; if (fromLine == Unlimited) then fromline is end of log minus countLines
 //	countLines - number of lines to transfer
@@ -321,7 +316,6 @@ func (s *ServerConnection) LogsGetSearchProgress() error {
 }
 
 // LogsGetSettings - Obtain log settings.
-// Parameters
 //	logName - unique name of the log
 // Return
 //	currentSettings - current valid settings (or undefined data on failure)
@@ -343,7 +337,6 @@ func (s *ServerConnection) LogsGetSettings(logName LogType) (*LogSettings, error
 }
 
 // LogsSearch - Start searching for a string in a given log; The search exists 1 minute unless prolonged by getSearchProgress.
-// Parameters
 //	logName - unique name of the log
 //	what - searched string
 //	fromLine - line to start searching from; fromLine>toLine means search up; Unlimited - symbolic name for end of log
@@ -373,7 +366,6 @@ func (s *ServerConnection) LogsSearch(logName LogType, what string, fromLine int
 }
 
 // LogsSetHighlightRules - Set highlighting rules, rules have to be sorted purposely, the only way to change a rule is to change the whole ruleset.
-// Parameters
 //	rules - highlight rules (ordered by priority)
 func (s *ServerConnection) LogsSetHighlightRules(rules HighlightRules) error {
 	params := struct {
@@ -384,7 +376,6 @@ func (s *ServerConnection) LogsSetHighlightRules(rules HighlightRules) error {
 }
 
 // LogsSetMessages - Change log message settings; makes sense only if LogItem.hasMessages == true.
-// Parameters
 //	messages - tree of log messages
 func (s *ServerConnection) LogsSetMessages(messages TreeLeafList) error {
 	params := struct {
@@ -395,7 +386,6 @@ func (s *ServerConnection) LogsSetMessages(messages TreeLeafList) error {
 }
 
 // LogsSetSettings - Change log settings.
-// Parameters
 //	logName - unique name of the log
 //	newSettings
 func (s *ServerConnection) LogsSetSettings(logName LogType, newSettings LogSettings) error {

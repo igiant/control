@@ -51,7 +51,6 @@ func (s *ServerConnection) ConfigurationBackupGet() (*ConfigurationBackupConfig,
 }
 
 // ConfigurationBackupSet - Stores configuration
-// Parameters
 //	config - Contains Structure with Configuration backup settings.
 func (s *ServerConnection) ConfigurationBackupSet(config ConfigurationBackupConfig) error {
 	params := struct {

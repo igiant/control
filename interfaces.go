@@ -341,7 +341,6 @@ func (s *ServerConnection) InterfacesGet(query SearchQuery, sortByGroup bool) (I
 }
 
 // InterfacesCreate - Creates new interface (Only one interface can be created at a time) - VPN Tunnel or RAS on Ape/Box
-// Parameters
 //	list - list of interfaces desired to be created (must contain exactly one item)
 // Return
 //	errors - list of errors
@@ -365,7 +364,6 @@ func (s *ServerConnection) InterfacesCreate(list InterfaceList) (ErrorList, Crea
 }
 
 // InterfacesSet - Update interface's details.
-// Parameters
 //	ids - list of IDs of interfaces to modify
 //	details - details to set to every interface lister in ids parameter
 // Return
@@ -389,7 +387,6 @@ func (s *ServerConnection) InterfacesSet(ids KIdList, details Interface) (ErrorL
 }
 
 // InterfacesRemove - Delete Interface configuration - VPN Tunnel or RAS on Ape/Box
-// Parameters
 //	ids - list of IDs of interfaces to modify
 // Return
 //	errors - list of errors
@@ -462,7 +459,6 @@ func (s *ServerConnection) InterfacesGetConnectivityConfig() (*ConnectivityConfi
 }
 
 // InterfacesSetConnectivityConfig - Stores Connectivity config values
-// Parameters
 //	config - Connectivity config values
 func (s *ServerConnection) InterfacesSetConnectivityConfig(config ConnectivityConfig) error {
 	params := struct {
@@ -511,7 +507,6 @@ func (s *ServerConnection) InterfacesDial(id KId) error {
 }
 
 // InterfacesHangup - Hangup interface. Works only for connected RAS. Action is taken immediatelly, without apply.
-// Parameters
 //	id - interface id
 func (s *ServerConnection) InterfacesHangup(id KId) error {
 	params := struct {
@@ -539,7 +534,6 @@ func (s *ServerConnection) InterfacesGetIpsecPeerIdConfig() (*IpsecPeerIdConfig,
 }
 
 // InterfacesApply - write changes cached in manager to configuration
-// Parameters
 //	revertTimeout how many seconds to wait for confirmation until revert is performed
 // Return
 //	errors - list of errors

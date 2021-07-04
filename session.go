@@ -54,7 +54,6 @@ func (s *ServerConnection) SessionGetUserName() (string, error) {
 
 // Login - Log in given user.
 // Please note that with a session to one module you cannot use another one (eg. with admin session you cannot use webmail).
-// Parameters
 //	userName - login name + domain name (can be omitted if primary/local) of the user to be logged in, e.g. "jdoe" or "jdoe@company.com"
 //	password - password of the user to be logged in
 //	application - client application description
@@ -112,7 +111,6 @@ func (s *ServerConnection) SessionGetSessionVariable(name string) (string, error
 }
 
 // SessionSetSessionVariable - Stores clients defined variable to configuration for logged user
-// Parameters
 //	name - name of variable
 //  value - value of variable
 func (s *ServerConnection) SessionSetSessionVariable(name string, value string) error {
@@ -148,7 +146,6 @@ func (s *ServerConnection) SessionGetConfigTimestamp() (ClientTimestampList, err
 }
 
 // SessionConfirmConfig - Confirm the new configuration
-// Parameters
 //	clientTimestampList - values obtained by getConfigTimestamp
 // Return
 //	confirmed - true in case, that cut-off prevention was active and timestamp matched last provided timestamp

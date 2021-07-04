@@ -27,7 +27,6 @@ func (s *ServerConnection) P2pEliminatorGet() (*P2pEliminatorConfig, error) {
 }
 
 // P2pEliminatorSet - Sets the configuration of P2P eliminator.
-// Parameters
 //	config - structure with configuration of P2P eliminator.
 // Return
 //	errors - list of errors

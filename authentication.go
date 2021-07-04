@@ -58,7 +58,6 @@ func (s *ServerConnection) AuthenticationGet() (*AuthenticationConfig, error) {
 }
 
 // AuthenticationSet - Stores Authentication option settings
-// Parameters
 //	config - configuration values
 func (s *ServerConnection) AuthenticationSet(config AuthenticationConfig) error {
 	params := struct {
@@ -69,7 +68,6 @@ func (s *ServerConnection) AuthenticationSet(config AuthenticationConfig) error 
 }
 
 // AuthenticationJoin - joins computer to domain
-// Parameters
 //	hostName - name of the computer that will be set to computer and in domain controller
 //	domainName - domain name (e.g. example.com)
 //	credentials - domain account with rights to join the domain
@@ -99,7 +97,6 @@ func (s *ServerConnection) AuthenticationJoin(hostName string, domainName string
 }
 
 // AuthenticationIsJoinServerNeeded - tests, if join's param server need to be filled
-// Parameters
 //	domainName - domain name (e.g. example.com)
 // Return
 //	needServer - true - join must have param server.enabled on true and server.value filled
@@ -121,7 +118,6 @@ func (s *ServerConnection) AuthenticationIsJoinServerNeeded(domainName string) (
 }
 
 // AuthenticationLeave - disconnects computer from domain
-// Parameters
 //	credentials - domain account with rights to leave from domain
 // Return
 //	message - text related to leave result
@@ -181,7 +177,6 @@ func (s *ServerConnection) AuthenticationGetTotpConfig() (*TotpConfig, error) {
 }
 
 // AuthenticationSetTotpConfig - Stores TotpConfig
-// Parameters
 //	config - configuration values
 func (s *ServerConnection) AuthenticationSetTotpConfig(config TotpConfig) error {
 	params := struct {

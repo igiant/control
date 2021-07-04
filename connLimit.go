@@ -30,7 +30,6 @@ func (s *ServerConnection) ConnLimitGet() (*ConnLimitSettings, error) {
 }
 
 // ConnLimitSet - Stores Connection Limit configuration
-// Parameters
 //  config - Connection Limit configuration
 func (s *ServerConnection) ConnLimitSet(config ConnLimitSettings) error {
 	params := struct {
