@@ -90,6 +90,7 @@ type ActivityList []Activity
 //	list - output data
 //	totalItems - all data count
 func (s *ServerConnection) ActiveHostsGet(query SearchQuery, refresh bool) (ActiveHostList, int, error) {
+	query = addMissedParametersToSearchQuery(query)
 	params := struct {
 		Query   SearchQuery `json:"query"`
 		Refresh bool        `json:"refresh"`

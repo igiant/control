@@ -38,11 +38,11 @@ type DhcpOption struct {
 	OptionId int            `json:"optionId"`
 	Name     string         `json:"name"`
 	/**
-	* @note: Value format: \n
-	* DHOTIpAddr - address in dot notation (192.168.0.12) \n
-	* DHOTHex - pairs of characters 0-9, a-f (12ef980ad8) \n
-	* DHOTTimexxx - number of seconds (3600) (negative only for DHOTTimeSigned) \n
-	* xxxList - values separated by ; (xxx;xx;x;xxxx) \n
+	* @note: Value format:
+	* DHOTIpAddr - address in dot notation (192.168.0.12)
+	* DHOTHex - pairs of characters 0-9, a-f (12ef980ad8)
+	* DHOTTimexxx - number of seconds (3600) (negative only for DHOTTimeSigned)
+	* xxxList - values separated by ; (xxx;xx;x;xxxx)
 	* DHOTBool - "0" / "1"
 	 */
 	/*@{ DHOTBool, DHOTInt8, DHOTInt16, DHOTInt32, DHOTIpAddr, DHOTString, DHOTHex
@@ -124,6 +124,7 @@ type DhcpMode struct {
 //	list - list of scopes and it's details
 //	totalItems - count of all scopes on server (before the start/limit applied)
 func (s *ServerConnection) DhcpGet(query SearchQuery) (DhcpScopeList, int, error) {
+	query = addMissedParametersToSearchQuery(query)
 	params := struct {
 		Query SearchQuery `json:"query"`
 	}{query}
@@ -145,7 +146,7 @@ func (s *ServerConnection) DhcpGet(query SearchQuery) (DhcpScopeList, int, error
 // Parameters
 //	scopes - details for new scopes. field id is assigned by the manager to temporary value until apply() or reset().
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 //	result - list of IDs assigned to each item
 func (s *ServerConnection) DhcpCreate(scopes DhcpScopeList) (ErrorList, CreateResultList, error) {
 	params := struct {
@@ -170,7 +171,7 @@ func (s *ServerConnection) DhcpCreate(scopes DhcpScopeList) (ErrorList, CreateRe
 //	scopeIds - ids of scopes to be updated.
 //	details - details for update. Field "kerio::web::KId" is ignored. All other fields must be filled and they are written to all scopes specified by scopeIds.
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) DhcpSet(scopeIds StringList, details DhcpScope) (ErrorList, error) {
 	params := struct {
 		ScopeIds StringList `json:"scopeIds"`
@@ -241,6 +242,7 @@ func (s *ServerConnection) DhcpGetInterfaceTemplate(ifaceId KId) (*DhcpScope, er
 //	list - list of leases/reservations and it's details
 //	totalItems - count of all leases/reservations on server (before the start/limit applied)
 func (s *ServerConnection) DhcpGetLeases(query SearchQuery, scopeIds KIdList) (DhcpLeaseList, int, error) {
+	query = addMissedParametersToSearchQuery(query)
 	params := struct {
 		Query    SearchQuery `json:"query"`
 		ScopeIds KIdList     `json:"scopeIds"`
@@ -263,7 +265,7 @@ func (s *ServerConnection) DhcpGetLeases(query SearchQuery, scopeIds KIdList) (D
 // Parameters
 //	leases - details for new reservations. field id is assigned by the manager to temporary value until apply() or reset().
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 //	result - list of IDs assigned to each item
 func (s *ServerConnection) DhcpCreateLeases(leases DhcpLeaseList) (ErrorList, CreateResultList, error) {
 	params := struct {
@@ -288,7 +290,7 @@ func (s *ServerConnection) DhcpCreateLeases(leases DhcpLeaseList) (ErrorList, Cr
 //	leaseIds - ids of reservations to be updated.
 //	details - details for update. Field "kerio::web::KId" is ignored. All other fields must be filled and they are written to all scopes specified by scopeIds.
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) DhcpSetLeases(leaseIds StringList, details DhcpLease) (ErrorList, error) {
 	params := struct {
 		LeaseIds StringList `json:"leaseIds"`

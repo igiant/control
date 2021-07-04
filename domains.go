@@ -67,6 +67,7 @@ type TestResult struct {
 //	list - list of domains and it's details
 //	totalItems - count of all domains on server (before the start/limit applied)
 func (s *ServerConnection) DomainsGet(query SearchQuery) (DomainList, int, error) {
+	query = addMissedParametersToSearchQuery(query)
 	params := struct {
 		Query SearchQuery `json:"query"`
 	}{query}
@@ -88,7 +89,7 @@ func (s *ServerConnection) DomainsGet(query SearchQuery) (DomainList, int, error
 // Parameters
 //	domains - details for new domains. field id is assigned by the manager to temporary value until apply() or reset().
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 //	result - list of IDs assigned to each item
 func (s *ServerConnection) DomainsCreate(domains DomainList) (ErrorList, CreateResultList, error) {
 	params := struct {
@@ -113,7 +114,7 @@ func (s *ServerConnection) DomainsCreate(domains DomainList) (ErrorList, CreateR
 //	domainIds - ids of domains to be updated.
 //	pattern - details for update. Field "kerio::web::KId" is ignored. All other fields except password must be filled and they are written to all domains specified by domainIds.
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) DomainsSet(domainIds KIdList, pattern Domain) (ErrorList, error) {
 	params := struct {
 		DomainIds KIdList `json:"domainIds"`
@@ -136,7 +137,7 @@ func (s *ServerConnection) DomainsSet(domainIds KIdList, pattern Domain) (ErrorL
 // Parameters
 //	domainIds - ids of domains that should be removed
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) DomainsRemove(domainIds KIdList) (ErrorList, error) {
 	params := struct {
 		DomainIds KIdList `json:"domainIds"`
@@ -180,7 +181,7 @@ func (s *ServerConnection) DomainsTestDomainController(hostnames StringList, dir
 
 // DomainsApply - Write changes cached in manager to configuration
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) DomainsApply() (ErrorList, error) {
 	data, err := s.CallRaw("Domains.apply", nil)
 	if err != nil {

@@ -74,7 +74,7 @@ func (s *ServerConnection) IntrusionPreventionGet() (*IntrusionPreventionConfig,
 // Parameters
 //	config - complete configuration of Intrusion Prevention system
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) IntrusionPreventionSet(config IntrusionPreventionConfig) (ErrorList, error) {
 	params := struct {
 		Config IntrusionPreventionConfig `json:"config"`

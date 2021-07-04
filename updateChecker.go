@@ -102,7 +102,7 @@ func (s *ServerConnection) UpdateCheckerGetStatus() (*UpdateCheckerInfo, error) 
 // UpdateCheckerGetProgressStatus - Returns percentage progress for Status Downloading
 // METHODS ONLY FOR LINUX VERSION
 // Return
-//	percentage - Returns percentage progress for Status Downloading \n
+//	percentage - Returns percentage progress for Status Downloading
 func (s *ServerConnection) UpdateCheckerGetProgressStatus() (int, error) {
 	data, err := s.CallRaw("UpdateChecker.getProgressStatus", nil)
 	if err != nil {

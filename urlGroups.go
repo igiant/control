@@ -39,11 +39,12 @@ type UrlGroupList []UrlGroup
 
 // UrlGroupsGet - Get the list of Url groups
 // Parameters
-//	query - conditions and limits. Included from weblib. Kerio Control engine implementation notes: \n
+//	query - conditions and limits. Included from weblib. Kerio Control engine implementation notes:
 // Return
 //	list - list of groups and it's details
 //	totalItems - count of all groups on server (before the start/limit applied)
 func (s *ServerConnection) UrlGroupsGet(query SearchQuery) (UrlEntryList, int, error) {
+	query = addMissedParametersToSearchQuery(query)
 	params := struct {
 		Query SearchQuery `json:"query"`
 	}{query}
@@ -65,7 +66,7 @@ func (s *ServerConnection) UrlGroupsGet(query SearchQuery) (UrlEntryList, int, e
 // Parameters
 //	groups - details for new groups. field id is assigned by the manager to temporary value until apply() or reset().
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 //	result - list of IDs assigned to each item
 func (s *ServerConnection) UrlGroupsCreate(groups UrlEntryList) (ErrorList, CreateResultList, error) {
 	params := struct {
@@ -90,7 +91,7 @@ func (s *ServerConnection) UrlGroupsCreate(groups UrlEntryList) (ErrorList, Crea
 //	groupIds - ids of groups to be updated.
 //	details - details for update. Field "kerio::web::KId" is ignored. All other fields must be filled and they are written to all groups specified by groupIds.
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) UrlGroupsSet(groupIds StringList, details UrlEntry) (ErrorList, error) {
 	params := struct {
 		GroupIds StringList `json:"groupIds"`
@@ -133,7 +134,7 @@ func (s *ServerConnection) UrlGroupsRemove(groupIds StringList) (ErrorList, erro
 
 // UrlGroupsApply - Write changes cached in manager to configuration
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) UrlGroupsApply() (ErrorList, error) {
 	data, err := s.CallRaw("UrlGroups.apply", nil)
 	if err != nil {

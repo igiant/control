@@ -75,7 +75,7 @@ func (s *ServerConnection) HttpCacheGetUrlSpecificTtl() (UrlSpecificTtlList, err
 // Parameters
 //	list - URL specific TTL list
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) HttpCacheSetUrlSpecificTtl(list UrlSpecificTtlList) (ErrorList, error) {
 	params := struct {
 		List UrlSpecificTtlList `json:"list"`

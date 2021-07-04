@@ -66,7 +66,7 @@ func (s *ServerConnection) DnsGetHosts() (DnsHostList, error) {
 // Parameters
 //	config - A structure containing all the settings of DND that sould be stored.
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) DnsSet(config DnsConfig) (ErrorList, error) {
 	params := struct {
 		Config DnsConfig `json:"config"`
@@ -88,7 +88,7 @@ func (s *ServerConnection) DnsSet(config DnsConfig) (ErrorList, error) {
 // Parameters
 //	hosts - list of hosts file entries to be stored
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) DnsSetHosts(hosts DnsHostList) (ErrorList, error) {
 	params := struct {
 		Hosts DnsHostList `json:"hosts"`

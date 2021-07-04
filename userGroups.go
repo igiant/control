@@ -20,6 +20,7 @@ type UserGroupList []UserGroup
 //	list - list of groups and it's details
 //	totalItems - count of all groups on server (before the start/limit applied)
 func (s *ServerConnection) UserGroupsGet(query SearchQuery, domainId KId) (UserGroupList, int, error) {
+	query = addMissedParametersToSearchQuery(query)
 	params := struct {
 		Query    SearchQuery `json:"query"`
 		DomainId KId         `json:"domainId"`
@@ -43,7 +44,7 @@ func (s *ServerConnection) UserGroupsGet(query SearchQuery, domainId KId) (UserG
 //	groups - details for new groups. field id is assigned by the manager to temporary value until apply() or reset().
 //	domainId - id of domain - specifies domain, where groups will be created (only local is supported)
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 //	result - list of IDs assigned to each item
 func (s *ServerConnection) UserGroupsCreate(groups UserGroupList, domainId KId) (ErrorList, CreateResultList, error) {
 	params := struct {
@@ -70,7 +71,7 @@ func (s *ServerConnection) UserGroupsCreate(groups UserGroupList, domainId KId) 
 //	details - details for update. Field "kerio::web::KId" is ignored. All other values have to be present
 //	domainId - id of domain - groups from this domain will be updated
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) UserGroupsSet(groupIds StringList, details UserGroup, domainId KId) (ErrorList, error) {
 	params := struct {
 		GroupIds StringList `json:"groupIds"`
@@ -95,7 +96,7 @@ func (s *ServerConnection) UserGroupsSet(groupIds StringList, details UserGroup,
 //	groupIds - ids of groups that should be removed
 //	domainId - id of domain - specifies domain, where groups will be removed (only local is supported)
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) UserGroupsRemove(groupIds StringList, domainId KId) (ErrorList, error) {
 	params := struct {
 		GroupIds StringList `json:"groupIds"`

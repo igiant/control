@@ -30,6 +30,7 @@ type UserStatisticList []UserStatistic
 //	list - output data
 //	totalItems - all data count
 func (s *ServerConnection) UserStatisticsGet(query SearchQuery, refresh bool) (UserStatisticList, int, error) {
+	query = addMissedParametersToSearchQuery(query)
 	params := struct {
 		Query   SearchQuery `json:"query"`
 		Refresh bool        `json:"refresh"`

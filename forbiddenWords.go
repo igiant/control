@@ -35,6 +35,7 @@ type ForbiddenWordsConfig struct {
 //	list - list of words and it's details
 //	totalItems - count of all words on server (before the start/limit applied)
 func (s *ServerConnection) ForbiddenWordsGet(query SearchQuery) (ForbiddenWordList, int, error) {
+	query = addMissedParametersToSearchQuery(query)
 	params := struct {
 		Query SearchQuery `json:"query"`
 	}{query}
@@ -56,7 +57,7 @@ func (s *ServerConnection) ForbiddenWordsGet(query SearchQuery) (ForbiddenWordLi
 // Parameters
 //	items - details for new words. field id is assigned by the manager to temporary value until apply() or reset().
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 //	result - list of IDs assigned to each item
 func (s *ServerConnection) ForbiddenWordsCreate(items ForbiddenWordList) (ErrorList, CreateResultList, error) {
 	params := struct {
@@ -81,7 +82,7 @@ func (s *ServerConnection) ForbiddenWordsCreate(items ForbiddenWordList) (ErrorL
 //	ids - ids of words to be updated.
 //	details - details for update. Field "kerio::web::KId" is ignored. All other fields must be filled and they are written to all words specified by ids.
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) ForbiddenWordsSet(ids StringList, details ForbiddenWord) (ErrorList, error) {
 	params := struct {
 		Ids     StringList    `json:"ids"`
@@ -124,7 +125,7 @@ func (s *ServerConnection) ForbiddenWordsRemove(ids StringList) (ErrorList, erro
 
 // ForbiddenWordsApply - Write changes cached in manager to configuration
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) ForbiddenWordsApply() (ErrorList, error) {
 	data, err := s.CallRaw("ForbiddenWords.apply", nil)
 	if err != nil {

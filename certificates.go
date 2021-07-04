@@ -116,7 +116,7 @@ func (s *ServerConnection) CertificatesDetect(host string) (*Certificate, error)
 
 // CertificatesApply - write changes cached in manager to configuration
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) CertificatesApply() (ErrorList, error) {
 	data, err := s.CallRaw("Certificates.apply", nil)
 	if err != nil {

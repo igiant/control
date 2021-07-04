@@ -143,7 +143,7 @@ func (s *ServerConnection) AntivirusGet() (*AntivirusConfig, error) {
 // Parameters
 //	config - structure with complete antivirus settings
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) AntivirusSet(config AntivirusConfig) (ErrorList, error) {
 	params := struct {
 		Config AntivirusConfig `json:"config"`

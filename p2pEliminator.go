@@ -30,7 +30,7 @@ func (s *ServerConnection) P2pEliminatorGet() (*P2pEliminatorConfig, error) {
 // Parameters
 //	config - structure with configuration of P2P eliminator.
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) P2pEliminatorSet(config P2pEliminatorConfig) (ErrorList, error) {
 	params := struct {
 		Config P2pEliminatorConfig `json:"config"`

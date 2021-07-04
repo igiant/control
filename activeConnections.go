@@ -40,13 +40,14 @@ type ActiveConnectionList []ActiveConnection
 
 // ActiveConnectionsGet - Returns Active Connections data
 // Parameters
-//	query - filter/sort query \n
+//	query - filter/sort query
 //	refresh - true in case, that data snapshot have to be refreshed
 //	hostId - return data only for this host id
 // Return
 //	list - output data
 //	totalItems - all data count
 func (s *ServerConnection) ActiveConnectionsGet(query SearchQuery, refresh bool, hostId KId) (ActiveConnectionList, int, error) {
+	query = addMissedParametersToSearchQuery(query)
 	params := struct {
 		Query   SearchQuery `json:"query"`
 		Refresh bool        `json:"refresh"`

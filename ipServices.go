@@ -31,9 +31,9 @@ type PortList []int
 type PortCondition struct {
 	Comparator PortComparator `json:"comparator"` // does the list contains either single port (equal/greater/etc.), range or list of ports
 	Ports      PortList       `json:"ports"`
-	/* - for comparator Equal, NotEqual, GreaterThan, LessThan => one port number for the condition \n
-	- for comparator Range => two port numbers defining the from/to range (inclusive) \n
-	- for comparator List => list of exact port numbers \n
+	/* - for comparator Equal, NotEqual, GreaterThan, LessThan => one port number for the condition
+	- for comparator Range => two port numbers defining the from/to range (inclusive)
+	- for comparator List => list of exact port numbers
 	- for comparator Any => list should be empty (if not, just ignore the values)
 	*/
 }
@@ -78,11 +78,12 @@ type IpServiceList []IpService
 
 // IpServicesGet - Get the list of services
 // Parameters
-//	query - conditions and limits. Included from weblib. Kerio Control engine implementation notes: \n
+//	query - conditions and limits. Included from weblib. Kerio Control engine implementation notes:
 // Return
 //	list - list of services and it's details
 //	totalItems - count of all services on server (before the start/limit applied)
 func (s *ServerConnection) IpServicesGet(query SearchQuery) (IpServiceList, int, error) {
+	query = addMissedParametersToSearchQuery(query)
 	params := struct {
 		Query SearchQuery `json:"query"`
 	}{query}
@@ -129,7 +130,7 @@ func (s *ServerConnection) IpServicesCreate(services IpServiceList) (ErrorList, 
 //	serviceIds - ids of services to be updated.
 //	details - details for update. Field "kerio::web::KId" is ignored. All other fields must be filled and they are written to all services specified by serviceIds.
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) IpServicesSet(serviceIds StringList, details IpService) (ErrorList, error) {
 	params := struct {
 		ServiceIds StringList `json:"serviceIds"`

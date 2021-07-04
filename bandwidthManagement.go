@@ -123,7 +123,7 @@ func (s *ServerConnection) BandwidthManagementGet() (*BandwidthManagementConfig,
 // Parameters
 //	config - Bandwidth Management rules
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) BandwidthManagementSet(config BandwidthManagementConfig) (ErrorList, error) {
 	params := struct {
 		Config BandwidthManagementConfig `json:"config"`
@@ -162,7 +162,7 @@ func (s *ServerConnection) BandwidthManagementGetBandwidth() (InternetBandwidthL
 // Parameters
 //	list - list of Bandwidth Management rules
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) BandwidthManagementSetBandwidth(list InternetBandwidthList) (ErrorList, error) {
 	params := struct {
 		List InternetBandwidthList `json:"list"`

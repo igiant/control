@@ -151,10 +151,11 @@ type UserList []User
 //	query - conditions and limits
 //	domainId - id of domain - only users from this domain will be listed
 // Return
-//	warnings - list of warnings \n
+//	warnings - list of warnings
 //	list - list of users and it's details
 //	totalItems - count of all users on server (before the start/limit applied)
 func (s *ServerConnection) UsersGet(query SearchQuery, domainId KId) (ErrorList, UserList, int, error) {
+	query = addMissedParametersToSearchQuery(query)
 	params := struct {
 		Query    SearchQuery `json:"query"`
 		DomainId KId         `json:"domainId"`
@@ -179,7 +180,7 @@ func (s *ServerConnection) UsersGet(query SearchQuery, domainId KId) (ErrorList,
 //	users - details for new users. field id is assigned by the manager to temporary value until apply() or reset().
 //	domainId - id of domain - specifies domain, where user will be created (only local is supported)
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 //	result - list of IDs assigned to each item
 func (s *ServerConnection) UsersCreate(users UserList, domainId KId) (ErrorList, CreateResultList, error) {
 	params := struct {
@@ -206,7 +207,7 @@ func (s *ServerConnection) UsersCreate(users UserList, domainId KId) (ErrorList,
 //	details - details for update. Field "kerio::web::KId" is ignored. Only filled details will be stored in users config defined by userIds
 //	domainId - id of domain - users from this domain will be updated
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) UsersSet(userIds KIdList, details User, domainId KId) (ErrorList, error) {
 	params := struct {
 		UserIds  KIdList `json:"userIds"`
@@ -231,7 +232,7 @@ func (s *ServerConnection) UsersSet(userIds KIdList, details User, domainId KId)
 //	userIds - ids of users that should be removed
 //	domainId - id of domain - specifies domain, where user will be removed (only local is supported)
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) UsersRemove(userIds KIdList, domainId KId) (ErrorList, error) {
 	params := struct {
 		UserIds  KIdList `json:"userIds"`

@@ -45,6 +45,7 @@ type VpnClientList []VpnClientInfo
 //	list - output data
 //	totalItems - all data count
 func (s *ServerConnection) VpnClientsGet(query SearchQuery, refresh bool) (VpnClientList, int, error) {
+	query = addMissedParametersToSearchQuery(query)
 	params := struct {
 		Query   SearchQuery `json:"query"`
 		Refresh bool        `json:"refresh"`

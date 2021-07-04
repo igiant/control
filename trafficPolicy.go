@@ -214,7 +214,7 @@ func (s *ServerConnection) TrafficPolicyGet() (TrafficRuleList, int, error) {
 //	rules - list of Traffic Policy rules
 //	defaultRule - properties of default rule
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) TrafficPolicySet(rules TrafficRuleList, defaultRule TrafficRule) (ErrorList, error) {
 	params := struct {
 		Rules       TrafficRuleList `json:"rules"`

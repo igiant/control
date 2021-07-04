@@ -57,7 +57,7 @@ func (s *ServerConnection) ConfigurationExportConfig(options ExportOptions) (*Do
 // Parameters
 //	fileId - id of uploaded configuration file. (see spec. for uploader)
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 //	fullImportPossible - tells whether it is possible to import configuration 1:1 (with IP settings).
 //	needIfaceMapping - tells whether it has to be setup iface mapping in case of fullImportPossible
 //	importedInterfaces - a list of interfaces loaded from the imported configuration file.
@@ -89,7 +89,7 @@ func (s *ServerConnection) ConfigurationGetImportInfo(fileId string) (ErrorList,
 //	id - id of uploaded configuration file. (see spec. for uploader)
 //	fullImport - whether to do a full import (overvrite IP & domain setting with imported values)
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) ConfigurationApply(interfaces ImportedInterfaceList, id string, fullImport bool) (ErrorList, error) {
 	params := struct {
 		Interfaces ImportedInterfaceList `json:"interfaces"`

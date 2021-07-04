@@ -65,7 +65,7 @@ func (s *ServerConnection) RoutingTableGetStaticRoutes() (RouteList, error) {
 // Parameters
 //	routes - A list of routes that should be stored in configuration.
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) RoutingTableSetStaticRoutes(routes RouteList) (ErrorList, error) {
 	params := struct {
 		Routes RouteList `json:"routes"`

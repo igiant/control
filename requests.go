@@ -61,25 +61,18 @@ func (s *ServerConnection) CallRaw(method string, params interface{}) ([]byte, e
 	return data, nil
 }
 
-func NewSearchQuery(fields []string, conditions SubConditionList, combining LogicalOperator, start, limit int, orderBy SortOrderList) SearchQuery {
-	if fields == nil {
-		fields = make([]string, 0)
+func addMissedParametersToSearchQuery(query SearchQuery) SearchQuery {
+	if query.Fields == nil {
+		query.Fields = []string{}
 	}
-	if conditions == nil {
-		conditions = make(SubConditionList, 0)
+	if query.Conditions == nil {
+		query.Conditions = SubConditionList{}
 	}
-	if limit == 0 {
-		limit = -1
+	if query.Combining == "" {
+		query.Combining = Or
 	}
-	if orderBy == nil {
-		orderBy = make(SortOrderList, 0)
+	if query.Limit == 0 {
+		query.Limit = -1
 	}
-	return SearchQuery{
-		Fields:     fields,
-		Conditions: conditions,
-		Combining:  combining,
-		Start:      start,
-		Limit:      limit,
-		OrderBy:    orderBy,
-	}
+	return query
 }

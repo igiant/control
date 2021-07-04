@@ -29,6 +29,7 @@ type TrafficStatisticList []TrafficStatistic
 //	list - output data
 //	totalItems - all data count
 func (s *ServerConnection) TrafficStatisticsGet(query SearchQuery, refresh bool) (TrafficStatisticList, int, error) {
+	query = addMissedParametersToSearchQuery(query)
 	params := struct {
 		Query   SearchQuery `json:"query"`
 		Refresh bool        `json:"refresh"`

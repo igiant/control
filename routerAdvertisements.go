@@ -45,7 +45,7 @@ func (s *ServerConnection) RouterAdvertisementsGet() (RouterAdvertisementList, e
 // Parameters
 //	advertisements - list of advertisment configurations (prefixes) to be stored and advertised
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) RouterAdvertisementsSet(advertisements RouterAdvertisementList) (ErrorList, error) {
 	params := struct {
 		Advertisements RouterAdvertisementList `json:"advertisements"`

@@ -61,6 +61,7 @@ type AlertSettingList []AlertSetting
 //	list - output data
 //	totalItems - all data count
 func (s *ServerConnection) AlertsGet(query SearchQuery) (AlertRowList, int, error) {
+	query = addMissedParametersToSearchQuery(query)
 	params := struct {
 		Query SearchQuery `json:"query"`
 	}{query}
@@ -138,7 +139,7 @@ func (s *ServerConnection) AlertsGetSettings() (AlertSettingList, error) {
 // Parameters
 //	config - structure with complete alerts settings
 // Return
-//	errors - list of items that cannot be changed. \n
+//	errors - list of items that cannot be changed.
 func (s *ServerConnection) AlertsSetSettings(config AlertSettingList) (ErrorList, error) {
 	params := struct {
 		Config AlertSettingList `json:"config"`

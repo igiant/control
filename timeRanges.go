@@ -18,7 +18,7 @@ type DayList []Day
 
 // TimeRangesApply - Write changes cached in manager to configuration
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) TimeRangesApply() (ErrorList, error) {
 	data, err := s.CallRaw("TimeRanges.apply", nil)
 	if err != nil {

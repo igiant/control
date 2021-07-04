@@ -321,6 +321,7 @@ type IpCollisionList []KIdList
 // InterfacesGet - Obtain list of interfaces.
 // When sortByGroup is true and sorting is 'name', sorting order is 'group', 'type', 'name'
 func (s *ServerConnection) InterfacesGet(query SearchQuery, sortByGroup bool) (InterfaceList, int, error) {
+	query = addMissedParametersToSearchQuery(query)
 	params := struct {
 		Query       SearchQuery `json:"query"`
 		SortByGroup bool        `json:"sortByGroup"`
@@ -343,7 +344,7 @@ func (s *ServerConnection) InterfacesGet(query SearchQuery, sortByGroup bool) (I
 // Parameters
 //	list - list of interfaces desired to be created (must contain exactly one item)
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 //	result - list of IDs assigned to each item
 func (s *ServerConnection) InterfacesCreate(list InterfaceList) (ErrorList, CreateResultList, error) {
 	params := struct {

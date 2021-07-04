@@ -63,7 +63,7 @@ func (s *ServerConnection) DynamicDnsUpdate() error {
 
 // DynamicDnsGetStatus - Returns status of DynDNS update
 // Return
-//	message - list of errors \n
+//	message - list of errors
 //	status - actual status of DynDNS update
 func (s *ServerConnection) DynamicDnsGetStatus() (*LocalizableMessage, *DynamicDnsStatus, error) {
 	data, err := s.CallRaw("DynamicDns.getStatus", nil)

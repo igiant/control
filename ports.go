@@ -68,7 +68,7 @@ func (s *ServerConnection) PortsGet() (PortConfigList, error) {
 //	ports - list of ports (order is not significant)
 //	revertTimeout - If client doesn't confirm config to this timeout, configuration is reverted (0 - revert disabled)
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) PortsSet(ports PortConfigList, revertTimeout int) (ErrorList, error) {
 	params := struct {
 		Ports         PortConfigList `json:"ports"`

@@ -119,7 +119,7 @@ func (s *ServerConnection) SecuritySettingsGet() (*SecuritySettingsConfig, error
 // Parameters
 //	config - structure containing security settings to be stored such as mac-filter action, name, mac list and belonging interfaces.
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) SecuritySettingsSet(config SecuritySettingsConfig) (ErrorList, error) {
 	params := struct {
 		Config SecuritySettingsConfig `json:"config"`
