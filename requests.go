@@ -74,5 +74,8 @@ func addMissedParametersToSearchQuery(query SearchQuery) SearchQuery {
 	if query.Limit == 0 {
 		query.Limit = -1
 	}
+	if query.OrderBy == nil {
+		query.OrderBy = SortOrderList{}
+	}
 	return query
 }
