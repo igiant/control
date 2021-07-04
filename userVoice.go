@@ -8,7 +8,8 @@ type UserVoiceSettings struct {
 	Email string `json:"email"`
 }
 
-// UserVoiceGetUrl - 8000 Internal error.  - "URL encoding of token failed."
+// UserVoiceGetUrl - Generate token for logging into user voice web.
+// Parameters name and email can be empty strings.
 // Return
 //	url - URL to userVoice with single sign on token
 func (s *ServerConnection) UserVoiceGetUrl() (string, error) {
@@ -25,7 +26,7 @@ func (s *ServerConnection) UserVoiceGetUrl() (string, error) {
 	return url.Result.Url, err
 }
 
-// UserVoiceSet - 1004 Access denied.  - "Insufficient rights to perform the requested operation." \n
+// UserVoiceSet - Set settings of User Voice.
 // Parameters
 //	settings - structure with settings
 func (s *ServerConnection) UserVoiceSet(settings UserVoiceSettings) error {

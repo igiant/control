@@ -19,7 +19,7 @@ type ProxyServerConfig struct {
 	AutomaticScriptEnabled bool              `json:"automaticScriptEnabled"`
 }
 
-// ProxyServerGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ProxyServerGet - Gets Proxy server configuration
 // Return
 //	config - current configuration
 func (s *ServerConnection) ProxyServerGet() (*ProxyServerConfig, error) {
@@ -36,7 +36,7 @@ func (s *ServerConnection) ProxyServerGet() (*ProxyServerConfig, error) {
 	return &config.Result.Config, err
 }
 
-// ProxyServerSet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ProxyServerSet - Sets Proxy server configuration
 // Parameters
 //	config - new configuration
 func (s *ServerConnection) ProxyServerSet(config ProxyServerConfig) error {

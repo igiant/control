@@ -37,7 +37,7 @@ type VpnClientInfo struct {
 
 type VpnClientList []VpnClientInfo
 
-// VpnClientsGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// VpnClientsGet - Returns VPN Clients data
 // Parameters
 //	query - filter/sort query
 //	refresh - true in case, that data snapshot have to be refreshed
@@ -63,7 +63,9 @@ func (s *ServerConnection) VpnClientsGet(query SearchQuery, refresh bool) (VpnCl
 	return list.Result.List, list.Result.TotalItems, err
 }
 
-// VpnClientsKill - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// VpnClientsKill - Disconnects clients specified in ids list
+// Parameters
+//  ids - IDs list
 func (s *ServerConnection) VpnClientsKill(ids KIdList) error {
 	params := struct {
 		Ids KIdList `json:"ids"`

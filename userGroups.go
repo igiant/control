@@ -12,7 +12,7 @@ type UserGroup struct {
 
 type UserGroupList []UserGroup
 
-// UserGroupsGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// UserGroupsGet - Obtain list of groups in given domain
 // Parameters
 //	query - conditions and limits
 //	domainId - id of domain - only groups from this domain will be listed
@@ -38,7 +38,7 @@ func (s *ServerConnection) UserGroupsGet(query SearchQuery, domainId KId) (UserG
 	return list.Result.List, list.Result.TotalItems, err
 }
 
-// UserGroupsCreate - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// UserGroupsCreate - Add new group
 // Parameters
 //	groups - details for new groups. field id is assigned by the manager to temporary value until apply() or reset().
 //	domainId - id of domain - specifies domain, where groups will be created (only local is supported)
@@ -64,7 +64,7 @@ func (s *ServerConnection) UserGroupsCreate(groups UserGroupList, domainId KId) 
 	return errors.Result.Errors, errors.Result.Result, err
 }
 
-// UserGroupsSet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// UserGroupsSet - Update groups' details
 // Parameters
 //	groupIds - ids of groups to be updated.
 //	details - details for update. Field "kerio::web::KId" is ignored. All other values have to be present
@@ -90,7 +90,7 @@ func (s *ServerConnection) UserGroupsSet(groupIds StringList, details UserGroup,
 	return errors.Result.Errors, err
 }
 
-// UserGroupsRemove - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// UserGroupsRemove - Delete groups
 // Parameters
 //	groupIds - ids of groups that should be removed
 //	domainId - id of domain - specifies domain, where groups will be removed (only local is supported)

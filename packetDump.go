@@ -8,7 +8,9 @@ type PacketDumpStatus struct {
 	Exists  bool `json:"exists"` // dump file exists on disk
 }
 
-// PacketDumpGetExpression - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// PacketDumpGetExpression - Returns expression for dialog from debug log context menu 'Dump Expression...'
+// Return
+//  expression - expression for dialog from debug log context menu 'Dump Expression...'
 func (s *ServerConnection) PacketDumpGetExpression() (string, error) {
 	data, err := s.CallRaw("PacketDump.getExpression", nil)
 	if err != nil {
@@ -23,7 +25,9 @@ func (s *ServerConnection) PacketDumpGetExpression() (string, error) {
 	return expression.Result.Expression, err
 }
 
-// PacketDumpSetExpression - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// PacketDumpSetExpression - Stores expression from debug log context menu dialog 'Dump Expression...'
+// Parameters
+//  expression - expression for dialog from debug log context menu 'Dump Expression...'
 func (s *ServerConnection) PacketDumpSetExpression(expression string) error {
 	params := struct {
 		Expression string `json:"expression"`
@@ -32,25 +36,27 @@ func (s *ServerConnection) PacketDumpSetExpression(expression string) error {
 	return err
 }
 
-// PacketDumpStart - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// PacketDumpStart - Start dump handling
 func (s *ServerConnection) PacketDumpStart() error {
 	_, err := s.CallRaw("PacketDump.start", nil)
 	return err
 }
 
-// PacketDumpStop - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// PacketDumpStop - Stop dump handling
 func (s *ServerConnection) PacketDumpStop() error {
 	_, err := s.CallRaw("PacketDump.stop", nil)
 	return err
 }
 
-// PacketDumpClear - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// PacketDumpClear - Clear dump log
 func (s *ServerConnection) PacketDumpClear() error {
 	_, err := s.CallRaw("PacketDump.clear", nil)
 	return err
 }
 
-// PacketDumpDownload - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// PacketDumpDownload - Download file with dump log
+// Return
+//  fileDownload - log file information
 func (s *ServerConnection) PacketDumpDownload() (*Download, error) {
 	data, err := s.CallRaw("PacketDump.download", nil)
 	if err != nil {
@@ -65,7 +71,9 @@ func (s *ServerConnection) PacketDumpDownload() (*Download, error) {
 	return &fileDownload.Result.FileDownload, err
 }
 
-// PacketDumpGetStatus - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// PacketDumpGetStatus - Get status dump handling
+// Return
+//  status - dump process information
 func (s *ServerConnection) PacketDumpGetStatus() (*PacketDumpStatus, error) {
 	data, err := s.CallRaw("PacketDump.getStatus", nil)
 	if err != nil {

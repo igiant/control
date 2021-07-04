@@ -32,9 +32,9 @@ type NtpUpdateStatus struct {
 	ErrorMessage string         `json:"errorMessage"`
 }
 
-// SystemConfigGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// SystemConfigGet - Returns actual values for System configuration in WebAdmin
 // Return
-//	config - Returns actual values for System configuration in WebAdmin
+//	config - actual values for System configuration in WebAdmin
 func (s *ServerConnection) SystemConfigGet() (*SystemConfiguration, error) {
 	data, err := s.CallRaw("SystemConfig.get", nil)
 	if err != nil {
@@ -49,7 +49,7 @@ func (s *ServerConnection) SystemConfigGet() (*SystemConfiguration, error) {
 	return &config.Result.Config, err
 }
 
-// SystemConfigSet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// SystemConfigSet - Stores System configuration
 // Parameters
 //	config - contains system setting to be stored.
 func (s *ServerConnection) SystemConfigSet(config SystemConfiguration) error {
@@ -60,11 +60,11 @@ func (s *ServerConnection) SystemConfigSet(config SystemConfiguration) error {
 	return err
 }
 
-// SystemConfigGetTimeZones - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// SystemConfigGetTimeZones - Returns the list of known timezones.
 // Parameters
 //	currentDate - Client actual time to serve as an input for timezone and DST detection.
 // Return
-//	timeZones - Returns the list of known timezones.
+//	timeZones - list of known timezones.
 func (s *ServerConnection) SystemConfigGetTimeZones(currentDate Date) (TimeZoneConfigList, error) {
 	params := struct {
 		CurrentDate Date `json:"currentDate"`
@@ -82,7 +82,7 @@ func (s *ServerConnection) SystemConfigGetTimeZones(currentDate Date) (TimeZoneC
 	return timeZones.Result.TimeZones, err
 }
 
-// SystemConfigGetDateTime - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// SystemConfigGetDateTime - Returns Date and Time for System configuration.
 // Return
 //	config - Returns Date and Time for System configuration.
 func (s *ServerConnection) SystemConfigGetDateTime() (*DateTimeConfig, error) {
@@ -99,7 +99,7 @@ func (s *ServerConnection) SystemConfigGetDateTime() (*DateTimeConfig, error) {
 	return &config.Result.Config, err
 }
 
-// SystemConfigSetDateTime - 8000 Internal error.  - "Internal error."
+// SystemConfigSetDateTime - Stores Date and Time for System configuration.
 // Parameters
 //	config - structure of system date and time settings
 func (s *ServerConnection) SystemConfigSetDateTime(config DateTimeConfig) error {
@@ -110,15 +110,15 @@ func (s *ServerConnection) SystemConfigSetDateTime(config DateTimeConfig) error 
 	return err
 }
 
-// SystemConfigSetTimeFromNtp - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// SystemConfigSetTimeFromNtp - Starts NTP client based on configured values.
 func (s *ServerConnection) SystemConfigSetTimeFromNtp() error {
 	_, err := s.CallRaw("SystemConfig.setTimeFromNtp", nil)
 	return err
 }
 
-// SystemConfigGetNtpStatus - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// SystemConfigGetNtpStatus - Returns Status of NTP client process.
 // Return
-//	status - Returns Status of NTP client process.
+//	status - Status of NTP client process.
 func (s *ServerConnection) SystemConfigGetNtpStatus() (*NtpUpdateStatus, error) {
 	data, err := s.CallRaw("SystemConfig.getNtpStatus", nil)
 	if err != nil {

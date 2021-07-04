@@ -37,7 +37,7 @@ type UrlEntryList []UrlEntry
 
 type UrlGroupList []UrlGroup
 
-// UrlGroupsGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// UrlGroupsGet - Get the list of Url groups
 // Parameters
 //	query - conditions and limits. Included from weblib. Kerio Control engine implementation notes: \n
 // Return
@@ -61,7 +61,7 @@ func (s *ServerConnection) UrlGroupsGet(query SearchQuery) (UrlEntryList, int, e
 	return list.Result.List, list.Result.TotalItems, err
 }
 
-// UrlGroupsCreate - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// UrlGroupsCreate - Add new groups
 // Parameters
 //	groups - details for new groups. field id is assigned by the manager to temporary value until apply() or reset().
 // Return
@@ -85,7 +85,7 @@ func (s *ServerConnection) UrlGroupsCreate(groups UrlEntryList) (ErrorList, Crea
 	return errors.Result.Errors, errors.Result.Result, err
 }
 
-// UrlGroupsSet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// UrlGroupsSet - Update existing groups
 // Parameters
 //	groupIds - ids of groups to be updated.
 //	details - details for update. Field "kerio::web::KId" is ignored. All other fields must be filled and they are written to all groups specified by groupIds.
@@ -109,7 +109,7 @@ func (s *ServerConnection) UrlGroupsSet(groupIds StringList, details UrlEntry) (
 	return errors.Result.Errors, err
 }
 
-// UrlGroupsRemove - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// UrlGroupsRemove - Remove groups
 // Parameters
 //	groupIds - ids of groups that should be removed
 // Return
@@ -131,7 +131,7 @@ func (s *ServerConnection) UrlGroupsRemove(groupIds StringList) (ErrorList, erro
 	return errors.Result.Errors, err
 }
 
-// UrlGroupsApply - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// UrlGroupsApply - Write changes cached in manager to configuration
 // Return
 //	errors - list of errors \n
 func (s *ServerConnection) UrlGroupsApply() (ErrorList, error) {
@@ -148,13 +148,13 @@ func (s *ServerConnection) UrlGroupsApply() (ErrorList, error) {
 	return errors.Result.Errors, err
 }
 
-// UrlGroupsReset - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// UrlGroupsReset - Discard changes cached in manager
 func (s *ServerConnection) UrlGroupsReset() error {
 	_, err := s.CallRaw("UrlGroups.reset", nil)
 	return err
 }
 
-// UrlGroupsGetGroupList - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// UrlGroupsGetGroupList - Get the list of groups, sorted in asc order
 func (s *ServerConnection) UrlGroupsGetGroupList() (UrlGroupList, error) {
 	data, err := s.CallRaw("UrlGroups.getGroupList", nil)
 	if err != nil {

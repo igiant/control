@@ -19,7 +19,7 @@ type SnmpSettings struct {
 	Password  Password    `json:"password"`
 }
 
-// SnmpGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// SnmpGet - Returns SNMP configuration
 // Return
 //	settings - A structure containing all the settings of SNMP that are stored.
 func (s *ServerConnection) SnmpGet() (*SnmpSettings, error) {
@@ -36,7 +36,7 @@ func (s *ServerConnection) SnmpGet() (*SnmpSettings, error) {
 	return &settings.Result.Settings, err
 }
 
-// SnmpSet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// SnmpSet - Stores SNMP configuration
 // Parameters
 //	settings - A structure containing all the settings of SNMP that sould be stored.
 func (s *ServerConnection) SnmpSet(settings SnmpSettings) error {

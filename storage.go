@@ -21,9 +21,9 @@ type StorageData struct {
 
 type StorageDataList []StorageData
 
-// StorageGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// StorageGet - Returns list of data present on storage.
 // Return
-//	data - Returns list of data present on storage.
+//	data - list of data present on storage.
 func (s *ServerConnection) StorageGet() (StorageDataList, error) {
 	data, err := s.CallRaw("Storage.get", nil)
 	if err != nil {
@@ -38,7 +38,9 @@ func (s *ServerConnection) StorageGet() (StorageDataList, error) {
 	return dataList.Result.Data, err
 }
 
-// StorageRemove - 1000 Operation failed. - "Some files cannot be deleted, they may be currently in use."
+// StorageRemove - Delete data specified by type from storage.
+// Parameters
+//  storageDataType - data specified by type from storage.
 func (s *ServerConnection) StorageRemove(storageDataType StorageDataType) error {
 	params := struct {
 		StorageDataType StorageDataType `json:"storageDataType"`

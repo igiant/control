@@ -22,7 +22,7 @@ const (
 	RouterAdvertisementsManual    RouterAdvertisementsModeType = "RouterAdvertisementsManual"
 )
 
-// RouterAdvertisementsGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// RouterAdvertisementsGet - Returns list of Router Advertisement entries
 // Return
 //	list - list of entries
 func (s *ServerConnection) RouterAdvertisementsGet() (RouterAdvertisementList, error) {
@@ -39,7 +39,9 @@ func (s *ServerConnection) RouterAdvertisementsGet() (RouterAdvertisementList, e
 	return list.Result.List, err
 }
 
-// RouterAdvertisementsSet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// RouterAdvertisementsSet - Stores Router Advertisement entries
+// Only 37 prefixes is allowed for one Interface, others will be ignored and error will be returned.
+// Prefixes has to be unique for all interfaces.
 // Parameters
 //	advertisements - list of advertisment configurations (prefixes) to be stored and advertised
 // Return
@@ -61,7 +63,7 @@ func (s *ServerConnection) RouterAdvertisementsSet(advertisements RouterAdvertis
 	return errors.Result.Errors, err
 }
 
-// RouterAdvertisementsGetConfig - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// RouterAdvertisementsGetConfig - Read Router Advertisements configuration
 // Return
 //	config - configuration values
 func (s *ServerConnection) RouterAdvertisementsGetConfig() (*RouterAdvertisementsConfig, error) {
@@ -78,7 +80,7 @@ func (s *ServerConnection) RouterAdvertisementsGetConfig() (*RouterAdvertisement
 	return &config.Result.Config, err
 }
 
-// RouterAdvertisementsSetConfig - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// RouterAdvertisementsSetConfig - Stores Router Advertisements configuration
 // Parameters
 //	config - configuration values
 func (s *ServerConnection) RouterAdvertisementsSetConfig(config RouterAdvertisementsConfig) error {
@@ -89,7 +91,7 @@ func (s *ServerConnection) RouterAdvertisementsSetConfig(config RouterAdvertisem
 	return err
 }
 
-// RouterAdvertisementsGetMode - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// RouterAdvertisementsGetMode - Read Router Advertisements mode
 // Return
 //	mode - result
 func (s *ServerConnection) RouterAdvertisementsGetMode() (*RouterAdvertisementsModeType, error) {
@@ -106,7 +108,7 @@ func (s *ServerConnection) RouterAdvertisementsGetMode() (*RouterAdvertisementsM
 	return &mode.Result.Mode, err
 }
 
-// RouterAdvertisementsSetMode - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// RouterAdvertisementsSetMode - Stores Router Advertisements mode
 // Parameters
 //	mode - new value
 func (s *ServerConnection) RouterAdvertisementsSetMode(mode RouterAdvertisementsModeType) error {

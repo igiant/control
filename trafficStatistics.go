@@ -21,7 +21,7 @@ type TrafficStatistic struct {
 
 type TrafficStatisticList []TrafficStatistic
 
-// TrafficStatisticsGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// TrafficStatisticsGet - Returns Rule Statistics data
 // Parameters
 //	query - filter/sort query
 //	refresh - true in case, that data snapshot have to be refreshed
@@ -47,7 +47,7 @@ func (s *ServerConnection) TrafficStatisticsGet(query SearchQuery, refresh bool)
 	return list.Result.List, list.Result.TotalItems, err
 }
 
-// TrafficStatisticsRemove - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// TrafficStatisticsRemove - Deletes rule traffic counters
 // Parameters
 //	ids - Ids of statistics items to be removed.
 func (s *ServerConnection) TrafficStatisticsRemove(ids KIdList) error {
@@ -58,7 +58,7 @@ func (s *ServerConnection) TrafficStatisticsRemove(ids KIdList) error {
 	return err
 }
 
-// TrafficStatisticsGetHistogram - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// TrafficStatisticsGetHistogram - Returns throughput Histogram for specified rule or interface
 // Parameters
 //	id - rule or interface id returned in item.id member by get
 // Return
@@ -81,7 +81,7 @@ func (s *ServerConnection) TrafficStatisticsGetHistogram(histogramType Histogram
 	return &hist.Result.Hist, err
 }
 
-// TrafficStatisticsGetHistogramInc - 1004  Access denied.  - "Insufficient rights to perform the requested operation."
+// TrafficStatisticsGetHistogramInc - Returns throughput Histogram for specified rule or interface
 // Parameters
 //	startSampleTime - Specifies starting time for returned d
 //	id - rule or interface id returned in item.id member by get

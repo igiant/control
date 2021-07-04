@@ -2,7 +2,7 @@ package control
 
 import "encoding/json"
 
-// SystemTasksGetSsh - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// SystemTasksGetSsh - Returns SSH status
 // Return
 //	running - SSH is running
 func (s *ServerConnection) SystemTasksGetSsh() (bool, error) {
@@ -19,7 +19,7 @@ func (s *ServerConnection) SystemTasksGetSsh() (bool, error) {
 	return running.Result.Running, err
 }
 
-// SystemTasksSetSsh - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// SystemTasksSetSsh - Sets SSH setting
 // Parameters
 //	enable - true - enable SSH, false - disable SSH
 func (s *ServerConnection) SystemTasksSetSsh(enable bool) error {
@@ -30,13 +30,13 @@ func (s *ServerConnection) SystemTasksSetSsh(enable bool) error {
 	return err
 }
 
-// SystemTasksReboot - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// SystemTasksReboot - Performs system reboot
 func (s *ServerConnection) SystemTasksReboot() error {
 	_, err := s.CallRaw("SystemTasks.reboot", nil)
 	return err
 }
 
-// SystemTasksShutdown - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// SystemTasksShutdown - Performs system shutdown
 func (s *ServerConnection) SystemTasksShutdown() error {
 	_, err := s.CallRaw("SystemTasks.shutdown", nil)
 	return err

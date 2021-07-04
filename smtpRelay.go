@@ -11,7 +11,9 @@ type SmtpRelayConfig struct {
 	FromAddress             OptionalString    `json:"fromAddress"`
 }
 
-// SmtpRelayGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// SmtpRelayGet - Returns SMTP Relay configuration
+// Return
+//  config - SMTP Relay configuration
 func (s *ServerConnection) SmtpRelayGet() (*SmtpRelayConfig, error) {
 	data, err := s.CallRaw("SmtpRelay.get", nil)
 	if err != nil {
@@ -26,7 +28,9 @@ func (s *ServerConnection) SmtpRelayGet() (*SmtpRelayConfig, error) {
 	return &config.Result.Config, err
 }
 
-// SmtpRelaySet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// SmtpRelaySet - Stores SMTP Relay configuration
+// Parameters
+//  config - SMTP Relay configuration
 func (s *ServerConnection) SmtpRelaySet(config SmtpRelayConfig) error {
 	params := struct {
 		Config SmtpRelayConfig `json:"config"`
@@ -35,12 +39,12 @@ func (s *ServerConnection) SmtpRelaySet(config SmtpRelayConfig) error {
 	return err
 }
 
-// SmtpRelayTest - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// SmtpRelayTest - Sends email and returns errors, empty errors' means OK
 // Parameters
 //	config - configuration structure of smtp relay module
 //	address - email address where to send testing message. Recipient.
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) SmtpRelayTest(config SmtpRelayConfig, address string) (ErrorList, error) {
 	params := struct {
 		Config  SmtpRelayConfig `json:"config"`
@@ -59,9 +63,9 @@ func (s *ServerConnection) SmtpRelayTest(config SmtpRelayConfig, address string)
 	return errors.Result.Errors, err
 }
 
-// SmtpRelayGetStatus - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// SmtpRelayGetStatus - Returns result of last test call
 // Return
-//	errors - list of errors \n
+//	errors - list of errors
 func (s *ServerConnection) SmtpRelayGetStatus() (ErrorList, error) {
 	data, err := s.CallRaw("SmtpRelay.getStatus", nil)
 	if err != nil {

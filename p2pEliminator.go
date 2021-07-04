@@ -9,7 +9,7 @@ type P2pEliminatorConfig struct {
 	TrustedServiceIdList KIdList `json:"trustedServiceIdList"`
 }
 
-// P2pEliminatorGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// P2pEliminatorGet - Returns the configuration of P2P eliminator.
 // Return
 //	config - structure with configuration of P2P eliminator.
 func (s *ServerConnection) P2pEliminatorGet() (*P2pEliminatorConfig, error) {
@@ -26,7 +26,7 @@ func (s *ServerConnection) P2pEliminatorGet() (*P2pEliminatorConfig, error) {
 	return &config.Result.Config, err
 }
 
-// P2pEliminatorSet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// P2pEliminatorSet - Sets the configuration of P2P eliminator.
 // Parameters
 //	config - structure with configuration of P2P eliminator.
 // Return

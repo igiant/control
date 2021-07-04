@@ -11,7 +11,10 @@ const (
 	TotpVerify        TotpState = "TotpVerify"
 )
 
-// TotpTotpVerify - -32001 Session expired. - "The user is not logged in." \n
+// TotpTotpVerify - Performs 2 step verification
+// Parameters
+//  code -
+//  remember -
 func (s *ServerConnection) TotpTotpVerify(code int, remember bool) error {
 	params := struct {
 		Code     int  `json:"code"`
@@ -21,7 +24,9 @@ func (s *ServerConnection) TotpTotpVerify(code int, remember bool) error {
 	return err
 }
 
-// TotpTotpState - -32001 Session expired. - "The user is not logged in." \n
+// TotpTotpState - checks 2 step verification state
+// Return
+//  state -
 func (s *ServerConnection) TotpTotpState() (*TotpState, error) {
 	data, err := s.CallRaw("Totp.totpState", nil)
 	if err != nil {

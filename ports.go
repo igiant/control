@@ -42,7 +42,8 @@ type PortConfig struct {
 
 type PortConfigList []PortConfig
 
-// PortsGet - @note: System version has to support port and switch configuration
+// PortsGet - Returns list of system ports together with assignments
+// note: System version has to support port and switch configuration
 // Return
 //	list - list of ports sorted by port's order of precedence (WiFi last)
 func (s *ServerConnection) PortsGet() (PortConfigList, error) {
@@ -59,7 +60,10 @@ func (s *ServerConnection) PortsGet() (PortConfigList, error) {
 	return list.Result.List, err
 }
 
-// PortsSet - @note: System version has to support port and switch configuration
+// PortsSet - Stores configuration for system ports
+// If some of given items has id, that doesn't exist in current configuration, Error is returned
+// Unknown items are not added, no item is deleted
+// note: System version has to support port and switch configuration
 // Parameters
 //	ports - list of ports (order is not significant)
 //	revertTimeout - If client doesn't confirm config to this timeout, configuration is reverted (0 - revert disabled)

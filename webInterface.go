@@ -27,7 +27,7 @@ type WebInterfaceConfig struct {
 	CustomizedBrand  CustomizedBrand `json:"customizedBrand"`
 }
 
-// WebInterfaceGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation." \n
+// WebInterfaceGet - Returns actual values for Web Interface and Kerio Clientless SSL-VPN configuration in WebAdmin
 func (s *ServerConnection) WebInterfaceGet() (*WebInterfaceConfig, error) {
 	data, err := s.CallRaw("WebInterface.get", nil)
 	if err != nil {
@@ -42,7 +42,7 @@ func (s *ServerConnection) WebInterfaceGet() (*WebInterfaceConfig, error) {
 	return &config.Result.Config, err
 }
 
-// WebInterfaceSet - 1004 Access denied.  - "Insufficient rights to perform the requested operation." \n
+// WebInterfaceSet - Stores configuration
 // Parameters
 //	config - structure with settings for webinterface module
 //	revertTimeout - If client doesn't confirm config to this timeout, configuration is reverted (0 - revert disabled)
@@ -55,7 +55,7 @@ func (s *ServerConnection) WebInterfaceSet(config WebInterfaceConfig, revertTime
 	return err
 }
 
-// WebInterfaceUploadImage - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// WebInterfaceUploadImage - Uploaded image which will need to be apply/reset
 // Parameters
 //	fileId - according to spec 390.
 //	isFavicon - true = the image is favicon, false = the image is product logo
@@ -68,7 +68,7 @@ func (s *ServerConnection) WebInterfaceUploadImage(fileId string, isFavicon bool
 	return err
 }
 
-// WebInterfaceReset - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// WebInterfaceReset - Discard uploaded images
 func (s *ServerConnection) WebInterfaceReset() error {
 	_, err := s.CallRaw("WebInterface.reset", nil)
 	return err

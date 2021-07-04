@@ -190,7 +190,7 @@ type TrafficPolicyFilter struct {
 
 // Manager for Traffic Policy
 
-// TrafficPolicyGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// TrafficPolicyGet - Get the list of Traffic Policy rules
 // Return
 //	list - list of Traffic Policy rules
 //	totalItems - count of all rules in Traffic Policy
@@ -209,7 +209,7 @@ func (s *ServerConnection) TrafficPolicyGet() (TrafficRuleList, int, error) {
 	return list.Result.List, list.Result.TotalItems, err
 }
 
-// TrafficPolicySet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// TrafficPolicySet - Stores the list of Traffic Policy rules
 // Parameters
 //	rules - list of Traffic Policy rules
 //	defaultRule - properties of default rule
@@ -233,7 +233,7 @@ func (s *ServerConnection) TrafficPolicySet(rules TrafficRuleList, defaultRule T
 	return errors.Result.Errors, err
 }
 
-// TrafficPolicyGetCollisions - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// TrafficPolicyGetCollisions - Return list of overlapped rules
 func (s *ServerConnection) TrafficPolicyGetCollisions() (CollisionList, error) {
 	data, err := s.CallRaw("TrafficPolicy.getCollisions", nil)
 	if err != nil {
@@ -248,7 +248,7 @@ func (s *ServerConnection) TrafficPolicyGetCollisions() (CollisionList, error) {
 	return list.Result.List, err
 }
 
-// TrafficPolicyGetDefaultRule - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// TrafficPolicyGetDefaultRule - Get properties of default rule
 // Return
 //	rule - properties of default rule
 func (s *ServerConnection) TrafficPolicyGetDefaultRule() (*TrafficRule, error) {
@@ -265,7 +265,7 @@ func (s *ServerConnection) TrafficPolicyGetDefaultRule() (*TrafficRule, error) {
 	return &rule.Result.Rule, err
 }
 
-// TrafficPolicyFilterRules - 8001  Invalid parameters. - "Invalid parameters."
+// TrafficPolicyFilterRules - Return all rules, that matches given criteria in time, when this method was called.
 // Parameters
 //	condition - Filter parameters. Empty parameter (0 for numbers) in condition means 'any'.
 func (s *ServerConnection) TrafficPolicyFilterRules(condition TrafficPolicyFilter) (KIdList, error) {
@@ -285,7 +285,7 @@ func (s *ServerConnection) TrafficPolicyFilterRules(condition TrafficPolicyFilte
 	return idList.Result.IdList, err
 }
 
-// TrafficPolicyNormalizeTrafficEntity - 8001  Invalid parameters. - "Invalid parameters."
+// TrafficPolicyNormalizeTrafficEntity - Normalize TrafficEntity
 // Parameters
 //	input - TrafficEntity
 func (s *ServerConnection) TrafficPolicyNormalizeTrafficEntity(input TrafficEntity) (ErrorList, *TrafficEntity, error) {

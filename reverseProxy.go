@@ -35,7 +35,7 @@ type ReverseProxyConfig struct {
 	Rules              ReverseProxyRuleList `json:"rules"`
 }
 
-// ReverseProxyGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ReverseProxyGet - Get ReverseProxy config
 // Return
 //	config - reverse proxy config (enabled, default cert.)
 func (s *ServerConnection) ReverseProxyGet() (*ReverseProxyConfig, error) {
@@ -52,7 +52,7 @@ func (s *ServerConnection) ReverseProxyGet() (*ReverseProxyConfig, error) {
 	return &config.Result.Config, err
 }
 
-// ReverseProxySet - 8002 Database error. - "Unable to delete rule for hostname '%1'."
+// ReverseProxySet - Set ReverseProxy config
 // Parameters
 //	config - reverse proxy config (enabled, default cert.)
 // Return

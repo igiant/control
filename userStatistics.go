@@ -22,7 +22,7 @@ type UserStatistic struct {
 
 type UserStatisticList []UserStatistic
 
-// UserStatisticsGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// UserStatisticsGet - Returns User Statistics data
 // Parameters
 //	query - filter/sort query
 //	refresh - true in case, that data snapshot have to be refreshed
@@ -48,7 +48,7 @@ func (s *ServerConnection) UserStatisticsGet(query SearchQuery, refresh bool) (U
 	return list.Result.List, list.Result.TotalItems, err
 }
 
-// UserStatisticsRemove - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// UserStatisticsRemove - Deletes user traffic counters
 // Parameters
 //	ids - list of user ids returned in user member by get
 func (s *ServerConnection) UserStatisticsRemove(ids KIdList) error {

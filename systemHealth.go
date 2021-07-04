@@ -20,7 +20,7 @@ const (
 	HistogramInterval2h  HistogramIntervalType = "HistogramInterval2h"  // Data interval: 2h,   Max samples: 372, Length 1Month
 )
 
-// PercentHistogram - 0-100%, sample count and rate depens on requested type and is the same as in ActiveHost histogram
+// PercentHistogram - 0-100%, sample count and rate depends on requested type and is the same as in ActiveHost histogram
 type PercentHistogram []float64
 
 type SystemHealthData struct {
@@ -31,7 +31,7 @@ type SystemHealthData struct {
 	DiskFree    float64          `json:"diskFree"`
 }
 
-// SystemHealthGet -
+// SystemHealthGet - Gets state of the operating system the product is running on.
 func (s *ServerConnection) SystemHealthGet(histogramType HistogramType) (*SystemHealthData, error) {
 	params := struct {
 		HistogramType HistogramType `json:"histogramType"`
@@ -49,7 +49,7 @@ func (s *ServerConnection) SystemHealthGet(histogramType HistogramType) (*System
 	return &systemHealthData.Result.Data, err
 }
 
-// SystemHealthGetInc -
+// SystemHealthGetInc - Gets state of the operating system the product in time interval
 func (s *ServerConnection) SystemHealthGetInc(histogramIntervalType HistogramIntervalType, startSampleTime DateTimeStamp) (*SystemHealthData, *DateTimeStamp, error) {
 	params := struct {
 		HistogramIntervalType HistogramIntervalType `json:"histogramIntervalType"`

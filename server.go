@@ -42,7 +42,7 @@ type Restriction struct {
 // RestrictionList - List of restrictions
 type RestrictionList []Restriction
 
-// ServerGetOs -
+// ServerGetOs - Gets engine OS
 // Return
 //	os - engine OS. I would like to enumerate where client depends on engine OS but such list will become obsolete soon
 func (s *ServerConnection) ServerGetOs() (*ServerOs, error) {
@@ -59,7 +59,9 @@ func (s *ServerConnection) ServerGetOs() (*ServerOs, error) {
 	return &os.Result.Os, err
 }
 
-// ServerGetRestrictionList -
+// ServerGetRestrictionList - Gets list of restrictions
+// Return
+//  restrictions - list of restrictions
 func (s *ServerConnection) ServerGetRestrictionList() (RestrictionList, error) {
 	data, err := s.CallRaw("Server.getRestrictionList", nil)
 	if err != nil {

@@ -65,7 +65,7 @@ const (
 	AlertList    ApiEntity = "AlertList"
 )
 
-// ProductInfoGetAcknowledgmentsUrl - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ProductInfoGetAcknowledgmentsUrl - Gets url of Acknowledgments file
 // Return
 //	url - requested url
 func (s *ServerConnection) ProductInfoGetAcknowledgmentsUrl() (string, error) {
@@ -82,7 +82,9 @@ func (s *ServerConnection) ProductInfoGetAcknowledgmentsUrl() (string, error) {
 	return url.Result.Url, err
 }
 
-// ProductInfoGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ProductInfoGet - Returns information about product
+// Return
+//  productInfo - information about Kerio Server
 func (s *ServerConnection) ProductInfoGet() (*ProductInformation, error) {
 	data, err := s.CallRaw("ProductInfo.get", nil)
 	if err != nil {
@@ -97,7 +99,7 @@ func (s *ServerConnection) ProductInfoGet() (*ProductInformation, error) {
 	return &productInfo.Result.ProductInfo, err
 }
 
-// ProductInfoGetWarnings - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ProductInfoGetWarnings - Gets warning list
 // Return
 //	warnings - list of warnings
 func (s *ServerConnection) ProductInfoGetWarnings() (WarningInfoList, error) {
@@ -114,7 +116,9 @@ func (s *ServerConnection) ProductInfoGetWarnings() (WarningInfoList, error) {
 	return warnings.Result.Warnings, err
 }
 
-// ProductInfoDisableWarning - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ProductInfoDisableWarning - Disables given warning
+// Parameters
+//  warningType - type of warning to disable
 func (s *ServerConnection) ProductInfoDisableWarning(warningType WarningType) error {
 	params := struct {
 		WarningType WarningType `json:"warningType"`
@@ -123,7 +127,9 @@ func (s *ServerConnection) ProductInfoDisableWarning(warningType WarningType) er
 	return err
 }
 
-// ProductInfoGetSystemHostname - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ProductInfoGetSystemHostname - Returns WinRoute server name
+// Return
+//  hostname - WinRoute server name
 func (s *ServerConnection) ProductInfoGetSystemHostname() (string, error) {
 	data, err := s.CallRaw("ProductInfo.getSystemHostname", nil)
 	if err != nil {
@@ -138,13 +144,13 @@ func (s *ServerConnection) ProductInfoGetSystemHostname() (string, error) {
 	return hostname.Result.Hostname, err
 }
 
-// ProductInfoConfigUpdate - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ProductInfoConfigUpdate - Performs configuration update
 func (s *ServerConnection) ProductInfoConfigUpdate() error {
 	_, err := s.CallRaw("ProductInfo.configUpdate", nil)
 	return err
 }
 
-// ProductInfoUploadLicense - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ProductInfoUploadLicense - Handles license import
 func (s *ServerConnection) ProductInfoUploadLicense(fileId string) error {
 	params := struct {
 		FileId string `json:"fileId"`
@@ -153,13 +159,15 @@ func (s *ServerConnection) ProductInfoUploadLicense(fileId string) error {
 	return err
 }
 
-// ProductInfoAcceptUnregisteredTrial - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ProductInfoAcceptUnregisteredTrial - Accepts unregistered trial license in engine and causes
 func (s *ServerConnection) ProductInfoAcceptUnregisteredTrial() error {
 	_, err := s.CallRaw("ProductInfo.acceptUnregisteredTrial", nil)
 	return err
 }
 
-// ProductInfoGetSupportInfo - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ProductInfoGetSupportInfo - Generates support info file and returns url for download
+// Return
+//  fileDownload - info file url for download
 func (s *ServerConnection) ProductInfoGetSupportInfo() (*Download, error) {
 	data, err := s.CallRaw("ProductInfo.getSupportInfo", nil)
 	if err != nil {
@@ -174,7 +182,9 @@ func (s *ServerConnection) ProductInfoGetSupportInfo() (*Download, error) {
 	return &fileDownload.Result.FileDownload, err
 }
 
-// ProductInfoGetClientStatistics - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ProductInfoGetClientStatistics - Returns settings of Client statistics (Enabled/Disabled)
+// Return
+//  setting - Client statistics enabled/disabled
 func (s *ServerConnection) ProductInfoGetClientStatistics() (bool, error) {
 	data, err := s.CallRaw("ProductInfo.getClientStatistics", nil)
 	if err != nil {
@@ -189,7 +199,9 @@ func (s *ServerConnection) ProductInfoGetClientStatistics() (bool, error) {
 	return setting.Result.Setting, err
 }
 
-// ProductInfoSetClientStatistics - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ProductInfoSetClientStatistics - Stores settings of Client statistics (Enabled/Disabled)
+// Parameters
+//  setting - Client statistics enabled/disabled
 func (s *ServerConnection) ProductInfoSetClientStatistics(setting bool) error {
 	params := struct {
 		Setting bool `json:"setting"`
@@ -198,7 +210,7 @@ func (s *ServerConnection) ProductInfoSetClientStatistics(setting bool) error {
 	return err
 }
 
-// ProductInfoSetStatisticsData - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ProductInfoSetStatisticsData - Stores voluntary statistics obtained on clinet side by javascript.
 func (s *ServerConnection) ProductInfoSetStatisticsData(data StatisticsData) error {
 	params := struct {
 		Data StatisticsData `json:"data"`
@@ -207,7 +219,9 @@ func (s *ServerConnection) ProductInfoSetStatisticsData(data StatisticsData) err
 	return err
 }
 
-// ProductInfoGetUptime - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ProductInfoGetUptime - Returns engine uptime in seconds
+// Return
+//  uptime - engine uptime
 func (s *ServerConnection) ProductInfoGetUptime() (int, error) {
 	data, err := s.CallRaw("ProductInfo.getUptime", nil)
 	if err != nil {
@@ -222,7 +236,10 @@ func (s *ServerConnection) ProductInfoGetUptime() (int, error) {
 	return uptime.Result.Uptime, err
 }
 
-// ProductInfoGetUsedDevicesCount - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ProductInfoGetUsedDevicesCount - Returns number of used devices and accounts
+// Return
+//  devices - number devices
+//	accounts - number accounts
 func (s *ServerConnection) ProductInfoGetUsedDevicesCount() (int, int, error) {
 	data, err := s.CallRaw("ProductInfo.getUsedDevicesCount", nil)
 	if err != nil {
@@ -238,7 +255,7 @@ func (s *ServerConnection) ProductInfoGetUsedDevicesCount() (int, int, error) {
 	return devices.Result.Devices, devices.Result.Accounts, err
 }
 
-// ProductInfoAccountUsage - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// ProductInfoAccountUsage - Accounts usage of ApiEntity for voluntary statistics
 // Parameters
 //	apiEntity - which entity was used
 func (s *ServerConnection) ProductInfoAccountUsage(apiEntity ApiEntity) error {

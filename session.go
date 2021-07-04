@@ -19,7 +19,8 @@ type ClientTimestampList []ClientTimestamp
 
 // May be created only if user is authenticated (request contains valid cookie)
 
-// SessionGetCsrfToken - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// SessionGetCsrfToken - Retrieves an unique session ID intended to be used for CSRF protection in web forms.
+// This ID is different from the session cookie but also remains the same during the session lifetime.
 func (s *ServerConnection) SessionGetCsrfToken() (string, error) {
 	data, err := s.CallRaw("Session.getCsrfToken", nil)
 	if err != nil {
@@ -34,7 +35,9 @@ func (s *ServerConnection) SessionGetCsrfToken() (string, error) {
 	return token.Result.Token, err
 }
 
-// SessionGetUserName - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// SessionGetUserName - Retrieves name os logged user
+// Return
+//  name - name os logged user
 func (s *ServerConnection) SessionGetUserName() (string, error) {
 	data, err := s.CallRaw("Session.getUserName", nil)
 	if err != nil {
@@ -49,7 +52,8 @@ func (s *ServerConnection) SessionGetUserName() (string, error) {
 	return name.Result.Name, err
 }
 
-// Login - [KLoginMethod]
+// Login - Log in given user.
+// Please note that with a session to one module you cannot use another one (eg. with admin session you cannot use webmail).
 // Parameters
 //	userName - login name + domain name (can be omitted if primary/local) of the user to be logged in, e.g. "jdoe" or "jdoe@company.com"
 //	password - password of the user to be logged in
@@ -81,13 +85,15 @@ func (s *ServerConnection) Login(userName string, password string, application *
 	return nil
 }
 
-// Logout - [KLogoutMethod]
+// Logout - Destroys session
 func (s *ServerConnection) Logout() error {
 	_, err := s.CallRaw("Session.logout", nil)
 	return err
 }
 
-// SessionGetSessionVariable - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// SessionGetSessionVariable - Returns clients defined variable stored in configuration for logged user
+// Return
+//  value - clients defined variable stored in configuration for logged user
 func (s *ServerConnection) SessionGetSessionVariable(name string) (string, error) {
 	params := struct {
 		Name string `json:"name"`
@@ -105,7 +111,10 @@ func (s *ServerConnection) SessionGetSessionVariable(name string) (string, error
 	return value.Result.Value, err
 }
 
-// SessionSetSessionVariable - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// SessionSetSessionVariable - Stores clients defined variable to configuration for logged user
+// Parameters
+//	name - name of variable
+//  value - value of variable
 func (s *ServerConnection) SessionSetSessionVariable(name string, value string) error {
 	params := struct {
 		Name  string `json:"name"`
@@ -115,13 +124,13 @@ func (s *ServerConnection) SessionSetSessionVariable(name string, value string) 
 	return err
 }
 
-// SessionReset - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// SessionReset - Reset all persistent objects (managers) in session
 func (s *ServerConnection) SessionReset() error {
 	_, err := s.CallRaw("Session.reset", nil)
 	return err
 }
 
-// SessionGetConfigTimestamp - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// SessionGetConfigTimestamp - Reloads configuration and returns timestamp of current configuration
 // Return
 //	clientTimestampList - is empty in case, that cut-off prevention is not active
 func (s *ServerConnection) SessionGetConfigTimestamp() (ClientTimestampList, error) {
@@ -138,7 +147,7 @@ func (s *ServerConnection) SessionGetConfigTimestamp() (ClientTimestampList, err
 	return clientTimestampList.Result.ClientTimestampList, err
 }
 
-// SessionConfirmConfig - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// SessionConfirmConfig - Confirm the new configuration
 // Parameters
 //	clientTimestampList - values obtained by getConfigTimestamp
 // Return
@@ -160,7 +169,7 @@ func (s *ServerConnection) SessionConfirmConfig(clientTimestampList ClientTimest
 	return confirmed.Result.Confirmed, err
 }
 
-// SessionGetConnectedInterface - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// SessionGetConnectedInterface - Returns id of interface through which is client connected to server
 // Return
 //	id - id of interface or empty in case of localhost
 func (s *ServerConnection) SessionGetConnectedInterface() (*KId, error) {
@@ -177,7 +186,9 @@ func (s *ServerConnection) SessionGetConnectedInterface() (*KId, error) {
 	return &id.Result.Id, err
 }
 
-// SessionGetLoginType - [KAuthentication(AuthenticationMode.NO_AUTHENTICATION_REQUIRED)]
+// SessionGetLoginType - Returns type of login, that has to be performed
+// Return
+//  loginType - type of login
 func (s *ServerConnection) SessionGetLoginType() (*LoginType, error) {
 	data, err := s.CallRaw("Session.getLoginType", nil)
 	if err != nil {

@@ -27,7 +27,7 @@ type Route struct {
 
 type RouteList []Route
 
-// RoutingTableGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// RoutingTableGet - Gets routing table from system.
 // Return
 //	routes - a list of routes currently stroed and used by system.
 func (s *ServerConnection) RoutingTableGet() (RouteList, error) {
@@ -44,7 +44,7 @@ func (s *ServerConnection) RoutingTableGet() (RouteList, error) {
 	return routes.Result.Routes, err
 }
 
-// RoutingTableGetStaticRoutes - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// RoutingTableGetStaticRoutes - Gets static routes.
 // Return
 //	routes - a list of routes currently stroed and used by Control.
 func (s *ServerConnection) RoutingTableGetStaticRoutes() (RouteList, error) {
@@ -61,7 +61,7 @@ func (s *ServerConnection) RoutingTableGetStaticRoutes() (RouteList, error) {
 	return routes.Result.Routes, err
 }
 
-// RoutingTableSetStaticRoutes - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// RoutingTableSetStaticRoutes - Set static routes
 // Parameters
 //	routes - A list of routes that should be stored in configuration.
 // Return

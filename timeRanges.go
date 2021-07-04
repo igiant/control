@@ -16,7 +16,7 @@ const (
 
 type DayList []Day
 
-// TimeRangesApply - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// TimeRangesApply - Write changes cached in manager to configuration
 // Return
 //	errors - list of errors \n
 func (s *ServerConnection) TimeRangesApply() (ErrorList, error) {
@@ -33,7 +33,7 @@ func (s *ServerConnection) TimeRangesApply() (ErrorList, error) {
 	return errors.Result.Errors, err
 }
 
-// TimeRangesReset - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// TimeRangesReset - Discard changes cached in manager
 func (s *ServerConnection) TimeRangesReset() error {
 	_, err := s.CallRaw("TimeRanges.reset", nil)
 	return err

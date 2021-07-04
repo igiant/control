@@ -21,7 +21,9 @@ type SharedDefinitionInfoList []SharedDefinitionInfo
 
 // @brief MyKerio-appliance interface to handle shared definitions
 
-// SharedDefinitionsGetVersions - @return appliance report to MyKerio what shared definitions it support and what versions of shared definitions are stored in appliance
+// SharedDefinitionsGetVersions - Gets appliance report to MyKerio what shared definitions it supports and what versions of shared definitions are stored in appliance
+// Return
+// list - list of appliance report
 func (s *ServerConnection) SharedDefinitionsGetVersions() (SharedDefinitionInfoList, error) {
 	data, err := s.CallRaw("SharedDefinitions.getVersions", nil)
 	if err != nil {
@@ -36,9 +38,9 @@ func (s *ServerConnection) SharedDefinitionsGetVersions() (SharedDefinitionInfoL
 	return list.Result.List, err
 }
 
-// SharedDefinitionsSetVersions - @return appliance report to MyKerio what shared definitions it support and what versions of shared definitions are stored in appliance
+// SharedDefinitionsSetVersions - Sets appliance report to MyKerio what shared definitions it supports and what versions of shared definitions are stored in appliance
 // Parameters
-//	list MyKerio recently updated shared definitions and here it provide new versions. Please, remember that versions in your appliance for further use
+//	list - list of appliance report
 func (s *ServerConnection) SharedDefinitionsSetVersions(list SharedDefinitionInfoList) error {
 	params := struct {
 		List SharedDefinitionInfoList `json:"list"`

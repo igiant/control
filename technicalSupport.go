@@ -26,7 +26,7 @@ type SystemInfo struct {
 
 // Interface for support incidents
 
-// TechnicalSupportGetInfo - @return (void)
+// TechnicalSupportGetInfo - Get information from running product
 // Return
 //	userInfo (out UserInfo) User information
 //	productInfo (out ProductInfo) Product information
@@ -49,7 +49,7 @@ func (s *ServerConnection) TechnicalSupportGetInfo() (*UserInfo, *ProductInfo, *
 	return &userInfo.Result.UserInfo, &userInfo.Result.ProductInfo, &userInfo.Result.SystemInfo, userInfo.Result.IsUploadServerAvailable, err
 }
 
-// TechnicalSupportAddSystemInfoToTicket - @return (void)
+// TechnicalSupportAddSystemInfoToTicket - Add system info to the ticket
 // Parameters
 //	ticketId (in string) tickedId of target ticket
 //	email (in string) email of the customer

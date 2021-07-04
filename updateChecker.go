@@ -45,7 +45,7 @@ type UpdateCheckerInfo struct {
 	AutoUpdateDateTime string       `json:"autoUpdateDateTime"`
 }
 
-// UpdateCheckerGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// UpdateCheckerGet - Returns configuration
 // Return
 //	config - Contains Structure with update checker's settings.
 func (s *ServerConnection) UpdateCheckerGet() (*UpdateCheckerConfig, error) {
@@ -62,7 +62,7 @@ func (s *ServerConnection) UpdateCheckerGet() (*UpdateCheckerConfig, error) {
 	return &config.Result.Config, err
 }
 
-// UpdateCheckerSet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// UpdateCheckerSet - Stores configuration
 // Parameters
 //	config - Contains Structure with update checker's settings to be stored &a pplied.
 func (s *ServerConnection) UpdateCheckerSet(config UpdateCheckerConfig) error {
@@ -73,7 +73,7 @@ func (s *ServerConnection) UpdateCheckerSet(config UpdateCheckerConfig) error {
 	return err
 }
 
-// UpdateCheckerCheck - 8000 Internal error.  - "Internal error."
+// UpdateCheckerCheck - Checks for a new version
 func (s *ServerConnection) UpdateCheckerCheck(checkVersionType CheckVersionType) error {
 	params := struct {
 		CheckVersionType CheckVersionType `json:"checkVersionType"`
@@ -82,7 +82,7 @@ func (s *ServerConnection) UpdateCheckerCheck(checkVersionType CheckVersionType)
 	return err
 }
 
-// UpdateCheckerGetStatus - 8000 Internal error. - "Internal error."
+// UpdateCheckerGetStatus - Returns actual state of Update checker
 // Return
 //	status - a phase of update process.
 func (s *ServerConnection) UpdateCheckerGetStatus() (*UpdateCheckerInfo, error) {
@@ -99,7 +99,8 @@ func (s *ServerConnection) UpdateCheckerGetStatus() (*UpdateCheckerInfo, error) 
 	return &status.Result.Status, err
 }
 
-// UpdateCheckerGetProgressStatus - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// UpdateCheckerGetProgressStatus - Returns percentage progress for Status Downloading
+// METHODS ONLY FOR LINUX VERSION
 // Return
 //	percentage - Returns percentage progress for Status Downloading \n
 func (s *ServerConnection) UpdateCheckerGetProgressStatus() (int, error) {
@@ -116,7 +117,10 @@ func (s *ServerConnection) UpdateCheckerGetProgressStatus() (int, error) {
 	return percentage.Result.Percentage, err
 }
 
-// UpdateCheckerDownload - 8000 Internal error. - "Internal error."
+// UpdateCheckerDownload - Starts Downloading
+// METHODS ONLY FOR LINUX VERSION
+// Parameters
+//  checkVersionType -
 func (s *ServerConnection) UpdateCheckerDownload(checkVersionType CheckVersionType) error {
 	params := struct {
 		CheckVersionType CheckVersionType `json:"checkVersionType"`
@@ -125,7 +129,8 @@ func (s *ServerConnection) UpdateCheckerDownload(checkVersionType CheckVersionTy
 	return err
 }
 
-// UpdateCheckerUploadImage - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// UpdateCheckerUploadImage - Converts fileId to id, that will be passed into performCustomUpgrade.
+// METHODS ONLY FOR LINUX VERSION
 // Parameters
 //	fileId - according to spec 390.
 // Return
@@ -147,7 +152,9 @@ func (s *ServerConnection) UpdateCheckerUploadImage(fileId string) (*KId, error)
 	return &id.Result.Id, err
 }
 
-// UpdateCheckerPerformCustomUpgrade - 8000 Internal error. - "Internal error."
+// UpdateCheckerPerformCustomUpgrade - Processes newly uploaded image for upgrade. Ids according to spec 390.
+// In case of return true, it reboots machine (after 2s delay)
+// METHODS ONLY FOR LINUX VERSION
 func (s *ServerConnection) UpdateCheckerPerformCustomUpgrade(id KId) error {
 	params := struct {
 		Id KId `json:"id"`
@@ -156,13 +163,16 @@ func (s *ServerConnection) UpdateCheckerPerformCustomUpgrade(id KId) error {
 	return err
 }
 
-// UpdateCheckerPerformUpgrade - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// UpdateCheckerPerformUpgrade - Runs upgrade
+// In case of return true, it reboots machine (after 2s delay)
+// METHODS ONLY FOR LINUX VERSION
 func (s *ServerConnection) UpdateCheckerPerformUpgrade() error {
 	_, err := s.CallRaw("UpdateChecker.performUpgrade", nil)
 	return err
 }
 
-// UpdateCheckerCancelDownload - 8000 Internal error. - "Internal error."
+// UpdateCheckerCancelDownload - Stops Downloading
+// METHODS ONLY FOR LINUX VERSION
 func (s *ServerConnection) UpdateCheckerCancelDownload() error {
 	_, err := s.CallRaw("UpdateChecker.cancelDownload", nil)
 	return err

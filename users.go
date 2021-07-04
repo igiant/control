@@ -146,7 +146,7 @@ type User struct {
 
 type UserList []User
 
-// UsersGet - 1004 Access denied.    - "Insufficient rights to perform the requested operation."
+// UsersGet - Obtain list of users in given domain
 // Parameters
 //	query - conditions and limits
 //	domainId - id of domain - only users from this domain will be listed
@@ -174,7 +174,7 @@ func (s *ServerConnection) UsersGet(query SearchQuery, domainId KId) (ErrorList,
 	return warnings.Result.Warnings, warnings.Result.List, warnings.Result.TotalItems, err
 }
 
-// UsersCreate - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// UsersCreate - Add new user
 // Parameters
 //	users - details for new users. field id is assigned by the manager to temporary value until apply() or reset().
 //	domainId - id of domain - specifies domain, where user will be created (only local is supported)
@@ -200,7 +200,7 @@ func (s *ServerConnection) UsersCreate(users UserList, domainId KId) (ErrorList,
 	return errors.Result.Errors, errors.Result.Result, err
 }
 
-// UsersSet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// UsersSet - Update users' details
 // Parameters
 //	userIds - ids of users to be updated.
 //	details - details for update. Field "kerio::web::KId" is ignored. Only filled details will be stored in users config defined by userIds
@@ -226,7 +226,7 @@ func (s *ServerConnection) UsersSet(userIds KIdList, details User, domainId KId)
 	return errors.Result.Errors, err
 }
 
-// UsersRemove - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// UsersRemove - Delete users
 // Parameters
 //	userIds - ids of users that should be removed
 //	domainId - id of domain - specifies domain, where user will be removed (only local is supported)
@@ -250,7 +250,7 @@ func (s *ServerConnection) UsersRemove(userIds KIdList, domainId KId) (ErrorList
 	return errors.Result.Errors, err
 }
 
-// UsersConvertLocalUsers - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// UsersConvertLocalUsers - Replace all conflicting local users with domain users in policies
 // Parameters
 //	domainId - id of domain - specifies domain, from which users will be loaded
 func (s *ServerConnection) UsersConvertLocalUsers(domainId KId) error {
@@ -261,7 +261,7 @@ func (s *ServerConnection) UsersConvertLocalUsers(domainId KId) error {
 	return err
 }
 
-// UsersGetAdUsers - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// UsersGetAdUsers - Returns list of users suitable for import
 // Parameters
 //	domainName - name of AD domain
 //	server - AD server
@@ -289,7 +289,7 @@ func (s *ServerConnection) UsersGetAdUsers(domainName string, server string, cre
 	return users.Result.Users, err
 }
 
-// UsersGetNtUsers - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// UsersGetNtUsers - Returns list of users suitable for import
 // Parameters
 //	domainName - name of NT domain
 // Return
@@ -311,7 +311,7 @@ func (s *ServerConnection) UsersGetNtUsers(domainName string) (UserList, error) 
 	return users.Result.Users, err
 }
 
-// UsersGetSupportedLanguages - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// UsersGetSupportedLanguages - Gets supported languages, name like "Cestina" in utf8, value in configuration, default value is "detect"
 // Return
 //	languages - list of languages
 func (s *ServerConnection) UsersGetSupportedLanguages() (NamedValueList, error) {
@@ -328,7 +328,7 @@ func (s *ServerConnection) UsersGetSupportedLanguages() (NamedValueList, error) 
 	return languages.Result.Languages, err
 }
 
-// UsersGetMySettings - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// UsersGetMySettings - Returns list of user's settings
 // Return
 //	settings - list of all settings
 func (s *ServerConnection) UsersGetMySettings() (*UserSettings, error) {
@@ -345,7 +345,7 @@ func (s *ServerConnection) UsersGetMySettings() (*UserSettings, error) {
 	return &settings.Result.Settings, err
 }
 
-// UsersSetMySettings - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// UsersSetMySettings - Stores list of user's settings
 // Parameters
 //	settings - list of all settings
 func (s *ServerConnection) UsersSetMySettings(settings UserSettings) error {
@@ -356,7 +356,7 @@ func (s *ServerConnection) UsersSetMySettings(settings UserSettings) error {
 	return err
 }
 
-// UsersCheckWarnings - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// UsersCheckWarnings - Checks, if autoLogin and vpnAddress params are unique and returns appropriate warnings if so
 // Parameters
 //	user - user data
 // Return

@@ -98,7 +98,7 @@ type SecuritySettingsConfig struct {
 	ZeroConfigNetwork ZeroConfigNetwork  `json:"zeroConfigNetwork"`
 }
 
-// SecuritySettingsGet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// SecuritySettingsGet - Returns actual values for Security Settings configuration in WebAdmin
 // Return
 //	config - structure containig security settings such as macfilter action, name, mac list and belonging interfaces.
 func (s *ServerConnection) SecuritySettingsGet() (*SecuritySettingsConfig, error) {
@@ -115,9 +115,9 @@ func (s *ServerConnection) SecuritySettingsGet() (*SecuritySettingsConfig, error
 	return &config.Result.Config, err
 }
 
-// SecuritySettingsSet - 1004 Access denied.  - "Insufficient rights to perform the requested operation."
+// SecuritySettingsSet - Stores Security Settings configuration
 // Parameters
-//	config - structure containig security settings to be stored such as macfilter action, name, mac list and belonging interfaces.
+//	config - structure containing security settings to be stored such as mac-filter action, name, mac list and belonging interfaces.
 // Return
 //	errors - list of errors \n
 func (s *ServerConnection) SecuritySettingsSet(config SecuritySettingsConfig) (ErrorList, error) {
